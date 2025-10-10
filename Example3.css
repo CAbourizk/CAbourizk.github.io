@@ -6,13 +6,20 @@
 
 body { /* We can style any HTML element by using its name - here we're styling the body */
   /* We want text that uses a clean sans-serif font, is usually 16px big and close to black */
-  font-family: 'tiempos', Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  color: #333;
-  line-height: 1.6;
+  font-family: "et-book";
+  src: url("/fonts/et-book-roman-line-figures.woff2") format("woff2"),
+  url("/fonts/et-book-roman-line-figures.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  font-size: 15px;
+  color: #111;
+  line-height: 22.5px;
   /* we want a white page, that's centered and not too wide */
-  background-color: #fcd0b1;
-  margin:0 auto;
+  background-color: #FFFFF8;
+  color:#111;
+  margin: 50px;
+  line-height:inherit;
   max-width: 800px;
   padding-top: 60px;
 }
@@ -20,10 +27,11 @@ body { /* We can style any HTML element by using its name - here we're styling t
 
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
-  color: 'purple';
-  margin-top: 24px;
-  margin-bottom: 16px;
-  font-weight: 600;
+  font_size: inherit;
+  color: #111';
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-weight: inherit;
 }
 
 /* We want the headings to be a little bigger than the paragraph text */
@@ -32,7 +40,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h2 {
-  font-size: 1.75em;
+  font-weight: 400;
+  line-height: 1;
 }
 
 .small {
@@ -41,12 +50,16 @@ h2 {
 
 /* Paragraph */
 p {
-  margin-bottom: 1em;
-  font-weight: 300;
+  margin-top: 1.4rem;
+  margin-bottom: 1.4rem;
+  padding-right: 0;
+  vertical-align: baseline;
+  text-wrap: pretty
 }
 
 section {
-  margin-bottom: 2.5em;  /* We want a little more space between sections */
+  padding-top: 1rem;  /* We want a little more space between sections */
+  padding-bottom: 1rem
 }
 
 /* Links */
@@ -64,4 +77,6 @@ a:hover {
 img {
   max-width: 100%;
   height: auto;
+  width: auto:
 }
+
