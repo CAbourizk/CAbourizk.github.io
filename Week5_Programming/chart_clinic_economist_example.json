@@ -1,0 +1,65 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": "#cddfe6",
+  "title": {
+    "text": "Left-click",
+    "frame": "group",
+    "subtitle": [
+      "Average number of likes per Facebook post (thousands)",
+      "2016",
+      ""
+    ],
+    "subtitleFontSize": 10,
+    "anchor": "start",
+    "color": "black"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/wqloh/wqloh.github.io/refs/heads/main/wk4_economist_original.csv"
+  },
+  "layer": [
+    {"mark": {"type": "bar", "strokeWidth": 10, "opacity": 1}},
+    {
+      "transform": [{"filter": "datum.Account == 'Jeremy Corbyn'"}],
+      "mark": {"type": "text", "align": "right", "dx": -5},
+      "encoding": {
+        "text": {"field": "Number of likes"},
+        "color": {"value": "white"}
+      }
+    }
+  ],
+  "height": 300,
+  "width": 350,
+  "encoding": {
+    "y": {"field": "Account", "type": "nominal", "sort": [], "title": null},
+    "x": {
+      "field": "Number of likes",
+      "type": "quantitative",
+      "title": null,
+      "scale": {"domain": [0, 1000]},
+      "axis": {"grid": true, "zindex": 0, "gridColor": "white", "orient": "top"}
+    },
+    "color": {
+      "field": "Account",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "Jeremy Corbyn",
+          "Labour Party",
+          "Momentum",
+          "Owen Smith",
+          "Andy Burnham",
+          "Saving Labour"
+        ],
+        "range": [
+          "#7b2710",
+          "#f15a41",
+          "#f25b3f",
+          "#eb9071",
+          "#eb8f77",
+          "#f15a3f"
+        ]
+      },
+      "legend": null
+    }
+  }
+}
