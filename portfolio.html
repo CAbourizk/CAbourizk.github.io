@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html> 
+<head>    
+    <link rel="stylesheet" type="text/css" href="Example3.css">
+    <title>Chart Journal</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+    <style>
+        #chartGrid {
+            display: flex;
+        }
+        
+    </style>
+</head>
+
+<body> 
+    <h1 class="big" style="margin-bottom: 0px;">
+        Chart Journal
+    </h1>
+    <p style="margin-top: 0px; color: darkblue"> 
+        Clancy Abourizk | <a href="https://www.linkedin.com/in/clancy-abourizk-0056b114b">LinkedIn</a> | <a
+            href="https://github.com/CAbourizk/CAbourizk.github.io">GitHub</a>
+    </p>
+    
+    <section>
+        <div class="chart-description">
+            <h2>Challenge 1</h2>
+            <p>
+                This week's selection of charts explain the UK's fiscal position when compared with other advanced economies.
+            </p>
+        </div>
+        <h3> Debt to GDP</h3>
+        <p>The UK's stock of government debt is high by international standards, but lower than a number of other G7 economies</p>
+        <figure id="Location1"></figure>
+        <h3> Bond yields</h3>
+        <p>10 year bond yields (one of the most relevent yields for long term fiscal sustainability) have tracked alongside other major economies over the last 30 years. </p>
+        <figure id="Location2"></figure>
+        
+        
+        <h2>Challenge 2</h2>
+        <h3> Changes in gilt yeilds</h3>
+        <p>Yields spiked following the Truss-Kwarteng mini-budget, but was this just a sign of things to come?</p>
+        <figure id="Location3"></figure>
+    </section>
+
+
+ <section>
+        <div class="chart-description">
+            <h2>Challenge 3</h2>
+            <p> <!-- This is a paragraph, it's the main way to display text on a web page -->
+                Two charts that I made in the seminar, no theme today.
+            </p>
+        </div>
+        <h3> Private sector AWOTE in Australia</h3>
+        <p>AWOTE go up</p>
+        <figure id="Location4"></figure> <!-- we give it an id so we can put a vega-lite graph here with VegaEmbed -->
+        <h3> M2</h3>
+        <p>M2 go up, especially during COVID </p>
+        <figure id="Location5"></figure>
+    </section>
+
+<section>
+        <div class="chart-description">
+            <h2>Week 3 charts</h2>
+            <p> <!-- This is a paragraph, it's the main way to display text on a web page -->
+                A chart made in the seminar using solair.
+            </p>
+        </div>
+        <h3> P/E ratio over time</h3>
+        <p>Can it keep rising?</p>
+        <figure id="Location6"></figure>
+        <h3> Inflation index</h3>
+        <p>Inflation go up </p>
+        <figure id="Location7"></figure> <!-- we give it an id so we can put a vega-lite graph here with VegaEmbed -->
+    </section>
+
+<section>
+        <div class="chart-description">
+            <h2>Week 4 chart</h2>
+            <p> <!-- This is a paragraph, it's the main way to display text on a web page -->
+                A chart made in the seminar using an API.
+            </p>
+        </div>
+        <h3> Current account</h3>
+        <p>Look at that COVID surplus</p>
+        <figure id="Location8"></figure>
+    </section>
+
+
+    <!-- Do you want to add more sections? -->
+        <!-- Try copying pasting the section above -->
+        <!-- You'll need to change the id of the figure "<figure id="Location3"... -->
+        <!-- ... and add a new variable for the graph spec in the script at the bottom of the page -->
+
+
+    <!-- This is a script, it's a way to run JavaScript code on the page -->
+    <script>
+        // Define all charts in one array - each chart has an id (where to put it) and spec (the chart definition)
+        const charts = [
+            { id: '#Location1', spec: 'https://raw.githubusercontent.com/EconomicsObservatory/datavis/refs/heads/main/newsletters/2025-07-18-the-debt-mountain/visualisation/fig1-g20-debt.json', options: {width: 300, height: 300} },
+            { id: '#Location2', spec: 'https://raw.githubusercontent.com/EconomicsObservatory/datavis/refs/heads/main/newsletters/2025-07-18-the-debt-mountain/visualisation/fig3-big4-yields.json' },
+            { id: '#Location3', spec: 'UK_Yields.json' },
+            { id: '#Location4', spec: 'AWOTE.json' },
+            { id: '#Location5', spec: 'M2.json' },
+            { id: '#Location6', spec: 'shiller_pe_ratio_chart.json' },
+            { id: '#Location7', spec: 'inflation_index.json' },
+            { id: '#Location8', spec: 'current_account.json' }
+        ];
+
+        // Embed all charts using a loop - much cleaner than writing vegaEmbed() for each chart!
+        charts.forEach(chart => {
+            vegaEmbed(chart.id, chart.spec, chart.options);
+        });
+
+        // To add a new chart:
+        // 1. Add a <figure id="LocationX"></figure> in the HTML above
+        // 2. Add one line to the charts array: { id: '#LocationX', spec: 'your-chart.json' }
+
+        let cities = ["Sydney", "Melbourne", "Canberra"]
+                    console.log("The third city is "+cities[2])
+
+        // console.log("0")
+        // console.log("1")
+        // console.log("2")
+        // console.log("3")
+        
+        for (let i=0; i<4; i++){
+            console.log(i)
+        }
+        
+
+
+         let chart_specs = [
+            figure_3_spec = "https://raw.githubusercontent.com/EconomicsObservatory/datavis/refs/heads/main/newsletters/2025-07-18-the-debt-mountain/visualisation/fig3-big4-yields.json",
+            figure_4_spec = "fig4-uk-yields.json"
+            ]
+         
+            let chart_destinations = [
+                "#location3",
+                "#location4"
+            ]
+
+
+            for (let i=0; i<5; i++){
+                console.log("Chart spec at: " +chart_specs[i])
+                console.log("Chart destinations at: " +chart_destinations[i])
+                vegaEmbed(chart_destinations[i], chart_specs[i])
+            }
+
+    </script>
+
+</body>
+    
+</html>
