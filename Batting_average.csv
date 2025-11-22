@@ -1,10 +1,6 @@
-﻿Sydney,Runs,5416
-Sydney,Avg,45.37
-Launceston,Runs,2657
-Launceston,Avg,44.8
-Cape Town,Runs,4501
-Cape Town,Avg,44.29
-Delhi,Runs,3172
-Delhi,Avg,36.53
-Mumbai,Runs,3938
-Mumbai,Avg,35.51
+﻿City,Runs,Avg
+Sydney,5416,45.37
+Launceston,2657,44.8
+Cape Town,4501,44.29
+Delhi,3172,36.53
+Mumbai,3938,35.51
