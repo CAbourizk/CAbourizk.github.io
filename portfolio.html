@@ -34,13 +34,13 @@
         <div class="chart-container">
             <div class="chart-item">
                 <h3> Debt to GDP</h3>
-                <p>The UK's stock of government debt is high by international standards, but lower than a number of other G7 economies</p>
                 <figure id="Location1"></figure>
+                <p>The UK's stock of government debt is high by international standards, but lower than a number of other G7 economies</p>
             </div>
             <div class="chart-item">
                 <h3> Bond yields</h3>
-                <p>10 year bond yields (one of the most relevent yields for long term fiscal sustainability) have tracked alongside other major economies over the last 30 years. </p>
                 <figure id="Location2"></figure>
+                <p>10 year bond yields (one of the most relevent yields for long term fiscal sustainability) have tracked alongside other major economies over the last 30 years. </p>
             </div>
         </div>
     </section>
@@ -52,13 +52,13 @@
         <div class="chart-container">
             <div class="chart-item">
                 <h3> Changes in gilt yeilds</h3>
-                <p>Yields spiked following the Truss-Kwarteng mini-budget, but was this just a sign of things to come?</p>
                 <figure id="Location3"></figure>
+                <p>Yields spiked following the Truss-Kwarteng mini-budget, but was this just a sign of things to come?</p>
             </div>
             <div class="chart-item">
                 <h3> Mortgage rates</h3>
-                <p>Mortgage rates were also affected, but have generally followed a different path to gilts.</p>
                 <figure id="Location4"></figure>
+                <p>Mortgage rates were also affected, but have generally followed a different path to gilts.</p>
             </div>
         </div>
     </section>
@@ -71,13 +71,13 @@
         <div class="chart-container">
             <div class="chart-item">
                 <h3> Agricultural value added per worker</h3>
-                <p>Countries that have been able to invest in 'Green revolution' techniques have seen agricultural productivity soar.</p>
                 <figure id="Location5"></figure>
+                <p>Countries that have been able to invest in 'Green revolution' techniques have seen agricultural productivity soar.</p>
             </div>
             <div class="chart-item">
                 <h3> Share of the labour force employed in agricultre</h3>
-                <p>This has meant that output has continued to rise, while the share of the labour force employed in agriculture has shrunk. Developing and middle income nations still have high shares of their population employed in agriculture. This is an untapped source of labour market supply which may be useful as population's age</p>
                 <figure id="Location6"></figure>
+                <p>This has meant that output has continued to rise, while the share of the labour force employed in agriculture has shrunk. Developing and middle income nations still have high shares of their population employed in agriculture. This is an untapped source of labour market supply which may be useful as population's age</p>
             </div>
         </div>
     </section>
@@ -89,11 +89,12 @@
         <div class="chart-container">
             <div class="chart-item">
                 <h3> Cities with the best batting talent</h3>
-                <p>Found on ESPN Cricinfo - this visualisation really doesnt add anything (what is that even meant to be for Launceston?) and is hard to decifer</p>
-                <figure id="LocationX">
+                <figure id="Location7">
                     <img src="chart_7_screenshot.png" alt="ESPN Cricinfo batting talent visualization">
-                </figure>
                 <p> Source: https://www.espncricinfo.com/story/which-top-cricket-city-would-win-the-world-cup-1196522</p>
+                </figure>
+                <p>Found on ESPN Cricinfo - this visualisation really doesnt add anything (what is that even meant to be for Launceston?) and is hard to decifer</p>
+                
             </div>
             <div class="chart-item">
                 <h3> Cities with the best batting talent redux</h3>
@@ -103,22 +104,34 @@
     </section>
 
     <section>
-       <h2>Challenge 5</h2>
-            <p>
-                A chart made in the seminar using an API. Look at that COVID surplus</p>
-        <figure id="Location9"></figure>
-            <p>
-            Data sourced from the World Bank API.
-            Base URL (https://api.worldbank.org/v2/country/[insert country codes here]/indicator/[insert indicator codes here]?format=json
-            Here is the url I used https://api.worldbank.org/v2/country/AU;kor/indicator/BN.CAB.XOKA.GD.ZS?format=json&per_page=130</p>
+        <div class="section-header">
+            <h2>Challenge 5</h2>
+        </div>
+        <div class="chart-container">
+            <div class="chart-item">
+                <figure id="Location9"></figure>
+                <p>
+                Data sourced from the World Bank API.
+                Base URL (https://api.worldbank.org/v2/country/[insert country codes here]/indicator/[insert indicator codes here]?format=json
+                Here is the url I used https://api.worldbank.org/v2/country/AU;kor/indicator/BN.CAB.XOKA.GD.ZS?format=json&per_page=130</p>
+            </div>
+            <div class="chart-item">
+                <h3> Goods and services trade</h3>
+                <figure id="Location10"></figure>
+                <p>Data scraped from wikipedia, see colab notebook <a href="https://colab.research.google.com/drive/1YLln_bSiQ7K2Rvw4gJvPEcTGEea8Y_GM?usp=sharing">here.</a></p>
+            </div>
+        </div>
     </section>
 
     <section>
-       <div class="chart-description">
+        <div class="section-header">
             <h2>Challenge 6 chart</h2>
-            <p>
-                A chart made in the seminar using an API. Look at that COVID surplus</p>
-        <figure id="Location10"></figure>
+            <p>A chart made in the seminar using an API. Look at that COVID surplus</p>
+        </div>
+        <div class="chart-container">
+            <div class="chart-item">
+                <figure id="Location10"></figure>
+            </div>
         </div>
     </section>
 
@@ -173,23 +186,34 @@
     <script>
         // Define all charts in one array - each chart has an id (where to put it) and spec (the chart definition)
         const charts = [
-            { id: '#Location1', spec: 'https://raw.githubusercontent.com/EconomicsObservatory/datavis/refs/heads/main/newsletters/2025-07-18-the-debt-mountain/visualisation/fig1-g20-debt.json', options: {width: 300, height: 300} },
+            { id: '#Location1', spec: 'https://raw.githubusercontent.com/EconomicsObservatory/datavis/refs/heads/main/newsletters/2025-07-18-the-debt-mountain/visualisation/fig1-g20-debt.json' },
             { id: '#Location2', spec: 'https://raw.githubusercontent.com/EconomicsObservatory/datavis/refs/heads/main/newsletters/2025-07-18-the-debt-mountain/visualisation/fig3-big4-yields.json' },
             { id: '#Location3', spec: 'UK_Yields.json' },
             { id: '#Location4', spec: 'mortgage_rates.json' },
             { id: '#Location5', spec: 'agriculture_value_added.json' },
             { id: '#Location6', spec: 'ag_share_lf.json' },
             { id: '#Location8', spec: 'batting.json' },
-            { id: '#Location9', spec: 'AWOTE.json' },
+            { id: '#Location9', spec: 'current_account.json' },
             { id: '#Location10', spec: 'M2.json' },
             { id: '#Location11', spec: 'shiller_pe_ratio_chart.json' },
             { id: '#Location12', spec: 'inflation_index.json' },
-            { id: '#Location13', spec: 'current_account.json' }
+            { id: '#Location13', spec: '' }
         ];
 
-        // Embed all charts using a loop
+        // Embed all charts using a loop - let Vega-Lite handle sizing via container width
         charts.forEach(chart => {
-            vegaEmbed(chart.id, chart.spec, chart.options);
+            vegaEmbed(chart.id, chart.spec, {
+                actions: false,
+                renderer: 'canvas'
+            }).then(result => {
+                // Hide legend if title is "symbol" or "undefined"
+                const legendTitles = result.view.container().querySelectorAll('.vega-bind-name');
+                legendTitles.forEach(title => {
+                    if (title.textContent === 'symbol' || title.textContent === 'undefined') {
+                        title.parentElement.style.display = 'none';
+                    }
+                });
+            });
         });
 
         

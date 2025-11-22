@@ -17,7 +17,7 @@ body { /* We can style any HTML element by using its name - here we're styling t
   /* We want text that uses a clean sans-serif font, is usually 16px big and close to black */
   font-family: "et-book";
   font-size: 17px;
-  color: #111;
+  color: #33303e;
   line-height: 1.7;
   /* we want a white page, that's centered and not too wide */
   background-color: #FFFFF8;
@@ -35,6 +35,14 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: 1.5rem;
   font-weight: inherit;
+}
+
+/* Byline styling - more elegant and subtle */
+h1 + p {
+  font-size: 0.9em;
+  font-weight: 400;
+  color: #666;
+  letter-spacing: 0.02em;
 }
 
 /* We want the headings to be a little bigger than the paragraph text */
@@ -142,9 +150,10 @@ img {
 /* Each chart item gets its own container */
 .chart-item {
   flex: 1;
-  padding: 0 1rem;
+  padding: 0;
   box-sizing: border-box;
   overflow-wrap: break-word;
+  overflow: visible;
 }
 
 .chart-item h3:first-child {
@@ -154,21 +163,58 @@ img {
 /* Ensure figures don't overflow */
 figure {
   margin: 0.75rem 0 0 0;
+  width: 100%;
   max-width: 100%;
-  overflow: hidden;
+  overflow: visible;
+  border: 1px solid #e5e5e0;
+  border-radius: 4px;
+  padding: 0.5rem;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+/* Ensure Vega charts fit their container */
+figure .vega-embed {
+  width: 100%;
+  overflow: visible;
+}
+
+figure .vega-embed details,
+figure .vega-embed summary {
+  display: none !important;
+}
+
+/* Hide legend title if it's "undefined" or "symbol" */
+figure .vega-embed .vega-bind {
+  display: none;
+}
+
+figure .vega-embed canvas,
+figure .vega-embed svg {
+  max-width: 100%;
+  height: auto;
 }
 
 /* On wide screens, display charts side by side */
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
+  body {
+    max-width: 1200px; /* Wider body to accommodate side-by-side charts */
+  }
+
   .chart-container {
     flex-direction: row;
-    gap: 2rem;
+    gap: 3rem;
     align-items: flex-start;
   }
 
   .chart-item {
     min-width: 0; /* Prevents flex items from overflowing */
     flex-basis: 0; /* Equal width distribution */
+    max-width: 550px; /* Prevent charts from getting too wide */
+  }
+
+  figure {
+    padding: 1rem;
   }
 }
 
