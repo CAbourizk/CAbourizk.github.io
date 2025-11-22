@@ -1,0 +1,54 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Layered map showing UK power plants with color encoding for fuel type and size encoding for capacity in MW.",
+  "title": "UK Power Plants by Fuel Type and Capacity",
+  "width": 350,
+  "height": 450,
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/jhellingsdata/jhellingsdata.github.io/main/Data/UK%20Map%20Data/ITL1_2021_20m.geojson",
+        "format": {"property": "features"}
+      },
+      "projection": {"type": "equalEarth"},
+      "mark": {
+        "type": "geoshape",
+        "fill": "lightgray",
+        "stroke": "white",
+        "strokeWidth": 0.5
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/jhellingsdata/RADataHub/refs/heads/main/MappingWorkshop/series_data/uk_power_plants.csv"
+      },
+      "mark": {
+        "type": "circle",
+        "opacity": 0.7,
+        "stroke": "white",
+        "strokeWidth": 0.5
+      },
+      "encoding": {
+        "longitude": {"field": "longitude", "type": "quantitative"},
+        "latitude": {"field": "latitude", "type": "quantitative"},
+        "color": {
+          "field": "fuel_category", 
+          "type": "nominal",
+          "title": "Fuel Type"
+        },
+        "size": {
+          "field": "capacity_mw", 
+          "type": "quantitative",
+          "scale": {"type": "sqrt", "range": [10, 200]},
+          "title": "Capacity (MW)"
+        },
+        "tooltip": [
+          {"field": "name", "type": "nominal", "title": "Power Plant"},
+          {"field": "fuel_category", "type": "nominal", "title": "Fuel Type"},
+          {"field": "capacity_mw", "type": "quantitative", "title": "Capacity (MW)", "format": ".1f"},
+          {"field": "primary_fuel", "type": "nominal", "title": "Primary Fuel"}
+        ]
+      }
+    }
+  ]
+}

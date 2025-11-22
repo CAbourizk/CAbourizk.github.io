@@ -1,0 +1,36 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "values": [
+      {"city": "London", "population": 9000000},
+      {"city": "Paris", "population": 2200000},
+      {"city": "Berlin", "population": 3600000}
+    ]
+  },
+  "transform": [
+    {
+      "lookup": "city",
+      "from": {
+        "data": {
+          "values": [
+            {"cities": "London", "region": "Europe"},
+            {"cities": "Paris", "region": "Europe"},
+            {"cities": "Berlin", "region": "Europe"}
+          ]
+        },
+        "key": "cities",
+        "fields": ["region"]
+      }
+    }
+  ],
+  "mark": "point",
+  "encoding": {
+    "x": {"field": "population", "type": "quantitative"},
+    "color": {"field": "region", "type": "nominal"},
+    "tooltip": [
+      {"field": "city", "type": "nominal"},
+      {"field": "region", "type": "nominal"},
+      {"field": "population", "type": "quantitative"}
+    ]
+  }
+}

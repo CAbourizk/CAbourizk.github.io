@@ -1,0 +1,18 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "UK basemap showing ITL1 (International Territorial Level 1) regional boundaries in gray.",
+  "title": "UK Basemap",
+  "width": 300,
+  "height": 400,
+  "data": {
+    "url": "https://raw.githubusercontent.com/jhellingsdata/jhellingsdata.github.io/main/Data/UK%20Map%20Data/ITL1_2021_20m.geojson",
+    "format": {"property": "features"}
+  },
+  "projection": {"type": "mercator"},
+  "mark": {
+    "type": "geoshape",
+    "fill": "lightgray",
+    "stroke": "white",
+    "strokeWidth": 0.5
+  }
+}

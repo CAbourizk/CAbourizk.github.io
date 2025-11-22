@@ -1,31 +1,42 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
-    "title": {
-      "text": "Australian current account balance",
-      "subtitle": "% of GDP. Source: World bank"
+  "title": {
+    "text": "Current account balance",
+    "subtitle": "Australia and Korea, % of GDP. Source: World bank"
+  },
+  "data": {
+    "url": "https://api.worldbank.org/v2/country/AU;kor/indicator/BN.CAB.XOKA.GD.ZS?format=json&per_page=130",
+    "format": {
+      "property": "[1]"
+    }
+  },
+  "layer": [
+    {
+      "mark": "line",
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal",
+          "title": "Date"
+        },
+        "color": {"field": "countryiso3code", "title": "Country"},
+        "y": {
+          "field": "value",
+          "type": "quantitative",
+          "title": "% of GDP",
+          "axis": {
+            "grid": false
+          }
+        }
+      }
     },
-    "mark": "line",
-    "data": {
-      "url":"https://api.worldbank.org/v2/country/AU;kor/indicator/BN.CAB.XOKA.GD.ZS?format=json&per_page=130",
-      "format": {
-        "property": "[1]"
+    {
+      "mark": "rule",
+      "encoding": {
+        "y": {"datum": 0},
+        "color": {"value": "black"},
+        "strokeWidth": {"value": 1}
       }
-  },
-"encoding":{
-  "x":{
-    "field": "date",
-    "type" : "temporal",
-    "title": "Date"
-  },
-  "color": {"field":"countryiso3code","title":"Country"},
-  "y": {
-    "field": "value",
-    "type": "quantitative",
-    "title": "% of GDP",
-    "axis": {
-      "grid": false
-      }
-  }
-
-}
+    }
+  ]
 }

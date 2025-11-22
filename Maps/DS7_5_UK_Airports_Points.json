@@ -1,0 +1,23 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Point map showing UK airports with circle size proportional to aircraft movements and tooltips for passenger data.",
+  "title": "UK Airports (Points Only)",
+  "width": 300,
+  "height": 400,
+  "data": {
+    "url": "https://raw.githubusercontent.com/jhellingsdata/jhellingsdata.github.io/main/Data/point_maps/UK_airports2.csv"
+  },
+  "projection": {"type": "mercator"},
+  "mark": "circle",
+  "encoding": {
+    "longitude": {"field": "longY", "type": "quantitative"},
+    "latitude": {"field": "latX", "type": "quantitative"},
+    "size": {"field": "Aircraft Movements", "type": "quantitative"},
+    "color": {"value": "#D35400"},
+    "tooltip": [
+      {"field": "Airport"},
+      {"field": "Passengers", "format": ","},
+      {"field": "Aircraft Movements", "format": ","}
+    ]
+  }
+}

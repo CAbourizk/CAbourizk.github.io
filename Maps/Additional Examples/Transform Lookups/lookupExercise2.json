@@ -1,0 +1,32 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "values": [
+      {"country_code": "USA"},
+      {"country_code": "CHN"},
+      {"country_code": "IND"}
+    ]
+  },
+  "transform": [
+    {
+      "lookup": "country_code",
+      "from": {
+        "data": {
+          "values": [
+            {"country_name": "United States", "population_growth": 0.5},
+            {"country_name": "China", "population_growth": 0.4},
+            {"country_name": "India", "population_growth": 0.8}
+          ]
+        },
+        "key": "country_code",
+        "fields": ["country_name"]
+      }
+    }
+  ],
+  "mark": "bar",
+  "encoding": {
+    "x": {"field": "population_growth", "type": "quantitative"},
+    "y": {"field": "country_name", "type": "nominal"}
+  },
+  "config": {}
+}

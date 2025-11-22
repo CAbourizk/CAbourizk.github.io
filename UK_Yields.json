@@ -1,54 +1,35 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "A chart of UK Gilt yields",
+  "data": {
+    "url": "https://api.economicsobservatory.com/gbr/intr?vega"
+  },
   "title": {
     "text": "10 Year Gilt",
-    "anchor": "start",
-    "subtitle": "Yield, % | Source: BoE through ECO API",
-    "fontSize": 14,
-    "subtitleFontSize": 12,
-    "color": "#000000",
-    "subtitleColor": "#000000"
+    "subtitle": "Yield, % | Source: BoE through ECO API"
   },
-  "height": 250,
-  "width": "container",
-  "autosize": {
-    "type": "fit",
-    "contains": "padding"
-  },
-  "background": "#ffffff",
-  "view": {
-    "fill": "#ffffff",
-    "strokeOpacity": 0
-  },
-  "data": {
-    "url": "https://api.economicsobservatory.com/gbr/intr?vega",
-    "format": {
-      "type": "json"
-    }
-  },
-  "mark": {
-    "type": "line",
-    "color": "#e32400",
-    "strokeWidth": 2
-  },
+  "transform": [
+    {"calculate": "datum.value *100", "as":"value"}
+  ],
+  "mark": "line",
   "encoding": {
     "x": {
       "field": "date",
       "type": "temporal",
-      "axis": {
-        "title": "",
-        "titleColor": "#122B39",
-        "grid": false
-      }
-    },
+      "scale": {
+        "domain":["2000-01-01", "2024-12-31"],
+        "clamp": true
+        }
+      },
     "y": {
       "field": "value",
       "type": "quantitative",
       "axis": {
-        "title": "",
+        "title": "%",
         "titleColor": "#122B39",
         "grid": false
       }
     }
-  }
+  },
+  "config": {}
 }

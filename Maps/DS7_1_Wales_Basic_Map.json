@@ -1,0 +1,20 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Basic map of Wales using TopoJSON boundaries with Mercator projection.",
+  "title": "Wales",
+  "width": 300,
+  "height": 400,
+  "data": {
+    "url": "https://raw.githubusercontent.com/jhellingsdata/RADataHub/refs/heads/main/MappingWorkshop/geo_data/wales.topojson",
+    "format": {"type": "topojson", "feature": "data"}
+  },
+  "mark": {
+    "type": "geoshape",
+    "fill": "lightgreen",
+    "stroke": "white",
+    "strokeWidth": 1
+  },
+  "projection": {
+    "type": "mercator"
+  }
+}

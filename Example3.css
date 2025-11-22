@@ -4,22 +4,24 @@
 /* These are comments in CSS. Comments don't do anything except explain your working to make code easier to understand. */
 
 
-body { /* We can style any HTML element by using its name - here we're styling the body */
-  /* We want text that uses a clean sans-serif font, is usually 16px big and close to black */
+@font-face {
   font-family: "et-book";
   src: url("/fonts/et-book-roman-line-figures.woff2") format("woff2"),
-  url("/fonts/et-book-roman-line-figures.woff") format("woff");
+       url("/fonts/et-book-roman-line-figures.woff") format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
+}
+
+body { /* We can style any HTML element by using its name - here we're styling the body */
+  /* We want text that uses a clean sans-serif font, is usually 16px big and close to black */
+  font-family: "et-book";
   font-size: 15px;
   color: #111;
   line-height: 22.5px;
   /* we want a white page, that's centered and not too wide */
   background-color: #FFFFF8;
-  color:#111;
   margin: 50px;
-  line-height:inherit;
   max-width: 800px;
   padding-top: 60px;
 }
@@ -27,8 +29,8 @@ body { /* We can style any HTML element by using its name - here we're styling t
 
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
-  font_size: inherit;
-  color: #111';
+  font-size: inherit;
+  color: #111;
   margin-top: 0;
   margin-bottom: 1.5rem;
   font-weight: inherit;
@@ -40,7 +42,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h2 {
-  font-weight: 400;
+  font-weight: 800;
+  line-height: 1;
+}
+
+
+h3 {
+  font-weight: 500;
   line-height: 1;
 }
 
@@ -54,12 +62,12 @@ p {
   margin-bottom: 1.4rem;
   padding-right: 0;
   vertical-align: baseline;
-  text-wrap: pretty
+  text-wrap: pretty;
 }
 
 section {
   padding-top: 1rem;  /* We want a little more space between sections */
-  padding-bottom: 1rem
+  padding-bottom: 1rem;
 }
 
 /* Links */
@@ -77,6 +85,6 @@ a:hover {
 img {
   max-width: 100%;
   height: auto;
-  width: auto:
+  width: auto;
 }
 
