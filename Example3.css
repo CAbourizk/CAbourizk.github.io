@@ -16,14 +16,15 @@
 body { /* We can style any HTML element by using its name - here we're styling the body */
   /* We want text that uses a clean sans-serif font, is usually 16px big and close to black */
   font-family: "et-book";
-  font-size: 15px;
+  font-size: 17px;
   color: #111;
-  line-height: 22.5px;
+  line-height: 1.7;
   /* we want a white page, that's centered and not too wide */
   background-color: #FFFFF8;
-  margin: 50px;
+  margin: 0 auto;
   max-width: 800px;
   padding-top: 60px;
+  padding-bottom: 60px;
 }
 
 
@@ -42,14 +43,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h2 {
-  font-weight: 800;
-  line-height: 1;
+  font-size: 1.8em;
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
 }
 
-
 h3 {
-  font-weight: 500;
-  line-height: 1;
+  font-size: 1.3em;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
 }
 
 .small {
@@ -58,16 +63,36 @@ h3 {
 
 /* Paragraph */
 p {
-  margin-top: 1.4rem;
-  margin-bottom: 1.4rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
   padding-right: 0;
   vertical-align: baseline;
   text-wrap: pretty;
 }
 
 section {
-  padding-top: 1rem;  /* We want a little more space between sections */
-  padding-bottom: 1rem;
+  padding-top: 2.5rem;  /* More generous spacing between sections */
+  padding-bottom: 2.5rem;
+  margin-bottom: 0;
+  /* Make the background extend full width */
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  padding-left: calc(50vw - 50%);
+  padding-right: calc(50vw - 50%);
+  border-top: 1px solid #e5e5e0;
+}
+
+section:first-of-type {
+  border-top: none;
+}
+
+/* Alternating background colors for sections - using nth-of-type to count only sections */
+section:nth-of-type(odd) {
+  background-color: #f5f5e8;
+}
+
+section:nth-of-type(even) {
+  background-color: transparent;
 }
 
 /* Links */
@@ -75,10 +100,14 @@ section {
 a {
   color: #065f46;
   text-decoration: none;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  border-bottom: 1px solid #065f46;
+  transition: border-color 0.2s ease;
 }
 
 a:hover {
-  text-decoration: underline;
+  border-bottom-color: transparent;
 }
   
 /* Images */
@@ -86,5 +115,60 @@ img {
   max-width: 100%;
   height: auto;
   width: auto;
+}
+
+/* Section header takes full width */
+.section-header {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.section-header p:last-child {
+  margin-bottom: 0;
+}
+
+.section-header p {
+  font-size: 1.05em;
+  line-height: 1.75;
+}
+
+/* Chart container - stacks on mobile, side-by-side on wide screens */
+.chart-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Each chart item gets its own container */
+.chart-item {
+  flex: 1;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+}
+
+.chart-item h3:first-child {
+  margin-top: 0;
+}
+
+/* Ensure figures don't overflow */
+figure {
+  margin: 0.75rem 0 0 0;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* On wide screens, display charts side by side */
+@media (min-width: 768px) {
+  .chart-container {
+    flex-direction: row;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+
+  .chart-item {
+    min-width: 0; /* Prevents flex items from overflowing */
+    flex-basis: 0; /* Equal width distribution */
+  }
 }
 
