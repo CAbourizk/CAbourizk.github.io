@@ -169,16 +169,18 @@
 
  <section>
         <div class="section-header">
-            <h2>Challenge 8 - Big Data</h2>
+            <h2>Challenge 8 - Big Data, Big Prices</h2>
         </div>
         <div class="chart-container">
             <div class="chart-item">
                 <figure id="Location19"></figure>
-                <p>
+                <p>I made this chart with the autocpi dataset, I did the reducing / collapsing / grouping in a colab notebook  <a href="https://colab.research.google.com/drive/1BE4QrF_khoyD3w1sP5pGmozJA5bIFjFd?usp=sharing">here.</a> Afrer cleaning, I saved as a CSV, loaded the data into vega editor and made the chart. Interestingly popcorn price seem pretty tightly clustered and didnt have a super sharp increase following COVID. 
                 </p>
             </div>
             <div class="chart-item">
                 <figure id="Location20"></figure>
+                <p>Similarly this chart is also from the autocpi dataset. The cleaning was done in this colab notebook  <a href="https://colab.research.google.com/drive/1DkGu9tMYen4U_JuMDV99B3OhVxUOaSlN?usp=sharing">here.</a> I took a different approach with this one where instead of saving as a csv, this time I made the chart in altair and just directly saved as a json spec. 
+                </p>
             </div>
         </div>
     </section>
@@ -201,8 +203,10 @@
             { id: '#Location14', spec: 'chart_FRED_ECIALLCIV.json' },
             { id: '#Location15', spec: 'chart_FRED_UNRATE.json' },
             { id: '#Location16', spec: 'chart_FRED_A191RP1A027NBEA.json' },
-            { id: '#Location17', spec: '' },
-            { id: '#Location18', spec: '' }
+            { id: '#Location17', spec: 'X.json' },
+            { id: '#Location18', spec: 'X.json' },
+            { id: '#Location19', spec: 'popcorn.json' },
+            { id: '#Location20', spec: 'olive_oil_price_chart.json' }
         ];
 
         // Embed all charts using a loop

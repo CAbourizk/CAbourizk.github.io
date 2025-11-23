@@ -1,0 +1,37 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "title": {
+    "text": "Popcorn prices overtime",
+    "subtitle": "Source: ONS microdata via Davies (2021)"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/CAbourizk/CAbourizk.github.io/refs/heads/main/popcornprice.csv",
+    "format": {
+      "type": "csv"
+    }
+  },
+  
+  "mark": "line",
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "temporal",
+      "title": "Year"
+    },
+    "y": {
+      "field": "price",
+      "type": "quantitative",
+      "title": "Price ($)",
+      "axis": {
+        "grid": false
+      }
+    },
+    "color": {
+      "field": "price_type",
+      "type": "nominal",
+      "title": "Price Type"
+    }
+  },
+  "width": 300,
+  "height": 200
+}
