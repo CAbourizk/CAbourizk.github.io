@@ -1,9 +1,3 @@
-/* This is an example CSS file. If you include it in your portfolio, it'll provide some clean and basic styling */
-/* for your page. Feel free to experiment with the values, or copy them into a new file and use that instead. */
-
-/* These are comments in CSS. Comments don't do anything except explain your working to make code easier to understand. */
-
-
 @font-face {
   font-family: "et-book";
   src: url("/fonts/et-book-roman-line-figures.woff2") format("woff2"),
@@ -13,13 +7,11 @@
   font-display: swap;
 }
 
-body { /* We can style any HTML element by using its name - here we're styling the body */
-  /* We want text that uses a clean sans-serif font, is usually 16px big and close to black */
+body {
   font-family: "et-book";
   font-size: 17px;
   color: #33303e;
   line-height: 1.7;
-  /* we want a white page, that's centered and not too wide */
   background-color: #FFFFF8;
   margin: 0 auto;
   max-width: 800px;
@@ -37,17 +29,16 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: inherit;
 }
 
-/* Byline styling - more elegant and subtle */
-h1 + p {
-  font-size: 0.9em;
-  font-weight: 400;
-  color: #666;
-  letter-spacing: 0.02em;
+/* Byline styling */
+.byline {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: darkblue;
 }
 
-/* We want the headings to be a little bigger than the paragraph text */
-.big { /* This is the class we created in the HTML file, you can use it to style any element */
+.big {
   font-size: 2.5em;
+  margin-bottom: 0;
 }
 
 h2 {
@@ -65,10 +56,6 @@ h3 {
   margin-bottom: 0.5rem;
 }
 
-.small {
-  font-size: 1.25em;
-}
-
 /* Paragraph */
 p {
   margin-top: 0.5rem;
@@ -79,10 +66,10 @@ p {
 }
 
 section {
-  padding-top: 2.5rem;  /* More generous spacing between sections */
+  padding-top: 2.5rem;
   padding-bottom: 2.5rem;
   margin-bottom: 0;
-  /* Make the background extend full width */
+  /* Extend background full width beyond centered body */
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
   padding-left: calc(50vw - 50%);
@@ -94,7 +81,7 @@ section:first-of-type {
   border-top: none;
 }
 
-/* Alternating background colors for sections - using nth-of-type to count only sections */
+/* Alternating background colors */
 section:nth-of-type(odd) {
   background-color: #f5f5e8;
 }
@@ -104,7 +91,6 @@ section:nth-of-type(even) {
 }
 
 /* Links */
-/* We want the links to be a little more visible  and a different color */
 a {
   color: #065f46;
   text-decoration: none;
@@ -195,10 +181,10 @@ figure .vega-embed svg {
   height: auto;
 }
 
-/* On wide screens, display charts side by side */
+/* Wide screen layout - side-by-side charts */
 @media (min-width: 1200px) {
   body {
-    max-width: 1200px; /* Wider body to accommodate side-by-side charts */
+    max-width: 1200px;
   }
 
   .chart-container {
@@ -208,9 +194,9 @@ figure .vega-embed svg {
   }
 
   .chart-item {
-    min-width: 0; /* Prevents flex items from overflowing */
-    flex-basis: 0; /* Equal width distribution */
-    max-width: 550px; /* Prevent charts from getting too wide */
+    min-width: 0;
+    flex-basis: 0;
+    max-width: 550px;
   }
 
   figure {

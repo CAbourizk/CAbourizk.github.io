@@ -6,30 +6,21 @@
     <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.25.0"></script>
-
-    <style>
-        #chartGrid {
-            display: flex;
-        }
-        
-    </style>
 </head>
 
 <body> 
-    <h1 class="big" style="margin-bottom: 0px;">
+    <h1 class="big">
         Chart Journal
     </h1>
-    <p style="margin-top: 0px; color: darkblue"> 
+    <p class="byline">
         Clancy Abourizk | <a href="https://www.linkedin.com/in/clancy-abourizk-0056b114b">LinkedIn</a> | <a
             href="https://github.com/CAbourizk/CAbourizk.github.io">GitHub</a>
     </p>
     
     <section>
         <div class="section-header">
-            <h2>Challenge 1</h2>
-            <p>
-                This week's selection of charts explain the UK's fiscal position when compared with other advanced economies.
-            </p>
+            <h2>Challenge 1 - UK Fiscal Position</h2>
+            
         </div>
         <div class="chart-container">
             <div class="chart-item">
@@ -40,14 +31,14 @@
             <div class="chart-item">
                 <h3> Bond yields</h3>
                 <figure id="Location2"></figure>
-                <p>10 year bond yields (one of the most relevent yields for long term fiscal sustainability) have tracked alongside other major economies over the last 30 years. </p>
+                <p>The UK's 10 year bond yields (one of the most relevent yields for long term fiscal sustainability) have tracked alongside other major economies over the last 30 years. </p>
             </div>
         </div>
     </section>
 
     <section>
         <div class="section-header">
-            <h2>Challenge 2</h2>
+            <h2>Challenge 2 - Interest rates</h2>
         </div>
         <div class="chart-container">
             <div class="chart-item">
@@ -84,7 +75,7 @@
 
     <section>
         <div class="section-header">
-            <h2>Challenge 4</h2>
+            <h2>Challenge 4 - Batting average by city</h2>
         </div>
         <div class="chart-container">
             <div class="chart-item">
@@ -97,7 +88,7 @@
                 
             </div>
             <div class="chart-item">
-                <h3> Cities with the best batting talent redux</h3>
+                <h3> Redux</h3>
                 <figure id="Location8"></figure>
             </div>
         </div>
@@ -105,7 +96,7 @@
 
     <section>
         <div class="section-header">
-            <h2>Challenge 5</h2>
+            <h2>Challenge 5 - Trade</h2>
         </div>
         <div class="chart-container">
             <div class="chart-item">
@@ -116,7 +107,7 @@
                 Here is the url I used https://api.worldbank.org/v2/country/AU;kor/indicator/BN.CAB.XOKA.GD.ZS?format=json&per_page=130</p>
             </div>
             <div class="chart-item">
-                <h3> Goods and services trade</h3>
+                
                 <figure id="Location10"></figure>
                 <p>Data scraped from wikipedia, see colab notebook <a href="https://colab.research.google.com/drive/1YLln_bSiQ7K2Rvw4gJvPEcTGEea8Y_GM?usp=sharing">here.</a></p>
             </div>
@@ -125,64 +116,73 @@
 
     <section>
         <div class="section-header">
-            <h2>Challenge 6 chart</h2>
-            <p>A chart made in the seminar using an API. Look at that COVID surplus</p>
+            <h2>Challenge 6 - Major economic parameters</h2>
+            <p>Charts made with the FRED API and automated with loops. These are the six parameters that appear in Table 1.1 of Australia's Federal Budget. Colab link <a href="https://colab.research.google.com/drive/1wKDPLACigIzzanQXRV3mW5Is_ehVLTSB?usp=sharing">here.</a></p>
         </div>
         <div class="chart-container">
             <div class="chart-item">
-                <figure id="Location10"></figure>
+                <h3>Real GDP Growth</h3>
+                <figure id="Location11"></figure>
             </div>
+            <div class="chart-item">
+                <h3>Employment</h3>
+                <figure id="Location12"></figure>
+                </div>
+        </div>
+        <div class="chart-container">
+            <div class="chart-item">
+                <h3>Unemployment rate</h3>
+                <figure id="Location13"></figure>
+                </div>
+            <div class="chart-item">
+                <h3>Consumer price index</h3>
+                <figure id="Location14"></figure>
+                </div>
+        </div>
+        <div class="chart-container">
+            <div class="chart-item">
+                <h3>Wage price index</h3>
+                <figure id="Location15"></figure>
+            </div>
+            <div class="chart-item">
+                <h3>Nominal GDP</h3>
+                <figure id="Location16"></figure>
+                </div>
         </div>
     </section>
 
-
-
-
-
-    <section>
+   <section>
         <div class="section-header">
-            <h2>Challenge X</h2>
-            <p> <!-- This is a paragraph, it's the main way to display text on a web page -->
-                Two charts that I made in the seminar, no theme today.
-            </p>
+            <h2>Challenge 7 - Maps of Scotland and Wales</h2>
         </div>
         <div class="chart-container">
             <div class="chart-item">
-                <h3> Private sector AWOTE in Australia</h3>
-                <p>AWOTE go up</p>
-                <figure id="Location5"></figure> <!-- we give it an id so we can put a vega-lite graph here with VegaEmbed -->
+                <figure id="Location17"></figure>
+                <p>
+                </p>
             </div>
             <div class="chart-item">
-                <h3> M2</h3>
-                <p>M2 go up, especially during COVID </p>
-                <figure id="Location6"></figure>
+                <figure id="Location18"></figure>
             </div>
         </div>
     </section>
 
-    <section>
+ <section>
         <div class="section-header">
-            <h2>Week 3 charts</h2>
-            <p> <!-- This is a paragraph, it's the main way to display text on a web page -->
-                A chart made in the seminar using solair.
-            </p>
+            <h2>Challenge 8 - Big Data</h2>
         </div>
         <div class="chart-container">
             <div class="chart-item">
-                <h3> P/E ratio over time</h3>
-                <p>Can it keep rising?</p>
-                <figure id="Location7"></figure>
+                <figure id="Location19"></figure>
+                <p>
+                </p>
             </div>
             <div class="chart-item">
-                <h3> Inflation index</h3>
-                <p>Inflation go up </p>
-                <figure id="Location8"></figure> <!-- we give it an id so we can put a vega-lite graph here with VegaEmbed -->
+                <figure id="Location20"></figure>
             </div>
         </div>
     </section>
 
-
-    <!-- This is a script, it's a way to run JavaScript code on the page -->
     <script>
         // Define all charts in one array - each chart has an id (where to put it) and spec (the chart definition)
         const charts = [
@@ -194,29 +194,26 @@
             { id: '#Location6', spec: 'ag_share_lf.json' },
             { id: '#Location8', spec: 'batting.json' },
             { id: '#Location9', spec: 'current_account.json' },
-            { id: '#Location10', spec: 'M2.json' },
-            { id: '#Location11', spec: 'shiller_pe_ratio_chart.json' },
-            { id: '#Location12', spec: 'inflation_index.json' },
-            { id: '#Location13', spec: '' }
+            { id: '#Location10', spec: 'trade_barchart.json' },
+            { id: '#Location11', spec: 'chart_FRED_A191RL1A225NBEA.json' },
+            { id: '#Location12', spec: 'chart_FRED_CPIAUCSL.json' },
+            { id: '#Location13', spec: 'chart_FRED_PAYEMS.json' },
+            { id: '#Location14', spec: 'chart_FRED_ECIALLCIV.json' },
+            { id: '#Location15', spec: 'chart_FRED_UNRATE.json' },
+            { id: '#Location16', spec: 'chart_FRED_A191RP1A027NBEA.json' },
+            { id: '#Location17', spec: '' },
+            { id: '#Location18', spec: '' }
         ];
 
-        // Embed all charts using a loop - let Vega-Lite handle sizing via container width
+        // Embed all charts using a loop
         charts.forEach(chart => {
             vegaEmbed(chart.id, chart.spec, {
                 actions: false,
                 renderer: 'canvas'
-            }).then(result => {
-                // Hide legend if title is "symbol" or "undefined"
-                const legendTitles = result.view.container().querySelectorAll('.vega-bind-name');
-                legendTitles.forEach(title => {
-                    if (title.textContent === 'symbol' || title.textContent === 'undefined') {
-                        title.parentElement.style.display = 'none';
-                    }
-                });
             });
         });
 
-        
+
     </script>
 
 </body>
