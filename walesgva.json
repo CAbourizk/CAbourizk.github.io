@@ -1,0 +1,45 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Wales GVA per hour by Local Authority (2023)",
+  "width": 350,
+  "height": 450,
+  "data": {
+    "url": "https://raw.githubusercontent.com/jhellingsdata/RADataHub/refs/heads/main/MappingWorkshop/geo_data/LAD_WLS_2025_05.topojson",
+    "format": {"type": "topojson", "feature": "object_name"}
+  },
+  "transform": [
+    {
+      "lookup": "properties.LAD25CD",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/CAbourizk/CAbourizk.github.io/refs/heads/main/gross-value-added-per-hour-worked-map-data.csv"
+        },
+        "key": "geo_id",
+        "fields": ["value", "date"]
+      }
+    }
+  ],
+  "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 0.5},
+  "encoding": {
+    "color": {
+      "field": "value",
+      "type": "quantitative",
+      "scale": {"scheme": "greens"},
+      "title": "GVA per hour worked (£)"
+    },
+    "tooltip": [
+      {
+        "field": "properties.LAD25NM",
+        "type": "nominal",
+        "title": "Local Authority District"
+      },
+      {
+        "field": "value",
+        "type": "quantitative",
+        "title": "GVA per hour (£)",
+        "format": ",.0f"
+      }
+    ]
+  },
+  "projection": {"type": "mercator"}
+}
