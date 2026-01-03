@@ -1,0 +1,57 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Real GDP Growth Rate",
+    "fontSize": 16,
+    "anchor": "start"
+  },
+  "width": 400,
+  "height": 300,
+  "data": {
+    "url": "Portfolio/json/data_FRED_A191RL1Q225SBEA.json",
+    "format": {
+      "type": "json",
+      "property": "observations"
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.value != '.'"
+    },
+    {
+      "calculate": "toNumber(datum.value)",
+      "as": "numValue"
+    }
+  ],
+  "mark": {
+    "type": "line",
+    "color": "#1f77b4",
+    "strokeWidth": 2
+  },
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "temporal",
+      "title": "Date",
+      "axis": {
+        "format": "%Y",
+        "labelAngle": -45
+      }
+    },
+    "y": {
+      "field": "numValue",
+      "type": "quantitative",
+      "title": "Real GDP Growth Rate (%)",
+      "scale": {
+        "zero": false
+      }
+    },
+    "tooltip": [
+      {"field": "date", "type": "temporal", "title": "Date", "format": "%B %Y"},
+      {"field": "numValue", "type": "quantitative", "title": "Growth Rate (%)", "format": ".1f"}
+    ]
+  },
+  "config": {
+    "view": {"strokeWidth": 0}
+  }
+}

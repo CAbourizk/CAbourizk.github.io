@@ -1,0 +1,37 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Batting totals and averages by place of birth",
+  "title": {
+    "text": "Cities with the best batting average",
+    "subtitle": "Source: ESPN Cricinfo"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/CAbourizk/CAbourizk.github.io/refs/heads/main/Batting_average.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [
+    {
+      "fold": ["Runs", "Avg"],
+      "as": ["Metric", "Value"]
+    }
+  ],
+  "mark": "bar",
+  "encoding": {
+    "x": {"field": "Value", "type": "quantitative", "title": null},
+    "y": {"field": "City", "type": "nominal", "title": null, "sort": {"field": "Avg", "op": "max", "order": "descending"}},
+    "color": {"field": "City", "type": "nominal", "legend": null},
+    "facet": {
+      "field": "Metric",
+      "type": "nominal",
+      "title": null,
+      "header": {"labelFontSize": 14}
+    },
+    "tooltip": [
+      {"field": "City", "type": "nominal"},
+      {"field": "Value", "type": "quantitative", "format": ",.0f", "title": "Value"}
+    ]
+  },
+  "resolve": {
+    "scale": {"x": "independent"}
+  }
+}

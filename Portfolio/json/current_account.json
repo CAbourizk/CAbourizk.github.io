@@ -1,0 +1,83 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "title": {
+    "text": "Current account balance",
+    "subtitle": "Australia and Korea, % of GDP. Source: World bank"
+  },
+  "data": {
+    "url": "https://api.worldbank.org/v2/country/AU;kor/indicator/BN.CAB.XOKA.GD.ZS?format=json&per_page=130",
+    "format": {
+      "property": "[1]"
+    }
+  },
+  "transform": [
+    {
+      "filter": "year(datum.date) >= 1990"
+    },
+    {
+      "calculate": "datum.countryiso3code == 'AUS' ? 'Australia' : datum.countryiso3code == 'KOR' ? 'South Korea' : datum.countryiso3code",
+      "as": "country_name"
+    }
+  ],
+  "layer": [
+    {
+      "mark": "line",
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "date",
+            "type": "temporal",
+            "title": "Year",
+            "format": "%Y"
+          },
+          {
+            "field": "value",
+            "type": "quantitative",
+            "title": "% of GDP",
+            "format": ",.0f"
+          },
+          {
+            "field": "country_name",
+            "type": "nominal",
+            "title": "Country"
+          }
+        ],
+        "x": {
+          "field": "date",
+          "type": "temporal",
+          "title": "Year"
+        },
+        "color": {
+          "field": "countryiso3code",
+          "title": "Country",
+          "scale": {
+            "domain": ["AUS", "KOR"],
+            "range": ["#8CAA9E", "#D4A574"]
+          }
+        },
+        "y": {
+          "field": "value",
+          "type": "quantitative",
+          "title": "% of GDP",
+          "axis": {
+            "grid": false
+          }
+        }
+      }
+    },
+    {
+      "mark": "rule",
+      "encoding": {
+        "y": {"datum": 0},
+        "color": {"value": "black"},
+        "strokeWidth": {"value": 1}
+      }
+    }
+  ],
+  "height": 300,
+  "width": "container",
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  }
+}
