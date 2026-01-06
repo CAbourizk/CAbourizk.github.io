@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="Chart_journal_look.css">
+    <title>Canberra Public Transport Analysis - Clancy Abourizk</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.25.0"></script>
+</head>
+
+<body>
+    <h1 class="big">
+        Mind the gaps: An assessment of Canberra's public transport network
+    </h1>
+    <p class="byline">
+        <a href="index.html">Home</a> | <a href="https://cabourizk.github.io/portfolio">Portfolio</a> | <a href="https://www.linkedin.com/in/clancy-abourizk-0056b114b">LinkedIn</a> | <a href="https://github.com/CAbourizk/CAbourizk.github.io">GitHub</a>
+    </p>
+
+    <div class="intro-panels">
+        <div class="intro-panels-grid">
+            <details class="intro-panel">
+                
+                <!-- Aims -->
+                <summary>Aims</summary>
+                <p>
+                    Canberra' public transport use is low by Australian standards and has declined despite significant investment in the network. This project assesses Canberra's public transport network across three key determinants of quality: coverage, frequency, and reliability.
+                </p>
+            </details>
+            <details class="intro-panel">
+                
+                <!-- Data -->
+                <summary>Data</summary>
+                <p>
+                    	This analysis draws on data from a range of publicly available sources (see below). Some data (like that from the ABS) was relatively easy to work with (coming in CSV format), and mainly required hunting down the right files. BITRE data was also easy enough to locate, but required the use of a scraper to lift data from tables in a PDF. The remainder of the data came from the Transport ACT API. Signing up was easy enough, but a sparse documentation and a small user community meant a fair bit of time was spent getting it to work.
+                </p>
+                <p>
+                The reliability measure is the only data that is not directly replicable. This data was not published, but I was able to use the API and a python script to collect the service lateness data over a two day period (23-24 December 2025). I have included a link to a colab workbook with the code that was used to capture this information [here]. I acknowledge that the days leading up to Christmas may not be a representative sample, so I encourage others to collect more data over a longer period before drawing solid policy conclusions.
+                <p>
+                 	While others can use this script to collect new data, I should note that little time was spent optimising for the file size vs granularity tradeoff. The file size grew relatively large relatively quickly (47MB for 2 days). If this work was to be extended more thought should be paid to this (perhaps collecting data less frequently or compressing the data into summary statistics). 
+                </p>
+
+                <p><strong>Data Sources:</strong></p>
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.9em; margin-bottom: 25px;">
+                    <thead>
+                        <tr style="background-color: #e0e0e0;">
+                            <th style="padding: 10px; text-align: left; border: 1px solid #ccc;">Source</th>
+                            <th style="padding: 10px; text-align: left; border: 1px solid #ccc;">Description</th>
+                            <th style="padding: 10px; text-align: left; border: 1px solid #ccc;">Access Method</th>
+                            <th style="padding: 10px; text-align: left; border: 1px solid #ccc;">Update Frequency</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 8px; border: 1px solid #ccc;">
+                                <a href="https://www.bitre.gov.au/publications/ongoing/yearbook" target="_blank">
+                                BITRE Yearbook 2024</a>
+                            </td>
+                            <td style="padding: 8px; border: 1px solid #ccc;">
+                                Historical patronage and passenger-km data (Tables 5.1, 5.3h)
+                            </td>
+                            <td style="padding: 8px; border: 1px solid #ccc;">Manual download (Excel)</td>
+                            <td style="padding: 8px; border: 1px solid #ccc;">Annual</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px; border: 1px solid #ccc;">
+                                <a href="https://www.abs.gov.au/websitedbs/D3310114.nsf/Home/2021%20Census%20Tools" target="_blank">
+                                ABS Census 2021</a>
+                            </td>
+                            <td style="padding: 8px; border: 1px solid #ccc;">
+                                Demographics, JTW, income, education (7 tables: G01, G02, G13, G16, G17B, G43, G51)
+                            </td>
+                            <td style="padding: 8px; border: 1px solid #ccc;">TableBuilder download (CSV)</td>
+                            <td style="padding: 8px; border: 1px solid #ccc;">Every 5 years</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px; border: 1px solid #ccc;">
+                                <a href="https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs-edition-3/jul2021-jun2026/access-and-downloads/digital-boundary-files" target="_blank">
+                                ABS ASGS 2021</a>
+                            </td>
+                            <td style="padding: 8px; border: 1px solid #ccc;">
+                                SA1 statistical boundaries (shapefiles, GDA2020)
+                            </td>
+                            <td style="padding: 8px; border: 1px solid #ccc;">Manual download (ZIP)</td>
+                            <td style="padding: 8px; border: 1px solid #ccc;">Annual</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px; border: 1px solid #ccc;">
+                                <a href="https://www.transport.act.gov.au/contact-us/information-for-developers" target="_blank">
+                                ACT GTFS Static</a>
+                            </td>
+                            <td style="padding: 8px; border: 1px solid #ccc;">
+                                Bus routes, stops, timetables (GTFS format)
+                            </td>
+                            <td style="padding: 8px; border: 1px solid #ccc;">
+                                Authenticated API (<code>download_gtfs_static.py</code>)
+                            </td>
+                            <td style="padding: 8px; border: 1px solid #ccc;">Weekly (automated)</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px; border: 1px solid #ccc;">
+                                <a href="https://www.transport.act.gov.au/contact-us/information-for-developers" target="_blank">
+                                ACT GTFS-Realtime</a>
+                            </td>
+                            <td style="padding: 8px; border: 1px solid #ccc;">
+                                Live bus arrival predictions (Protobuf format)
+                            </td>
+                            <td style="padding: 8px; border: 1px solid #ccc;">
+                                Polling API (<code>get_reliability_data.py</code>, 60s intervals)
+                            </td>
+                            <td style="padding: 8px; border: 1px solid #ccc;">Continuous (real-time)</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px; border: 1px solid #ccc;">
+                                ACT Open Data Portal
+                            </td>
+                            <td style="padding: 8px; border: 1px solid #ccc;">
+                                Light rail stops and route geometry (GeoJSON)
+                            </td>
+                            <td style="padding: 8px; border: 1px solid #ccc;">Manual download</td>
+                            <td style="padding: 8px; border: 1px solid #ccc;">As updated</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </details>
+            <details class="intro-panel">
+                
+                <!-- Tools -->
+                <summary>Tools</summary>
+                <p>
+                    I mainly used Python for data wrangling. As above there were some issues getting the API to work.
+                </p>
+                <p>
+                    <strong>Coverage charts (2a/2b):</strong> One of the major data cleaning operations was trimming down the list of SA1s. The ACT is relatively small, but Canberra itself is even smaller. This made maps hard to read because the Canberra segment was relatively small (and Vega-Lite does not allow zoom and panning). As the ABS dataset included SA1s for all of the ACT, I manually filtered out SA1s that were outside of Canberra's urban boundaries. The populations affected are very small (11 SA1s with <50 total residents) and ACT transport does not serve these areas. To extend this project, you could explor creating the maps in a different languages that allows zooming and panning. This may could be a more intuitive experience for readers than drop down menus switching between areas.
+                </p>
+                <p>
+                    The distance to nearest stop measure in Chart 2b was generated by a python script that took the centre point of each SA1, and measured the straight-line distance to the nearest GTFS stop. Acknowledging that people cant walk as the crow flies I then scaled the distance up by x1.35 as advised in [x]. To extend this work further you could improve the accuracy of this measure by using [map layers that included streets and walking paths].
+                </p>
+                <p>
+                    <strong>Frequency charts (3a/3b):</strong> I extracted route shapes and stop times from the GTFS static feed, then computed mean headways by route for weekday peak/off-peak and Saturday/Sunday windows. Light rail headways were added from published timetable data because they are not in the GTFS feed.
+                </p>
+                <p>
+                    <strong>Reliability charts (4/4b):</strong> This data was collected from the GTFS feed with a python script [insert colab link]. One of the issues with collecting this data was the need to run a script continuously over a long period. This meant the need to keep my laptop running for 2 days without sleeping. This took a little while to get up and running because I had some issues with my script not saving the data properly. As the collection window was overnight (London time), trouble shooting was a multi-day affair. To extend this work, it would be good to run the script on a server so it could run for a longer time period. As noted above, it would be good to run the collection for a longer and more representative time period.
+                </p>
+                <p>
+                    <strong>Machine learning (5x):</strong> I merged ABS Census SA1 demographics with service-quality features (distance to stops, headways/departures, and reliability) and trained gradient boosting models to compare demographics-only, service-only, and combined predictors of PT commuting. I also used k-means clustering to group routes and SA1s into policy-relevant service types.
+                </p>
+
+                
+                <p><strong>Coding Stack:</strong></p>
+                <ul style="font-size: 0.95em; line-height: 1.6;">
+                    <li><strong>Python 3.10</strong> for all data processing (pandas, geopandas, scikit-learn)</li>
+                    <li><strong>Vega-Lite 5</strong> for interactive visualizations embedded via vegaEmbed CDN</li>
+                    <li><strong>GitHub Pages</strong> for hosting (static site, no server-side processing)</li>
+                </ul>
+
+                <p><strong>Reproducibility:</strong> All Python scripts are available in the
+                    <a href="https://github.com/CAbourizk/CAbourizk.github.io/tree/main/scripts" target="_blank">
+                    GitHub repository</a>. See the README for setup instructions and script execution order.
+                </p>
+            </details>
+            <details class="intro-panel">
+                <summary>Conclusions</summary>
+                <p>
+                 This analysis confirmed my anecdotal experience of Canberra's public transport system. The system is focused on serving weekday (peak-hour) commuters and isn't build to replace private transport for the vast majority of Canberra's population. 
+	
+	Coverage and reliability of the network were better than I expected, but frequency over the weekend was truly shocking. I believe this is the major impediment to higher public transport use in Canberra.
+	
+	The ACT government's public transport strategy in recent years has been focused extending the light rail network. The next stage is set to open in 2033 and will replace the Civic to Woden route currently served by the R4 bus. This analysis shows that the light rail has impressive reliability, and its extension will likely be of great benefit to current R4 riders. However, while unreliable, this route currently has the highest frequency across the network. This suggests that the extension will provide the greatest benefit to areas that are already well served, and may not improve public transport usage across the network.
+	
+To test this hypothesis, it would have been good to have ridership data for each service. This could have been used to predict usage for each route based on proximity, frequency, and reliability measures. This data was previously published by the ACT Government but stopped in 2017. Like all data based projects there is always another datapoint  that could take you a step further. But until then, we make do with what we have to hand.</p>
+            </details>
+        </div>
+    </div>
+
+           <section>
+        <div class="section-header">
+            <h2>Service Coverage</h2>
+            <p>
+                Theory [insert ref] suggests that three of the most important determinants of public transport use are proximity to stops, frequency, and reliability of services. The thinking goes that to use public transport people should not have to walk far to get on a service and should not have to plan their lives around a timetable. Canberra's bus and light rail stops are generally well located, and reflect population density and employment centres. The densest SA1s are all within the reccomended [pop out ref] 600m of a stop.
+            </p>
+        </div>
+        <div class="chart-container">
+            <div class="chart-item">
+               
+                <figure id="chart2a"></figure>
+                <p>
+                    This choropleth map shows ACT Statistical Area Level 1 (SA1)[insert pop out footnote] boundaries color-coded by population density (light pink to dark red), with transport stops: bus stops (blue circles) and light rail stops (gold squares). Use the selector above to switch between districts. Hover over SA1 regions to to show the SA1 in the chart to the right. Hovering over SA1s will also show a tool tip with  suburb name (SA2), district (SA3), population, and density data. Hover over stops to see stop names and details. The popout map on the right shows where that district is located within Canberra.
+                    <br><strong>Data:</strong> ABS ASGS 2021 SA1 boundaries + Census G01 (<a href="https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs-edition-3/jul2021-jun2026/access-and-downloads/digital-boundary-files" target="_blank">ABS downloads</a>), Transport Canberra GTFS static feed | <strong>Processing:</strong> <a href="https://github.com/CAbourizk/CAbourizk.github.io/blob/main/scripts/process_sa1_distance.py" target="_blank">process_sa1_distance.py</a>
+                </p>
+            </div>
+            <div class="chart-item">
+               
+                <figure id="chart2b"></figure>
+                <p>
+                    This scatter plot shows the relationship between SA1 population density and distance to the nearest bus stop for each SA1 area in Canberra. The densest SA1s have very good coverage, with most of them within 600m of the closest stop. Use the selector to change from straight-line distance from SA1 centroid to closest stop to walking distance [insert pop out footnote].
+                    <br><strong>Data:</strong> ABS ASGS 2021 SA1 boundaries + Census G01, Transport Canberra GTFS static feed | <strong>Processing:</strong> <a href="https://github.com/CAbourizk/CAbourizk.github.io/blob/main/scripts/process_sa1_distance.py" target="_blank">process_sa1_distance.py</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+   
+    <section>
+        <div class="section-header">
+            <h2>Service Frequency</h2>
+        </div>
+        <p>Canberra's network is built around one light rail line and 9 'Rapid' bus services that connect the main town centres. There is a supporting series of feeder routes that go into the suburbs and deliver people to these town centres. During peak hours, the rapid services come reasonably frequently (and even more so where some routes overlap). Most of the feeder routes are at the upper limit of acceptable frequency - given the lack of route overlap, missing one of these buses on your commute can make the difference between being on time and being 20 minutes late. The system really falls down on the weekend, with service frequency dropping to once an hour for most feeder routes on Sundays, and once every two hours for some unlucky routes. On weekends, if you are not commuting directly between town centres the system is basically unusable.</p>
+        <div class="chart-container">
+            <div class="chart-item">
+               
+                <figure id="chart3a"></figure>
+                <p>
+                    Interactive map showing all bus and light rail routes across Canberra, color-coded by service frequency (mean headway). Use the service period selector to view frequency for weekday peak, weekday off-peak, Saturday, or Sunday. Use the route selector to highlight individual routes. Hover over route path to highlight route in chart to the right.
+                    <br><strong>Data:</strong> Transport Canberra GTFS static feed (<a href="https://www.transport.act.gov.au/contact-us/information-for-developers" target="_blank">API registration required</a>) | <strong>Processing:</strong> <a href="https://github.com/CAbourizk/CAbourizk.github.io/blob/main/scripts/download_gtfs_static.py" target="_blank">download_gtfs_static.py</a> + <a href="https://github.com/CAbourizk/CAbourizk.github.io/blob/main/scripts/create_route_shapes_geojson.py" target="_blank">create_route_shapes_geojson.py</a>
+                </p>
+            </div>
+            <div class="chart-item">
+               
+                <figure id="chart3b"></figure>
+                <p>
+                    Mean headways for Canberra bus and light rail routes, with filtering by service type (peak/off-peak/weekend). 
+                    <br><strong>Data:</strong> Transport Canberra GTFS static feed | <strong>Processing:</strong> <a href="https://github.com/CAbourizk/CAbourizk.github.io/blob/main/scripts/extract_headways_from_gtfs.py" target="_blank">extract_headways_from_gtfs.py</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-header">
+            <h2>Service Reliability</h2>
+        </div>
+        <p>Theory says that reliability can be just as important as frequency, particuarlly for lower frequency routes. From a sample period of 2 days we can see that besides the light rail, Canberra's main rapid routes do not have great reliability, with [x percent of trips] being more than 3 minutes early or late.</p>
+        <div class="chart-container">
+            <div class="chart-item">
+
+                <figure id="chart4a"></figure>
+                <p>
+                    Faceted histograms showing the distribution of arrival time deviations (scheduled vs actual) for Canberra's light rail and Rapid bus routes. Each panel represents one route, with delays binned into 1-minute intervals. The dashed vertical line at 0 represents perfect on-time performance. Data collected from ACT GTFS-Realtime API over 14 days (Dec 23, 2024 - Jan 7, 2026). Use the day type selector to compare weekday vs weekend reliability, and the slider to adjust the number of routes displayed.
+                    <br><strong>Data:</strong> Transport Canberra GTFS-Realtime API, polled every 60 seconds over 14-day period (<a href="https://www.transport.act.gov.au/contact-us/information-for-developers" target="_blank">API registration required</a>) | <strong>Processing:</strong> <a href="https://github.com/CAbourizk/CAbourizk.github.io/blob/main/scripts/get_reliability_data.py" target="_blank">get_reliability_data.py</a>
+                </p>
+            </div>
+            <div class="chart-item">
+                
+                <figure id="chart4b"></figure>
+                <p>
+                    Stacked bar chart showing the percentage breakdown of arrival reliability for each route using the same categories as Chart 4: Excellent (±1 min), Good (1-3 min), Fair (3-6 min), Poor (6-9 min), and Very Poor (10+ min). Routes are sorted by "Excellent" percentage, with the most reliable at the top. The light rail achieves 95% excellent arrivals on weekdays, while routes 4, 20, and 22 have over 20% of arrivals in the "Very Poor" category (10+ minutes early or late). The normalized view (0-100%) makes it easy to compare reliability across all routes regardless of service volume.
+                    <br><strong>Data:</strong> Transport Canberra GTFS-Realtime API, polled every 60 seconds over 14-day period | <strong>Processing:</strong> <a href="https://github.com/CAbourizk/CAbourizk.github.io/blob/main/scripts/create_ontime_percentage_data.py" target="_blank">create_ontime_percentage_data.py</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+       <section>
+        <div class="section-header">
+            <h2>Drivers of public transport use</h2>
+        </div>
+        <p> Coverage, frequency, and reliability aren't the only determinants of public transport use. Demographic factors like labour force participation, age, income, and education can also be good predictors of use. Thanks to the plethora of data of data we have in the Census (including public transport use for commuting), we are able to use machine learning techniques [ref] to produce a propensity to use public transport score from demographic and public transport quality data. </p>
+                
+        <div class="chart-container">
+            <div class="chart-item">
+                <figure id="chart5a"></figure>
+                <p>
+                    <strong>Question:</strong> Which matters more for predicting PT commuting: demographics (occupation, age, labour force participation, education, income) or service quality (proximity, frequency, reliability)?
+                </p>
+                <p>
+                    <strong>Method:</strong> Three Gradient Boosting models trained separately: (1) Demographics only (5 features), (2) Service quality only (6 features), (3) Combined (11 features). All use same target (PT commute rate from census) and same train-test split for fair comparison.
+                </p>
+                <p>
+                    <strong>Findings:</strong> After excluding outlier districts, demographics alone (R²=0.185) and service quality alone (R²=0.176) perform nearly equally, so both are weak predictors on their own. The combined model (R²=0.336) shows a clear improvement over either alone (+82% vs demographics, +91% vs service). That suggests improving network quality has an important role to play in increasing use regardless of demographics [can we say that it is more predictive for some rather than others?].
+                </p>
+                <p>
+                    <em>Interactive features:</em> Use the "Model" dropdown to switch between the three models and observe how prediction accuracy changes. The tighter the points cluster around the diagonal line, the better the model fit. Demographics model shows clearer patterns than service-only model.
+                    <br><strong>Data:</strong> ABS Census 2021 (7 tables: G01, G02, G13, G16, G17B, G43, G51) + Transport Canberra GTFS + SA1 boundaries | <strong>Processing:</strong> <a href="https://github.com/CAbourizk/CAbourizk.github.io/blob/main/scripts/ml_pt_commuting_rate.py" target="_blank">ml_pt_commuting_rate.py</a>
+                </p>
+            </div>
+            <div class="chart-item">
+                <figure id="chart5b"></figure>
+                <p>
+                    <strong>Question:</strong> Chart 5a showed that both demographics and service quality matter for PT usage. But <em>where</em> specifically are the gaps? Which SA1 areas have high demographic propensity for public transport use but receive inadequate service? These are the "low-hanging fruit" for targeted service improvements.
+                </p>
+                <p>
+                    <strong>Method:</strong> K-means clustering (k=4) segments SA1 areas based on two composite scores: (1) <strong>Demand Score</strong> – demographic indicators of PT propensity (working age population %, bachelor degree or higher %, labour force participation, density, cultural diversity, income), and (2) <strong>Supply Score</strong> – service quality indicators (accessibility, weekday/weekend service frequency, departures per capita, service consistency ratios). Areas are clustered into four policy-relevant groups.
+                </p>
+                <p>
+                    <strong>Findings:</strong> The clustering reveals <strong>206 "Undersupplied Urban" SA1 areas</strong> (red points) serving 90,425 residents who exhibit high demographic PT demand (mean demand score: 63.7) but receive below-average service (mean supply score: 42.3). Top priority areas include Griffith, Kingston, Turner, Lyneham, Braddon, Franklin, and parts of Gungahlin and Belconnen. These areas show a mismatch score of +21.4 (demand far exceeds supply), yet their PT commute rate is already 6.4% - suggesting latent demand. The "Urban Core - Well Served" cluster (green, 131 SA1s) demonstrates what's possible: similar demographics but 1.7× the service level results in 8.7% PT usage. Geographic patterns show undersupplied areas concentrated in outer Gungahlin (93 SA1s), North Canberra (40 SA1s), and parts of Belconnen (36 SA1s), suggesting route network expansion is needed, not just frequency improvements in already-served corridors.
+                </p>
+                <p>
+                    <em>Interactive features:</em> Use the "Highlight Cluster" dropdown to isolate specific cluster types (e.g., "Undersupplied Urban" to see priority areas). Point size reflects population density - larger circles represent denser areas where PT is most viable. Hover over points to see SA1-level details including priority scores (0-100) and specific service gaps. The scatter plot axes create quadrants: upper-left = high demand but low supply (target), upper-right = well-served, lower-right = oversupplied. Black diamond markers show cluster centroids.
+                    <br><strong>Data:</strong> ABS Census 2021 + Transport Canberra GTFS + SA1 boundaries | <strong>Processing:</strong> <a href="https://github.com/CAbourizk/CAbourizk.github.io/blob/main/scripts/ml_pt_clustering_mismatch.py" target="_blank">ml_pt_clustering_mismatch.py</a>
+                </p>
+            </div>
+        </div>
+
+
+    </section>
+
+   
+
+    <script>
+        // ============================================
+        // SECTION 1: INTRO PANEL INTERACTIVITY
+        // ============================================
+        // Handle expand/collapse behavior for intro panels
+        document.querySelectorAll('.intro-panel').forEach(panel => {
+            const summary = panel.querySelector('summary');
+            if (!summary) return;
+            summary.addEventListener('click', event => {
+                event.preventDefault();
+                if (panel.hasAttribute('open')) {
+                    panel.removeAttribute('open');
+                } else {
+                    panel.setAttribute('open', '');
+                }
+            });
+        });
+
+        // ============================================
+        // SECTION 2: CHART CONFIGURATION
+        // ============================================
+        // Define all charts in one array - each chart has an id (where to put it) and spec (the chart definition)
+        // Note: Chart 2a is Not in this array because it's rendered separately with district selector
+        const charts = [
+            { id: '#chart2b', spec: 'Project/json/chart2b.json' },
+            { id: '#chart3a', spec: 'Project/json/chart3a.json' },
+            { id: '#chart3b', spec: 'Project/json/chart3b.json' },
+            { id: '#chart4a', spec: 'Project/json/chart4a.json' },
+            { id: '#chart4b', spec: 'Project/json/chart4b.json' },
+            { id: '#chart5a', spec: 'Project/json/chart5a.json' },
+            { id: '#chart5b', spec: 'Project/json/chart5b.json' }
+        ];
+
+        // ============================================
+        // SECTION 3: CHART EMBEDDING
+        // ============================================
+        // Store chart views for cross-chart communication
+        const chartViews = {};
+
+        // Chart 2a special handling (district selector requires separate rendering)
+        let chart2aView = null;
+        let chart2aHoverHandler = null;
+        let chart2bHoverHandler = null;
+
+        // Setup bidirectional hover linking between Chart 2a and Chart 2b
+        const setupChart2Link = () => {
+            const chart2bView = chartViews['#chart2b'];
+            if (!chart2aView || !chart2bView) return;
+
+            if (chart2aHoverHandler) {
+                chart2aView.removeSignalListener('sa1_hover_sel_map', chart2aHoverHandler);
+            }
+            if (chart2bHoverHandler) {
+                chart2bView.removeSignalListener('sa1_hover_sel_scatter', chart2bHoverHandler);
+            }
+
+            chart2aHoverHandler = (name, value) => {
+                const code = value?.sa1_code ? String(value.sa1_code) : null;
+                chart2bView.signal('hover_sa1_ext', code).run();
+            };
+            chart2bHoverHandler = (name, value) => {
+                const code = value?.sa1_code ? String(value.sa1_code) : null;
+                chart2aView.signal('hover_sa1_ext', code).run();
+            };
+
+            chart2aView.addSignalListener('sa1_hover_sel_map', chart2aHoverHandler);
+            chart2bView.addSignalListener('sa1_hover_sel_scatter', chart2bHoverHandler);
+        };
+
+        // Embed all main charts (2b, 3a, 3b, 4a, 4b, 5a, 5b)
+        // Note: Chart 2a is handled separately below due to district selector
+        const embedPromises = charts.map(chart => {
+            const options = {
+                actions: false,
+                renderer: 'canvas',
+                config: {
+                    autosize: {
+                        type: 'fit',
+                        contains: 'padding'
+                    }
+                }
+            };
+
+            return vegaEmbed(chart.id, chart.spec, options).then(result => {
+                // Make chart responsive by fitting to container width
+                const view = result.view;
+                chartViews[chart.id] = view;
+                const container = document.querySelector(chart.id);
+                if (container) {
+                    const resizeChart = () => {
+                        const width = container.clientWidth;
+                        view.width(width - 40).run();
+                    };
+                    window.addEventListener('resize', resizeChart);
+                    resizeChart();
+                }
+                return result;
+            });
+        });
+
+        // ============================================
+        // SECTION 4: CHART LINKING & INTERACTIVITY
+        // ============================================
+        // Setup cross-chart communication after all charts are embedded
+        Promise.all(embedPromises).then(() => {
+            // Chart 3a ↔ Chart 3b: Service type sync and hover linking
+            const chart3aView = chartViews['#chart3a'];
+            const chart3bView = chartViews['#chart3b'];
+            if (!chart3aView || !chart3bView) return;
+            let syncServiceType = false;
+
+            chart3aView.addSignalListener('service_type', (name, value) => {
+                if (syncServiceType) return;
+                syncServiceType = true;
+                if (chart3bView.signal('service_type') !== value) {
+                    chart3bView.signal('service_type', value).run();
+                }
+                syncServiceType = false;
+            });
+            chart3bView.addSignalListener('service_type', (name, value) => {
+                if (syncServiceType) return;
+                syncServiceType = true;
+                if (chart3aView.signal('service_type') !== value) {
+                    chart3aView.signal('service_type', value).run();
+                }
+                syncServiceType = false;
+            });
+
+            // Route hover handlers for Chart 3a ↔ Chart 3b
+            chart3bView.addSignalListener('route_hover_sel', (name, value) => {
+                let route = null;
+                if (value && typeof value === 'object' && value.route_str !== undefined && value.route_str !== null) {
+                    route = String(value.route_str);
+                }
+                chart3aView.signal('hover_route', route).run();
+            });
+            chart3aView.addSignalListener('route_hover_map', (name, value) => {
+                let route = null;
+                if (value && typeof value === 'object' && value.route_str !== undefined && value.route_str !== null) {
+                    route = String(value.route_str);
+                }
+                chart3aView.signal('hover_route', route).run();
+                chart3bView.signal('hover_route_ext', route).run();
+            });
+
+            // Setup Chart 2a ↔ Chart 2b linking
+            setupChart2Link();
+        });
+
+        // ============================================
+        // SECTION 5: CHART 2A DISTRICT SELECTOR
+        // ============================================
+        // Chart 2a requires special handling because it has a district selector that dynamically loads different chart specifications
+        const chart2aSpecs = {
+            belconnen: 'Project/json/chart2a_belconnen.json',
+            tuggeranong: 'Project/json/chart2a_tuggeranong.json',
+            gungahlin: 'Project/json/chart2a_gungahlin.json',
+            north: 'Project/json/chart2a_north_canberra.json',
+            woden: 'Project/json/chart2a_woden_valley.json',
+            south: 'Project/json/chart2a_south_canberra.json',
+            weston: 'Project/json/chart2a_weston_creek.json',
+            molonglo: 'Project/json/chart2a_molonglo.json'
+        };
+
+        function renderChart2a(specPath, selectedKey) {
+            const container = document.querySelector('#chart2a');
+            container.innerHTML = '';
+            const selectorWrap = document.createElement('div');
+            selectorWrap.style.cssText = 'margin: 0 0 8px 0; font-size: 14px; display: inline-flex; align-items: center; gap: 6px;';
+            const label = document.createElement('label');
+            label.textContent = 'Select district:';
+            label.htmlFor = 'chart2a-selector-inline';
+            const select = document.createElement('select');
+            select.id = 'chart2a-selector-inline';
+            for (const [key, path] of Object.entries(chart2aSpecs)) {
+                const opt = document.createElement('option');
+                opt.value = key;
+                opt.textContent = {
+                    belconnen: 'Belconnen',
+                    tuggeranong: 'Tuggeranong',
+                    gungahlin: 'Gungahlin',
+                    north: 'North Canberra',
+                    woden: 'Woden Valley',
+                    south: 'South Canberra',
+                    weston: 'Weston Creek',
+                    molonglo: 'Molonglo'
+                }[key] || key;
+                if (key === selectedKey) opt.selected = true;
+                select.appendChild(opt);
+            }
+            selectorWrap.appendChild(label);
+            selectorWrap.appendChild(select);
+
+            const chartDiv = document.createElement('div');
+            chartDiv.id = 'chart2a-view';
+
+            container.appendChild(selectorWrap);
+            container.appendChild(chartDiv);
+
+            // Using SVG renderer for Chart 2a because canvas has hover detection issues with complex geoshapes (hover highlights wrong SA1 regions)
+            vegaEmbed(chartDiv, specPath, { actions: true, renderer: 'svg' }).then(result => {
+                if (chart2aView && chart2aHoverHandler) {
+                    chart2aView.removeSignalListener('sa1_hover_sel_map', chart2aHoverHandler);
+                }
+                chart2aView = result.view;
+                setupChart2Link();
+            });
+
+            select.addEventListener('change', (event) => {
+                const key = event.target.value;
+                renderChart2a(chart2aSpecs[key], key);
+            });
+        }
+
+        // Initial render with default selection
+        renderChart2a(chart2aSpecs['belconnen'], 'belconnen');
+    </script>
+
+
+</body>
+</html>

@@ -2,312 +2,117 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="Chart_journal_look.css">
-    <title>Canberra Public Transport Analysis</title>
-    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.25.0"></script>
+    <title>Clancy Abourizk - PP434</title>
+    <style>
+        .landing-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .landing-header {
+            margin-bottom: 50px;
+        }
+
+        .landing-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #111;
+        }
+
+        .landing-header p {
+            font-size: 1.2em;
+            color: #33303e;
+            line-height: 1.6;
+        }
+
+        .links-container {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .link-card {
+            flex: 1;
+            min-width: 280px;
+            max-width: 400px;
+            padding: 40px 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #33303e;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            margin-bottom: 10px;
+        }
+
+        .link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(6, 95, 70, 0.15);
+            background-color: #f5f5e8;
+        }
+
+        .link-card h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #065f46;
+            font-weight: 700;
+        }
+
+        .link-card p {
+            font-size: 1em;
+            line-height: 1.6;
+            color: #33303e;
+        }
+
+        .footer-links {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #e5e5e0;
+        }
+
+        .footer-links a {
+            margin: 0 15px;
+            color: #065f46;
+            text-decoration: none;
+            font-size: 0.95em;
+            border-bottom: 1px solid #065f46;
+            text-underline-offset: 3px;
+            transition: border-color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            border-bottom-color: transparent;
+        }
+    </style>
 </head>
 
 <body>
-    <h1 class="big">
-        Canberra Public Transport: Why is usage so low?
-    </h1>
-    <p class="byline">
-        Clancy Abourizk | <a href="https://cabourizk.github.io/portfolio">Portfolio 🗂️</a>|  <a href="https://cabourizk.github.io">Project 📝 |</a> <a href="https://www.linkedin.com/in/clancy-abourizk-0056b114b">LinkedIn</a> | <a
-            href="https://github.com/CAbourizk/CAbourizk.github.io">GitHub</a>
-    </p>
-
-        <!-- Mode Share Over Time -->
-    <section>
-        <div <p> Canberra sees itself as progressive, and has had a left leaning government for over 20 years. The population is also relatively densley settled with the Territory's population being concentrated in Canberra. However, Canberra has comparatively low public transport use when compared to other Australian cities. </p>
-      
-        <div class="section-header">
-            <h2>Public Transport Mode Share in the ACT</h2>
+    <div class="landing-container">
+        <div class="landing-header">
+            <h1>Clancy Abourizk</h1>
+            <p>PP434 Automated Data Visualisation for Policymaking</p>
         </div>
 
-      
-        <div class="chart-container">
-            <div class="chart-item">
-             
-                <figure id="chart1a"></figure>
-                <p>
-                    Public transport trips per person across Australian capital cities (2001-02 to 2023-24), showing Canberra's consistently low usage compared to larger cities. Population data from ABS Greater Capital City Statistical Areas.
-                </p>
-            </div>
-            <div class="chart-item">
-              
-                <figure id="chart1b"></figure>
-                <p>
-                    Total motorised passenger kilometres by mode (Table 5.3h, BITRE Yearbook 2024).
-                </p>
-            </div>
+        <div class="links-container">
+            <a href="project.html" class="link-card">
+                <h2>Project</h2>
+                <p>Canberra Public Transport: An in-depth analysis exploring why public transport usage remains low in Australia's capital city.</p>
+            </a>
+
+            <a href="https://cabourizk.github.io/portfolio" class="link-card portfolio">
+                <h2>Portfolio</h2>
+                <p>Browse my complete portfolio of data visualization projects and policy analysis work.</p>
+            </a>
         </div>
-    </section>
 
-    <!-- Spatial Distribution and Accessibility -->
-    <section>
-        <div class="section-header">
-            <h2>Spatial Distribution of Accessibility and Density</h2>
+        <div class="footer-links">
+            <a href="https://www.linkedin.com/in/clancy-abourizk-0056b114b">LinkedIn</a>
+            <a href="https://github.com/CAbourizk/CAbourizk.github.io">GitHub</a>
         </div>
-        <div class="chart-container">
-            <div class="chart-item">
-                <h3>Population Density and Transit Stops</h3>
-                <figure id="chart2a"></figure>
-                <p>
-                    Interactive choropleth map showing ACT Statistical Area Level 1 (SA1) boundaries color-coded by population density (light pink to dark red), with active public transport stops: bus stops (blue circles) and light rail stops (gold squares). Excludes 11 far-flung SA1 regions (Namadgi, Uriarra, Kowen, Majura) to focus on areas with transit service. Use the selector above to switch between districts. Hover over SA1 regions to see suburb name (SA2), district (SA3), population, and density data. Hover over stops to see stop names and details. Scroll to zoom in/out.
-                </p>
-            </div>
-            <div class="chart-item">
-                <h3>Distance to Nearest Bus Stop</h3>
-                <figure id="chart2b"></figure>
-                <p>
-                    Scatter plot showing the relationship between population density and distance to the nearest bus stop for each SA1 area in Canberra.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Transit Network and Service Frequency -->
-    <section>
-        <div class="section-header">
-            <h2>Canberra Transit Network and Service Frequency</h2>
-        </div>
-        <div class="chart-container">
-            <div class="chart-item">
-                <h3>Transit Network Map</h3>
-                <figure id="chart3a"></figure>
-                <p>
-                    Interactive map showing all bus and light rail routes across Canberra, color-coded by service frequency (mean headway). The light rail R1 route (Gungahlin to City) provides high-frequency service shown in green. Bus routes with lower headways (more frequent service) appear in green/teal, while routes with higher headways (less frequent service) appear in yellow/pink/red. Use the service period selector to view frequency for weekday peak, weekday off-peak, Saturday, or Sunday. Use the route selector to highlight individual routes - selected routes appear bold and opaque while other routes fade to the background.
-                </p>
-            </div>
-            <div class="chart-item">
-                <h3>Service Frequency by Route</h3>
-                <figure id="chart3b"></figure>
-                <p>
-                    Interactive visualization of mean headways for Canberra bus and light rail routes, with filtering by service type (peak/off-peak/weekend). The light rail R1 route provides the most frequent service with 6-minute headways during peak times.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Reliability Distributions -->
-    <section>
-        <div class="section-header">
-            <h2>Bus Service Reliability</h2>
-        </div>
-        <figure id="chart4"></figure>
-        <p>
-            Faceted histograms showing the distribution of arrival time deviations (scheduled vs actual) for Canberra's busiest bus routes. Each panel represents one route, with delays binned into 1-minute intervals. Green bars indicate on-time arrivals (±2 minutes), blue bars indicate early arrivals (>2 minutes early), and red bars indicate late arrivals (>2 minutes late). The dashed vertical line at 0 represents perfect on-time performance. Data collected from ACT GTFS-Realtime API over 24 hours. Use the day type selector to compare weekday vs weekend reliability, and the slider to adjust the number of routes displayed.
-        </p>
-    </section>
-
-    <!-- Machine Learning Prediction -->
-    <section>
-        <div class="section-header">
-            <h2>Predicting PT Demand from Demographics</h2>
-        </div>
-        <div class="chart-container">
-            <div class="chart-item">
-                <h3>Machine Learning Analysis: Predicting PT Commuting Behavior</h3>
-                <figure id="chart5"></figure>
-                <p>
-                    <strong>Hypothesis:</strong> PT commuting rates are driven by proximity to stops, service frequency, population density, and demographic characteristics (education, income, age). The model identifies which SA1 areas over/under-perform relative to their predicted propensity for PT use.
-                </p>
-                <p>
-                    <strong>Method:</strong> Gradient Boosting Regressor trained on 11 features: demographics from 2021 Census (working-age %, bachelor+ education, labour force participation, median income, non-English speakers), transit accessibility (walking distance, density), and service characteristics (peak/off-peak departures, weekend service). Target: PT commute rate from journey-to-work census data (% using train, bus, or tram). Features standardized; target log-transformed due to right skew; 80/20 train-test split with 5-fold cross-validation.
-                </p>
-                <p>
-                    <strong>Findings:</strong> Model achieves strong fit (R²=0.515, MAE=2.23% points). Top predictors: working-age population (20.0%), density (16.1%), bachelor+ education (14.7%), median income (9.8%), non-English speakers (9.8%), walking distance (9.6%). Points above the diagonal have higher-than-predicted PT usage (PT-friendly culture or service quality exceeds model expectations). Points below indicate untapped potential (favorable demographics/service but low PT adoption). This reveals opportunity areas for targeted interventions.
-                </p>
-                <p>
-                    <em>Interactive features:</em> Use "Color by" to explore patterns by district, education level, density, or prediction error. Points above the diagonal indicate higher-than-expected PT commuting; points below indicate lower-than-expected usage. Chart shows 1,124 SA1 areas with ≥10 commuters (small-population areas excluded for data quality).
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        // Define all charts in one array - each chart has an id (where to put it) and spec (the chart definition)
-        const charts = [
-            { id: '#chart1a', spec: 'Project/json/chart1a_intercity.json' },
-            { id: '#chart1b', spec: 'Project/json/chart1b.json' },
-            { id: '#chart2b', spec: 'Project/json/chart2b.json' },
-            { id: '#chart5', spec: 'Project/json/chart5.json' },
-            { id: '#chart4', spec: 'Project/json/chart4.json' },
-            { id: '#chart3b', spec: 'Project/json/chart3b.json' },
-            { id: '#chart3a', spec: 'Project/json/chart3a.json' }
-        ];
-
-        // Embed all charts using a loop
-        const chartViews = {};
-        let chart2aView = null;
-        let chart2aHoverHandler = null;
-        let chart2bHoverHandler = null;
-        const setupChart2Link = () => {
-            const chart2bView = chartViews['#chart2b'];
-            if (!chart2aView || !chart2bView) return;
-
-            if (chart2aHoverHandler) {
-                chart2aView.removeSignalListener('sa1_hover_sel_map', chart2aHoverHandler);
-            }
-            if (chart2bHoverHandler) {
-                chart2bView.removeSignalListener('sa1_hover_sel_scatter', chart2bHoverHandler);
-            }
-
-            chart2aHoverHandler = (name, value) => {
-                let code = null;
-                if (value && typeof value === 'object' && value.sa1_code !== undefined && value.sa1_code !== null) {
-                    code = String(value.sa1_code);
-                }
-                chart2bView.signal('hover_sa1_ext', code).run();
-            };
-            chart2bHoverHandler = (name, value) => {
-                let code = null;
-                if (value && typeof value === 'object' && value.sa1_code !== undefined && value.sa1_code !== null) {
-                    code = String(value.sa1_code);
-                }
-                chart2aView.signal('hover_sa1_ext', code).run();
-            };
-
-            chart2aView.addSignalListener('sa1_hover_sel_map', chart2aHoverHandler);
-            chart2bView.addSignalListener('sa1_hover_sel_scatter', chart2bHoverHandler);
-        };
-        const embedPromises = charts.map(chart => {
-            const options = {
-                actions: false,
-                renderer: 'canvas',
-                config: {
-                    autosize: {
-                        type: 'fit',
-                        contains: 'padding'
-                    }
-                }
-            };
-
-            return vegaEmbed(chart.id, chart.spec, options).then(result => {
-                // Make chart responsive by fitting to container width
-                const view = result.view;
-                chartViews[chart.id] = view;
-                const container = document.querySelector(chart.id);
-                if (container) {
-                    const resizeChart = () => {
-                        const width = container.clientWidth;
-                        view.width(width - 40).run();
-                    };
-                    window.addEventListener('resize', resizeChart);
-                    resizeChart();
-                }
-                return result;
-            });
-        });
-
-        Promise.all(embedPromises).then(() => {
-            const chart3aView = chartViews['#chart3a'];
-            const chart3bView = chartViews['#chart3b'];
-            if (!chart3aView || !chart3bView) return;
-            let syncServiceType = false;
-
-            chart3aView.addSignalListener('service_type', (name, value) => {
-                if (syncServiceType) return;
-                syncServiceType = true;
-                if (chart3bView.signal('service_type') !== value) {
-                    chart3bView.signal('service_type', value).run();
-                }
-                syncServiceType = false;
-            });
-            chart3bView.addSignalListener('service_type', (name, value) => {
-                if (syncServiceType) return;
-                syncServiceType = true;
-                if (chart3aView.signal('service_type') !== value) {
-                    chart3aView.signal('service_type', value).run();
-                }
-                syncServiceType = false;
-            });
-            chart3bView.addSignalListener('route_hover_sel', (name, value) => {
-                let route = null;
-                if (value && typeof value === 'object' && value.route_str !== undefined && value.route_str !== null) {
-                    route = String(value.route_str);
-                }
-                chart3aView.signal('hover_route', route).run();
-            });
-            chart3aView.addSignalListener('route_hover_map', (name, value) => {
-                let route = null;
-                if (value && typeof value === 'object' && value.route_str !== undefined && value.route_str !== null) {
-                    route = String(value.route_str);
-                }
-                chart3aView.signal('hover_route', route).run();
-                chart3bView.signal('hover_route_ext', route).run();
-            });
-
-            setupChart2Link();
-        });
-
-        // Chart 3 dynamic embedding with selector
-        const chart2aSpecs = {
-            belconnen: 'Project/json/chart2a_belconnen.json',
-            tuggeranong: 'Project/json/chart2a_tuggeranong.json',
-            gungahlin: 'Project/json/chart2a_gungahlin.json',
-            north: 'Project/json/chart2a_north_canberra.json',
-            woden: 'Project/json/chart2a_woden_valley.json',
-            south: 'Project/json/chart2a_south_canberra.json',
-            weston: 'Project/json/chart2a_weston_creek.json',
-            molonglo: 'Project/json/chart2a_molonglo.json',
-            // canberra_east and uriarra removed from dropdown
-        };
-
-        function renderChart2a(specPath, selectedKey) {
-            const container = document.querySelector('#chart2a');
-            container.innerHTML = '';
-            const selectorWrap = document.createElement('div');
-            selectorWrap.style.cssText = 'margin: 0 0 8px 0; font-size: 14px; display: inline-flex; align-items: center; gap: 6px;';
-            const label = document.createElement('label');
-            label.textContent = 'Select district:';
-            label.htmlFor = 'chart2a-selector-inline';
-            const select = document.createElement('select');
-            select.id = 'chart2a-selector-inline';
-            for (const [key, path] of Object.entries(chart2aSpecs)) {
-                const opt = document.createElement('option');
-                opt.value = key;
-                opt.textContent = {
-                    belconnen: 'Belconnen',
-                    tuggeranong: 'Tuggeranong',
-                    gungahlin: 'Gungahlin',
-                    north: 'North Canberra',
-                    woden: 'Woden Valley',
-                    south: 'South Canberra',
-                    weston: 'Weston Creek',
-                    molonglo: 'Molonglo',
-                    // canberra_east and uriarra removed from dropdown
-                }[key] || key;
-                if (key === selectedKey) opt.selected = true;
-                select.appendChild(opt);
-            }
-            selectorWrap.appendChild(label);
-            selectorWrap.appendChild(select);
-
-            const chartDiv = document.createElement('div');
-            chartDiv.id = 'chart2a-view';
-
-            container.appendChild(selectorWrap);
-            container.appendChild(chartDiv);
-
-            vegaEmbed(chartDiv, specPath, { actions: true, renderer: 'svg' }).then(result => {
-                if (chart2aView && chart2aHoverHandler) {
-                    chart2aView.removeSignalListener('sa1_hover_sel_map', chart2aHoverHandler);
-                }
-                chart2aView = result.view;
-                setupChart2Link();
-            });
-
-            select.addEventListener('change', (event) => {
-                const key = event.target.value;
-                renderChart2a(chart2aSpecs[key], key);
-            });
-        }
-
-        // Initial render with default selection
-        renderChart2a(chart2aSpecs['belconnen'], 'belconnen');
-    </script>
-
+    </div>
 </body>
 </html>

@@ -1,20 +1,19 @@
 <!DOCTYPE html>
-<html> 
-<head>    
+<html>
+<head>
     <link rel="stylesheet" type="text/css" href="Chart_journal_look.css">
-    <title>Chart Journal</title>
+    <title>Portfolio - Clancy Abourizk</title>
     <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.25.0"></script>
 </head>
 
-<body> 
+<body>
     <h1 class="big">
-        <a href="index.html">Chart Journal</a>
+        Chart Portfolio
     </h1>
     <p class="byline">
-        Clancy Abourizk | <a href="https://cabourizk.github.io/portfolio">Portfolio 🗂️</a>|  <a href="https://cabourizk.github.io">Project 📝 |</a> <a href="https://www.linkedin.com/in/clancy-abourizk-0056b114b">LinkedIn</a> | <a
-            href="https://github.com/CAbourizk/CAbourizk.github.io">GitHub</a>
+        <a href="index.html">Home</a> | <a href="project.html">Project</a> | <a href="https://www.linkedin.com/in/clancy-abourizk-0056b114b">LinkedIn</a> | <a href="https://github.com/CAbourizk/CAbourizk.github.io">GitHub</a>
     </p>
     
     <section>
@@ -26,12 +25,12 @@
             <div class="chart-item">
                 <h3> Debt to GDP</h3>
                 <figure id="Location1"></figure>
-                <p>The UK's stock of government debt is high by international standards, but lower than a number of other G7 economies</p>
+                <p>The UK's stock of government debt is high by international standards, but lower than a number of other G7 economies.</p>
             </div>
             <div class="chart-item">
                 <h3> Bond yields</h3>
                 <figure id="Location2"></figure>
-                <p>The UK's 10 year bond yields (one of the most relevent yields for long term fiscal sustainability) have tracked alongside other major economies over the last 30 years. </p>
+                <p>The UK's 10 year bond yield (one of the most relevent yields for long term fiscal sustainability) has tracked alongside those of other major economies over the last 30 years. </p>
             </div>
         </div>
     </section>
@@ -42,29 +41,29 @@
         </div>
         <div class="chart-container">
             <div class="chart-item">
-                <figure id="Location3"></figure>
-                <p>Yields spiked following the Truss-Kwarteng mini-budget, but was this just a sign of things to come?</p>
+                <figure id="Location4"></figure>
+                <p>The Bank of England rapidly tightened monetary policy in early 2022 in response to the post-COIVD inflation shock.</p>
             </div>
             <div class="chart-item">
-                <figure id="Location4"></figure>
-                <p>Mortgage rates were also affected, but have generally followed a different path to gilts.</p>
+                <figure id="Location3"></figure>
+                <p>This tightening, and the threat of fiscal dominance from the Truss-Kwarteng mini-budget, sent yields on UK Government debt soaring.</p>
             </div>
         </div>
     </section>
 
     <section>
         <div class="section-header">
-            <h2>Challenge 3 - The Green revoltion</h2>
-            <p>Before the focus on renewables, the first Green revolution was the rapid period of agricultural productivity growth in the 20th century. The use of high yeilding varieties, chemical fertalisers, and pesticides has divorced growth in agricultural labour force and industry output. </p>
+            <h2>Challenge 3 - Hidden labour reservoir.</h2>
+            <p>Some economists have warned that China and India may squander the benefits of their demographic dividend as their populations grow old and working age populations contract. One under appriciated aspect of both country's economic structure is the large proportion of workers employed in agriculture. </p>
         </div>
         <div class="chart-container">
             <div class="chart-item">
-                <figure id="Location5"></figure>
-                <p>Countries that have been able to invest in 'Green revolution' techniques have seen agricultural productivity soar.</p>
+                <figure id="Location6"></figure>
+                <p>Nearly half of India's (and almost a third of China's) workforce is still employed in agriculture. This is a huge number of people working in a relatively low productivity sector. This compares to around 1-2% of the workforce in developed countries (some of whom have large agircultural output).</p>
             </div>
             <div class="chart-item">
-                <figure id="Location6"></figure>
-                <p>This has meant that output has continued to rise, while the share of the labour force employed in agriculture has shrunk. Developing and middle income nations still have high shares of their population employed in agriculture. This is an untapped source of labour market supply which may be useful as population's age</p>
+                <figure id="Location5"></figure>
+                <p>If India and China are able to raise agricultural productivity even slightly, they will free up a huge pool of labor, which may help ameliroate the affects of demographic transition.</p>
             </div>
         </div>
     </section>
@@ -96,54 +95,48 @@
             <div class="chart-item">
                 <figure id="Location9"></figure>
                 <p>
-                Data sourced from the World Bank API.<br><br>
-                The API has a structured base URL: https://api.worldbank.org/v2/country/[country_codes]/indicator/[indicator_code]?format=json.<br><br>
-                Country codes are separated by semicolons (e.g., AU;kor for Australia and South Korea), and indicator codes specify the data series (e.g., BN.CAB.XOKA.GD.ZS for current account balance as % of GDP).<br><br>
-                Additional parameters include format=json for JSON output and per_page= to control pagination.<br><br>
+                Data sourced from the World Bank API. The API has a structured base URL: https://api.worldbank.org/v2/country/[country_codes]/indicator/[indicator_code]?format=json.<br><br>
+                Country codes are separated by semicolons (e.g. AU;kor for Australia and South Korea), and indicator codes specify the data series (e.g. BN.CAB.XOKA.GD.ZS for current account balance as % of GDP). Additional parameters include format=json for JSON output and per_page= to control pagination.<br><br>
                 Full URL used: https://api.worldbank.org/v2/country/AU;kor/indicator/BN.CAB.XOKA.GD.ZS?format=json&per_page=130</p>
             </div>
             <div class="chart-item">
                 
                 <figure id="Location10"></figure>
-                <p>Data scraped from wikipedia, see colab notebook <a href="https://colab.research.google.com/drive/1YLln_bSiQ7K2Rvw4gJvPEcTGEea8Y_GM?usp=sharing">here.</a></p>
+                <p>The data for this chart was scraped from the International Trade Wikipedia page. Wikipedia initially blocked my scraping attempts when using the techniques we learnt in class. Using the requests package got around this issue. See colab notebook with script and with further commenatary <a href="https://colab.research.google.com/drive/1YLln_bSiQ7K2Rvw4gJvPEcTGEea8Y_GM?usp=sharing">here.</a></p>
             </div>
         </div>
     </section>
 
-    <section>
+    <section class="challenge-6">
         <div class="section-header">
             <h2>Challenge 6 - Major economic parameters</h2>
-            <p>Charts made with the FRED API and automated with loops. These are the six parameters that appear in Table 1.1 of Australia's Federal Budget. Colab link <a href="https://colab.research.google.com/drive/1wKDPLACigIzzanQXRV3mW5Is_ehVLTSB?usp=sharing">here.</a></p>
+            <p>Charts made with the FRED API and automated with loops. These are the US equivilents of the six parameters that appear in Table 1.1 of Australia's Federal Budget. Colab notebook where analysis was carried out is linked <a href="https://colab.research.google.com/drive/1wKDPLACigIzzanQXRV3mW5Is_ehVLTSB?usp=sharing">here.</a></p>
         </div>
-        <div class="chart-container">
+        <div class="chart-grid">
             <div class="chart-item">
-                <h3>Real GDP Growth</h3>
+
                 <figure id="Location11"></figure>
             </div>
             <div class="chart-item">
-                <h3>Employment</h3>
+
                 <figure id="Location12"></figure>
-                </div>
-        </div>
-        <div class="chart-container">
+            </div>
             <div class="chart-item">
-                <h3>Unemployment rate</h3>
+
                 <figure id="Location13"></figure>
-                </div>
+            </div>
             <div class="chart-item">
-                <h3>Consumer price index</h3>
+
                 <figure id="Location14"></figure>
-                </div>
-        </div>
-        <div class="chart-container">
+            </div>
             <div class="chart-item">
-                <h3>Wage price index</h3>
+
                 <figure id="Location15"></figure>
             </div>
             <div class="chart-item">
-                <h3>Nominal GDP</h3>
+
                 <figure id="Location16"></figure>
-                </div>
+            </div>
         </div>
     </section>
 
@@ -154,11 +147,13 @@
         <div class="chart-container">
             <div class="chart-item">
                 <figure id="Location17"></figure>
-                <p>
+                <p> Gross Value Added (GVA) per hour worked varied significantly across Welsh local authorities in 2023. This chart was created using TopoJSON geographic data and ONS economic statistics.
                 </p>
             </div>
             <div class="chart-item">
                 <figure id="Location18"></figure>
+                <p> Each point on this map represents one of Scotland's wiskey distilleries. I found this data by scraping a list of distilleries and automating a google maps search for their coordinates.
+                </p>
             </div>
         </div>
     </section>
@@ -175,7 +170,7 @@
             </div>
             <div class="chart-item">
                 <figure id="Location20"></figure>
-                <p>Similarly this chart is also from the autocpi dataset. The cleaning was done in this colab notebook  <a href="https://colab.research.google.com/drive/1DkGu9tMYen4U_JuMDV99B3OhVxUOaSlN?usp=sharing">here.</a> I took a different approach with this one where instead of saving as a csv, this time I made the chart in altair and just directly saved as a json spec. 
+                <p>Similarly this chart is also from the autocpi dataset. The cleaning was done in this colab notebook  <a href="https://colab.research.google.com/drive/1DkGu9tMYen4U_JuMDV99B3OhVxUOaSlN?usp=sharing">here.</a> I took a different approach with this one where instead of saving as a csv, this time I made the chart in altair and just directly saved as a json spec. Olive oil prices have increased significantly in the last few years following bad weather and higher input costs.
                 </p>
             </div>
         </div>
@@ -187,12 +182,12 @@
         <div class="chart-container">
             <div class="chart-item">
                 <figure id="Location21"></figure>
-                <p>Public transport trips per person across Australian capital cities. Use the Start Year and End Year sliders to dynamically adjust the time range displayed. The chart will automatically rescale to focus on your selected period.
+                <p>Both of these charts are recycled from my project. This chart shows public transport trips per person across Australian capital cities. It has a slider to change the start and end years.
                 </p>
             </div>
             <div class="chart-item">
                 <figure id="Location22"></figure>
-                <p>Motorised passenger kilometres by mode in Australia from 1980-2024. Use the dropdown menus to switch between total and per capita measures, and filter by travel type (Private, Commercial, or Public transport).
+                <p>Another recycled chart, this one showing motorised passenger kilometres by mode in Australia from 1980-2024. It has a dropdown menu to switch between total and per capita measures, and filter by travel type (Private, Commercial, or Public transport).
                 </p>
             </div>
         </div>
@@ -200,40 +195,49 @@
     <section>
         <div class="section-header">
             <h2>Challenge 10 - Advanced analysis and machine learning.</h2>
-        
+        </div>
         <div class="chart-container">
             <div class="chart-item">
                 <figure id="Location23"></figure>
-                <p>Bus service reliability showing the distribution of arrival time deviations across different routes. Use the dropdown to switch between weekday and weekend service patterns. Each small multiple shows the percentage of trips at different delay levels for a specific route, with colors indicating reliability categories from excellent (±1min) to very poor (10+min).
+                <p>These two charts are also recycled from my project. This chart shows a histogram of distributions for bus service reliability in Canberra. The chart shows the distribution of arrival time deviations across different routes. It shows the percentage of trips at different delay levels for a specific route, with colors indicating reliability categories from excellent (±1min) to very poor (10+min).
+                </p>
+            </div>
+            <div class="chart-item">
+                <figure id="Location24"></figure>
+                <p>This chart compares three machine learning models predicting public transport usage: demographics only (R²=0.185), service quality only (R²=0.176), and combined (R²=0.336). I also conducted statistical significance testing using linear regression, which revealed that service quality effects differ significantly across demographic groups - density matters most in high-education areas (p<0.001), while low-income areas are more sensitive to service frequency. Full regression tables with p-values available in Project/regression_results/.
                 </p>
             </div>
         </div>
     </section>
     <script>
+        // ============================================
+        // CHART CONFIGURATION
+        // ============================================
         // Define all charts in one array - each chart has an id (where to put it) and spec (the chart definition)
         const charts = [
             { id: '#Location1', spec: 'https://raw.githubusercontent.com/EconomicsObservatory/datavis/refs/heads/main/newsletters/2025-07-18-the-debt-mountain/visualisation/fig1-g20-debt.json' },
             { id: '#Location2', spec: 'https://raw.githubusercontent.com/EconomicsObservatory/datavis/refs/heads/main/newsletters/2025-07-18-the-debt-mountain/visualisation/fig3-big4-yields.json' },
             { id: '#Location3', spec: 'Portfolio/json/UK_Yields.json' },
-            { id: '#Location4', spec: 'Portfolio/json/mortgage_rates.json' },
+            { id: '#Location4', spec: 'Portfolio/json/BOE_bankrate.json' },
             { id: '#Location5', spec: 'Portfolio/json/agriculture_value_added.json' },
             { id: '#Location6', spec: 'Portfolio/json/ag_share_lf.json' },
             { id: '#Location8', spec: 'Portfolio/json/batting.json' },
             { id: '#Location9', spec: 'Portfolio/json/current_account.json' },
             { id: '#Location10', spec: 'Portfolio/json/trade_barchart.json' },
-            { id: '#Location11', spec: 'Portfolio/json/chart_FRED_A191RL1A225NBEA.json' },
-            { id: '#Location12', spec: 'Portfolio/json/chart_FRED_CPIAUCSL.json' },
-            { id: '#Location13', spec: 'Portfolio/json/chart_FRED_PAYEMS.json' },
-            { id: '#Location14', spec: 'Portfolio/json/chart_FRED_ECIALLCIV.json' },
-            { id: '#Location15', spec: 'Portfolio/json/chart_FRED_UNRATE.json' },
-            { id: '#Location16', spec: 'Portfolio/json/chart_FRED_A191RP1A027NBEA.json' },
+            { id: '#Location11', spec: 'Portfolio/json/chart_data_FRED_A191RL1Q225SBEA.json' },
+            { id: '#Location12', spec: 'Portfolio/json/chart_data_FRED_PAYEMS.json' },
+            { id: '#Location13', spec: 'Portfolio/json/chart_data_FRED_UNRATE.json' },
+            { id: '#Location14', spec: 'Portfolio/json/chart_data_FRED_CPIAUCSL.json' },
+            { id: '#Location15', spec: 'Portfolio/json/chart_data_FRED_LES1252881600Q.json' },
+            { id: '#Location16', spec: 'Portfolio/json/chart_data_FRED_GDP.json' },
             { id: '#Location17', spec: 'Portfolio/json/walesgva.json' },
             { id: '#Location18', spec: 'Portfolio/json/whiskymap.json' },
             { id: '#Location19', spec: 'Portfolio/json/popcorn.json' },
             { id: '#Location20', spec: 'Portfolio/json/olive_oil_price_chart.json' },
             { id: '#Location21', spec: 'Project/json/chart1a_intercity.json' },
             { id: '#Location22', spec: 'Project/json/chart1b.json' },
-            { id: '#Location23', spec: 'Project/json/chart4.json' }
+            { id: '#Location23', spec: 'Project/json/chart4.json' },
+            { id: '#Location24', spec: 'Project/json/chart5_comparison.json' }
         ];
 
         // Embed all charts using a loop
@@ -243,10 +247,7 @@
                 renderer: 'canvas'
             });
         });
-
-
     </script>
 
 </body>
-    
 </html>

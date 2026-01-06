@@ -1,3 +1,7 @@
+/* ============================================
+   FONTS & TYPOGRAPHY
+   ============================================ */
+
 @font-face {
   font-family: "et-book";
   src: url("/fonts/et-book-roman-line-figures.woff2") format("woff2"),
@@ -18,7 +22,6 @@ body {
   padding-top: 60px;
   padding-bottom: 60px;
 }
-
 
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
@@ -65,11 +68,15 @@ p {
   text-wrap: pretty;
 }
 
+/* ============================================
+   LAYOUT - BODY & SECTIONS
+   ============================================ */
+
 section {
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
   margin-bottom: 0;
-  /* Extend background full width beyond centered body */
+  /* Extend background full width beyond centered body using viewport-based calc */
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
   padding-left: calc(50vw - 50%);
@@ -90,6 +97,56 @@ section:nth-of-type(even) {
   background-color: transparent;
 }
 
+/* ============================================
+   COMPONENTS - INTRO PANELS & LINKS
+   ============================================ */
+
+.intro-panels {
+  margin-top: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.intro-panels-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.intro-panel {
+  background-color: #f5f1e6;
+  border: 1px solid #e1dccf;
+  border-radius: 8px;
+  padding: 0.9rem 1rem;
+  box-shadow: 0 1px 4px rgba(39, 24, 0, 0.08);
+}
+
+.intro-panel summary {
+  font-size: 1.1em;
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+}
+
+.intro-panel summary::-webkit-details-marker {
+  display: none;
+}
+
+.intro-panel summary::after {
+  content: "+";
+  float: right;
+  color: #065f46;
+  font-weight: 700;
+}
+
+.intro-panel[open] summary::after {
+  content: "–";
+}
+
+.intro-panel p {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+
 /* Links */
 a {
   color: #065f46;
@@ -103,7 +160,7 @@ a {
 a:hover {
   border-bottom-color: transparent;
 }
-  
+
 /* Images */
 img {
   max-width: 100%;
@@ -125,6 +182,10 @@ img {
   font-size: 1.05em;
   line-height: 1.75;
 }
+
+/* ============================================
+   CHARTS & FIGURES - BASE STYLES
+   ============================================ */
 
 /* Chart container - stacks on mobile, side-by-side on wide screens */
 .chart-container {
@@ -167,24 +228,32 @@ figure {
   box-sizing: border-box;
 }
 
+/* ============================================
+   VEGA-SPECIFIC OVERRIDES
+   ============================================ */
+
 /* Ensure Vega charts fit their container */
 figure .vega-embed {
   width: 100%;
   overflow: visible;
 }
 
+/* Hide Vega's default action menu (we set actions: false in JS) */
 figure .vega-embed details,
 figure .vega-embed summary {
   display: none !important;
 }
 
-/* Hide legend title if it's "undefined" or "symbol" */
+/* Hide Vega bind controls - these are interactive parameter controls that we don't use */
 figure .vega-embed .vega-bind {
   display: none;
 }
 
+/* Make Vega canvas/svg responsive - consolidated from multiple rules */
 figure .vega-embed canvas,
-figure .vega-embed svg {
+figure .vega-embed svg,
+.chart-item canvas,
+.chart-item svg {
   max-width: 100%;
   height: auto;
   width: 100% !important;
@@ -195,11 +264,51 @@ figure .vega-embed svg {
   max-width: 100%;
 }
 
-.chart-item canvas,
-.chart-item svg {
+/* ============================================
+   PORTFOLIO-SPECIFIC STYLES
+   ============================================ */
+/* Note: These styles are only used in portfolio.html for Challenge 6 grid layout */
+
+.challenge-6 .chart-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  width: 100%;
+}
+
+.challenge-6 .chart-item {
+  max-width: none;
+}
+
+.challenge-6 figure {
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* Responsive sizing for portfolio charts - consolidated */
+.challenge-6 .chart-item canvas,
+.challenge-6 .chart-item svg {
   max-width: 100% !important;
   height: auto !important;
 }
+
+@media (min-width: 900px) {
+  .challenge-6 .chart-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
+  .challenge-6 .chart-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* ============================================
+   RESPONSIVE MEDIA QUERIES
+   ============================================ */
 
 /* Wide screen layout - side-by-side charts */
 @media (min-width: 1200px) {
@@ -223,4 +332,3 @@ figure .vega-embed svg {
     padding: 1rem;
   }
 }
-
