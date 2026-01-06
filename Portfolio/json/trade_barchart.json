@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
-  "data": {"url": "https://raw.githubusercontent.com/CAbourizk/CAbourizk.github.io/refs/heads/main/trade_data.csv"},
+  "data": {"url": "https://raw.githubusercontent.com/CAbourizk/CAbourizk.github.io/refs/heads/main/Portfolio/csv/trade_data.csv"},
   
   "width": "container",
   
