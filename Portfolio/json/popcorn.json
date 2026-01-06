@@ -5,7 +5,7 @@
     "subtitle": "Source: ONS microdata via Davies (2021)"
   },
   "data": {
-    "url": "https://raw.githubusercontent.com/CAbourizk/CAbourizk.github.io/refs/heads/main/popcornprice.csv",
+    "url": "https://raw.githubusercontent.com/CAbourizk/CAbourizk.github.io/refs/heads/main/Portfolio/csv/popcornprice.csv",
     "format": {
       "type": "csv"
     }
