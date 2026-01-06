@@ -30,7 +30,7 @@
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/CAbourizk/CAbourizk.github.io/refs/heads/main/scotch_distilleries_with_coords.csv"
+        "url": "https://raw.githubusercontent.com/CAbourizk/CAbourizk.github.io/refs/heads/main/Portfolio/csv/scotch_distilleries_with_coords.csv"
       },
       "mark": "circle",
       "encoding": {
