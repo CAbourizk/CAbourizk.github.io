@@ -15,7 +15,7 @@
       "lookup": "properties.LAD25CD",
       "from": {
         "data": {
-          "url": "https://raw.githubusercontent.com/CAbourizk/CAbourizk.github.io/refs/heads/main/gross-value-added-per-hour-worked-map-data.csv"
+          "url": "https://raw.githubusercontent.com/CAbourizk/CAbourizk.github.io/refs/heads/main/Portfolio/csv/gross-value-added-per-hour-worked-map-data.csv"
         },
         "key": "geo_id",
         "fields": ["value", "date"]
