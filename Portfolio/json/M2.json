@@ -1,0 +1,17 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "A chart of US M2 from 1960 to 2025",
+  "data": {
+    "url": "https://raw.githubusercontent.com/CAbourizk/CAbourizk.github.io/refs/heads/main/data/M2SL.csv"
+  },
+  "title": {
+    "text": "M2 Money supply",
+    "subtitle": "1960 to 2025, Source: FRED"
+  },
+  "mark": "line",
+  "encoding": {
+    "x": {"field": "observation_date", "type": "temporal"},
+    "y": {"field": "M2SL", "type": "quantitative"}
+  },
+  "config": {}
+}

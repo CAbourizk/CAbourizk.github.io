@@ -1,0 +1,73 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Wage Growth Rate (Year-over-Year)",
+    "subtitle": ["Employment Cost Index: Wages and Salaries for All Civilian Workers (LES1252881600Q)", "Source: U.S. Bureau of Labor Statistics, Federal Reserve Bank of St. Louis (FRED)"],
+    "fontSize": 16,
+    "anchor": "start"
+  },
+  "width": 400,
+  "height": 300,
+  "data": {
+    "url": "https://raw.githubusercontent.com/CAbourizk/CAbourizk.github.io/refs/heads/main/Portfolio/json/data_FRED_LES1252881600Q.json",
+    "format": {
+      "type": "json",
+      "property": "observations"
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.value != '.'"
+    },
+    {
+      "calculate": "toNumber(datum.value)",
+      "as": "numValue"
+    },
+    {
+      "window": [{"op": "lag", "field": "numValue", "param": 4, "as": "lagValue"}],
+      "sort": [{"field": "date"}]
+    },
+    {
+      "calculate": "((datum.numValue - datum.lagValue) / datum.lagValue) * 100",
+      "as": "wageGrowth"
+    },
+    {
+      "filter": "datum.lagValue != null"
+    }
+  ],
+  "mark": {
+    "type": "line",
+    "color": "#9467bd",
+    "strokeWidth": 2
+  },
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "temporal",
+      "title": "Date",
+      "axis": {
+        "format": "%Y",
+        "labelAngle": -45
+      }
+    },
+    "y": {
+      "field": "wageGrowth",
+      "type": "quantitative",
+      "title": "Wage Growth Rate (%)",
+      "scale": {
+        "zero": false
+      }
+    },
+    "tooltip": [
+      {"field": "date", "type": "temporal", "title": "Date", "format": "%B %Y"},
+      {"field": "wageGrowth", "type": "quantitative", "title": "Wage Growth (%)", "format": ".2f"}
+    ]
+  },
+  "config": {
+    "view": {"strokeWidth": 0},
+    "title": {
+      "subtitleFontSize": 10,
+      "subtitleColor": "gray"
+    }
+  }
+}

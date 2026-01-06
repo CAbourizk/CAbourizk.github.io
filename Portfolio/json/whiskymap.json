@@ -1,0 +1,46 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.2.json",
+  "title": {
+    "text": "Whiskies of Scotland",
+    "subtitle": "Sources: Distillery locations scraped and geocoded via Google Maps API; Scotland geography from RADataHub TopoJSON"
+  },
+  "width": 350,
+  "height": 400,
+  "config": {
+  "legend": { "disable": true },
+  "view": { "stroke": null }
+},
+  "projection": {
+    "type": "mercator",
+    "center": [-4.5, 57.8],
+    "scale": 2000},
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/jhellingsdata/RADataHub/refs/heads/main/MappingWorkshop/geo_data/scotland.topojson",
+        "format": {"type": "topojson", "feature": "data"}
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#F3C46C",
+        "stroke": "white",
+        "strokeWidth": 0.1
+      }
+
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/CAbourizk/CAbourizk.github.io/refs/heads/main/scotch_distilleries_with_coords.csv"
+      },
+      "mark": "circle",
+      "encoding": {
+        "longitude": {"field": "lon", "type": "quantitative"},
+        "latitude": {"field": "lat", "type": "quantitative"},
+        "color": {"value": "#005F6B"},
+        "tooltip": [
+          {"field": "name", "title": "Distillery name:"}
+        ]
+      }
+    }
+  ]
+}

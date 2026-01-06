@@ -1,0 +1,62 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Unemployment Rate",
+    "subtitle": ["Unemployment Rate, Percent (UNRATE)", "Source: U.S. Bureau of Labor Statistics, Federal Reserve Bank of St. Louis (FRED)"],
+    "fontSize": 16,
+    "anchor": "start"
+  },
+  "width": 400,
+  "height": 300,
+  "data": {
+    "url": "https://raw.githubusercontent.com/CAbourizk/CAbourizk.github.io/refs/heads/main/Portfolio/json/data_FRED_UNRATE.json",
+    "format": {
+      "type": "json",
+      "property": "observations"
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.value != '.'"
+    },
+    {
+      "calculate": "toNumber(datum.value)",
+      "as": "numValue"
+    }
+  ],
+  "mark": {
+    "type": "line",
+    "color": "#ff7f00",
+    "strokeWidth": 2
+  },
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "temporal",
+      "title": "Date",
+      "axis": {
+        "format": "%Y",
+        "labelAngle": -45
+      }
+    },
+    "y": {
+      "field": "numValue",
+      "type": "quantitative",
+      "title": "Unemployment Rate (%)",
+      "scale": {
+        "zero": false
+      }
+    },
+    "tooltip": [
+      {"field": "date", "type": "temporal", "title": "Date", "format": "%B %Y"},
+      {"field": "numValue", "type": "quantitative", "title": "Unemployment Rate (%)", "format": ".1f"}
+    ]
+  },
+  "config": {
+    "view": {"strokeWidth": 0},
+    "title": {
+      "subtitleFontSize": 10,
+      "subtitleColor": "gray"
+    }
+  }
+}

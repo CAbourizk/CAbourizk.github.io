@@ -1,0 +1,73 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Employment Growth Rate (Year-over-Year)",
+    "subtitle": ["All Employees, Total Nonfarm (PAYEMS)", "Source: U.S. Bureau of Labor Statistics, Federal Reserve Bank of St. Louis (FRED)"],
+    "fontSize": 16,
+    "anchor": "start"
+  },
+  "width": 400,
+  "height": 300,
+  "data": {
+    "url": "https://raw.githubusercontent.com/CAbourizk/CAbourizk.github.io/refs/heads/main/Portfolio/json/data_FRED_PAYEMS.json",
+    "format": {
+      "type": "json",
+      "property": "observations"
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.value != '.'"
+    },
+    {
+      "calculate": "toNumber(datum.value)",
+      "as": "numValue"
+    },
+    {
+      "window": [{"op": "lag", "field": "numValue", "param": 12, "as": "lagValue"}],
+      "sort": [{"field": "date"}]
+    },
+    {
+      "calculate": "((datum.numValue - datum.lagValue) / datum.lagValue) * 100",
+      "as": "growthRate"
+    },
+    {
+      "filter": "datum.lagValue != null"
+    }
+  ],
+  "mark": {
+    "type": "line",
+    "color": "#2ca02c",
+    "strokeWidth": 2
+  },
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "temporal",
+      "title": "Date",
+      "axis": {
+        "format": "%Y",
+        "labelAngle": -45
+      }
+    },
+    "y": {
+      "field": "growthRate",
+      "type": "quantitative",
+      "title": "Employment Growth Rate (%)",
+      "scale": {
+        "zero": false
+      }
+    },
+    "tooltip": [
+      {"field": "date", "type": "temporal", "title": "Date", "format": "%B %Y"},
+      {"field": "growthRate", "type": "quantitative", "title": "Growth Rate (%)", "format": ".2f"}
+    ]
+  },
+  "config": {
+    "view": {"strokeWidth": 0},
+    "title": {
+      "subtitleFontSize": 10,
+      "subtitleColor": "gray"
+    }
+  }
+}

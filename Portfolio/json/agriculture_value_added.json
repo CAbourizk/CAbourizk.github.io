@@ -1,0 +1,54 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "title": {
+    "text": "Agriculture value added per worker",
+    "subtitle": "Constant 2015 US$ | Source: Our World in Data",
+    "anchor": "middle",
+    "offset": 8,
+    "subtitlePadding": 2
+  },
+  "data": {
+    "url": "https://ourworldindata.org/grapher/agriculture-value-added-per-worker-wdi.csv?v=1&csvType=filtered&useColumnShortNames=true&tab=line&country=AUS~CHN~IND~GBR&overlay=download-data",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.Year >= 1990"
+    }
+  ],
+  "mark": "line",
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "quantitative",
+      "title": "Year",
+      "axis": {
+        "format": "d"
+      }
+    },
+    "y": {
+      "field": "nv_agr_empl_kd",
+      "type": "quantitative",
+      "title": "Value added per worker (constant 2015 US$)",
+      "axis": {
+        "grid": false
+      }
+    },
+    "color": {
+      "field": "Entity",
+      "type": "nominal",
+      "title": "Country"
+    }
+  },
+  "height": 300,
+  "width": "container",
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
+  "padding": {
+    "top": 56
+  }
+}
