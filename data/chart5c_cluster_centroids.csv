@@ -1,0 +1,5 @@
+cluster_id,cluster_name,demand_score_centroid,supply_score_centroid
+0,Undersupplied Urban,63.667131868679505,42.27735363996398
+1,Oversupplied Suburban,44.8377646658783,55.95770897177965
+2,Suburban Baseline,45.641740821819624,38.71696004643736
+3,Urban Core - Well Served,56.17902455535184,71.50345692918982

@@ -1,0 +1,122 @@
+route_short_name,route_long_name,service_type,mean_delay_min,median_delay_min,std_delay_min,observations,pct_ontime_1min,pct_ontime_3min,pct_late_5plus,pct_early_5plus,reliability_score
+1,Light Rail (Gungahlin to Alinga Street),weekday_offpeak,0.24,0.2,0.47,13283,95.13,99.87,0.0,0.0,97.55
+1,Light Rail (Gungahlin to Alinga Street),weekday_peak,0.19,0.1,0.44,4121,96.29,99.93,0.0,0.0,98.09
+2,Fraser to Fyshwick via Belconnen & City,weekday_offpeak,-3.73,-2.7,4.21,28880,25.5,51.98,0.04,33.06,62.7
+2,Fraser to Fyshwick via Belconnen & City,weekday_peak,-1.11,-0.8,3.5,7948,28.75,57.46,4.57,12.38,88.91
+3,Spence to CBR Airport via City & Brindabella Park,weekday_offpeak,0.38,0.1,2.41,16051,43.04,77.7,3.89,1.48,96.22
+3,Spence to CBR Airport via City & Brindabella Park,weekday_peak,1.57,1.1,2.97,4253,33.48,69.69,13.66,1.18,84.27
+4,Belconnen to Tuggeranong via City & Woden,weekday_offpeak,-4.94,-5.7,4.7,17985,11.66,26.87,2.07,55.34,50.64
+4,Belconnen to Tuggeranong via City & Woden,weekday_peak,-4.73,-5.3,6.67,3479,10.52,27.08,6.18,51.91,52.7
+5,Lanyon to City ANU via Erindale & Woden,weekday_offpeak,-3.89,-3.9,3.94,10056,22.97,43.65,0.05,42.34,61.14
+5,Lanyon to City ANU via Erindale & Woden,weekday_peak,-2.25,-1.6,3.4,3119,30.94,64.25,0.9,18.5,77.51
+6,Woden to City ANU via Kingston,weekday_offpeak,-2.06,-1.5,2.87,7089,33.76,71.91,0.08,13.42,79.39
+6,Woden to City ANU via Kingston,weekday_peak,-2.36,-1.8,2.19,1421,23.29,74.88,0.0,10.13,76.45
+7,Duffy to City ANU via Cooleman Court,weekday_offpeak,-1.73,-1.7,2.58,2679,29.15,68.76,0.0,5.38,82.7
+7,Duffy to City ANU via Cooleman Court,weekday_peak,-1.28,-1.2,1.77,683,42.31,87.41,0.0,3.07,87.15
+8,Gunghalin to Belconnen,weekday_offpeak,1.16,-0.1,7.07,1970,33.5,79.09,9.95,0.1,88.37
+8,Gunghalin to Belconnen,weekday_peak,0.81,0.8,1.73,327,44.04,84.71,0.0,0.0,91.87
+9,Belconnen to Watson via Bruce & Dickson,weekday_offpeak,0.72,0.2,1.81,5780,63.69,87.66,3.51,0.02,92.78
+9,Belconnen to Watson via Bruce & Dickson,weekday_peak,0.71,0.7,1.19,1150,54.35,97.3,0.09,0.0,92.91
+10,Denman Prospect to City ANU,weekday_offpeak,-2.5,-2.4,2.4,3914,27.31,57.97,0.0,13.46,75.03
+10,Denman Prospect to City ANU,weekday_peak,-0.55,-0.3,2.33,657,33.94,80.97,0.0,3.65,94.53
+18,Gungahlin to Dickson via Franklin & Mitchell,weekday_offpeak,-2.84,-2.6,4.34,1329,17.23,47.1,3.31,27.31,71.63
+18,Gungahlin to Dickson via Franklin & Mitchell,weekday_peak,-0.2,-0.8,3.48,203,23.15,64.04,6.4,3.94,97.96
+19,Bonner Loop via Forde & Amaroo,weekday_offpeak,-3.34,-3.1,3.44,1112,24.19,49.01,0.0,26.62,66.56
+19,Bonner Loop via Forde & Amaroo,weekday_peak,-3.78,-3.4,2.68,382,17.02,47.38,0.0,36.39,62.21
+20,Bonner Loop via Amaroo & Forde,weekday_offpeak,-4.95,-3.9,4.74,1362,12.19,38.18,0.0,35.9,50.53
+21,Throsby Loop via Palmerston & Harrison,weekday_offpeak,-1.37,-1.9,3.54,801,23.6,53.68,10.36,11.61,86.25
+21,Throsby Loop via Palmerston & Harrison,weekday_peak,-2.73,-2.1,3.62,534,21.72,57.12,0.0,32.77,72.68
+22,Throsby Loop via Harrison & Palmerston,weekday_offpeak,-4.59,-5.2,5.44,1041,10.85,29.39,1.92,52.26,54.13
+22,Throsby Loop via Harrison & Palmerston,weekday_peak,-3.31,-4.7,3.49,536,25.19,40.11,0.0,44.4,66.88
+23,Gungahlin to Belconnen via Crace & Giralang,weekday_offpeak,-2.31,-2.1,2.15,3417,25.17,64.65,0.0,12.53,76.91
+23,Gungahlin to Belconnen via Crace & Giralang,weekday_peak,-1.99,-2.0,2.66,1113,26.68,67.48,0.99,10.78,80.14
+24,Gungahlin to Belconnen via Nicholls & McKellar,weekday_offpeak,-1.55,-1.6,2.46,4434,24.22,71.02,1.04,6.74,84.55
+24,Gungahlin to Belconnen via Nicholls & McKellar,weekday_peak,-2.01,-1.8,3.46,1343,23.31,63.74,0.82,17.72,79.88
+25,Taylor Loop via Amaroo & Moncrieff,weekday_offpeak,0.4,0.6,2.53,1227,36.67,73.76,2.44,1.96,95.98
+25,Taylor Loop via Amaroo & Moncrieff,weekday_peak,-0.38,0.5,2.63,135,25.19,74.07,0.0,4.44,96.21
+26,Taylor Loop via Moncrieff & Amaroo,weekday_offpeak,-2.28,-2.3,1.52,2086,16.78,72.05,0.0,3.5,77.18
+26,Taylor Loop via Moncrieff & Amaroo,weekday_peak,-0.54,-0.3,2.2,623,34.03,84.11,0.0,4.01,94.64
+27,Casey to Gungahlin via Ngunnawal & Moncrieff,weekday_offpeak,-1.32,-1.1,2.99,1624,26.54,60.84,1.17,10.59,86.79
+27,Casey to Gungahlin via Ngunnawal & Moncrieff,weekday_peak,-0.64,0.3,2.87,201,28.86,75.12,0.0,9.95,93.61
+28,Casey to Gungahlin via Ngunnawal,weekday_offpeak,-1.12,-0.7,2.88,1231,28.92,69.29,0.0,8.94,88.77
+28,Casey to Gungahlin via Ngunnawal,weekday_peak,-0.3,0.0,2.0,388,50.26,87.37,0.0,3.61,97.01
+30,Belconnen to Dickson via Giralang & Kaleen North,weekday_offpeak,-1.12,-0.9,2.14,3779,39.16,78.72,0.0,4.21,88.82
+30,Belconnen to Dickson via Giralang & Kaleen North,weekday_peak,-1.33,-0.8,2.14,1446,49.1,79.94,0.0,7.33,86.73
+31,Belconnen to City via Kaleen South & Dickson,weekday_offpeak,-2.7,-2.8,2.67,5261,18.7,51.38,1.01,17.49,73.01
+31,Belconnen to City via Kaleen South & Dickson,weekday_peak,-2.68,-3.1,2.15,1005,29.75,48.96,0.0,13.53,73.21
+32,Belconnen to City via Jamison & Aranda,weekday_offpeak,-0.74,-0.6,1.85,3448,49.54,89.39,0.03,2.35,92.57
+32,Belconnen to City via Jamison & Aranda,weekday_peak,-1.5,-1.1,2.02,1176,41.16,79.42,0.0,6.72,84.97
+40,Fraser Loop via Kippax & Charnwood,weekday_offpeak,-2.05,-2.3,2.69,5291,21.19,56.61,1.4,11.59,79.47
+40,Fraser Loop via Kippax & Charnwood,weekday_peak,-4.49,-4.3,2.59,2188,5.94,32.82,0.0,37.48,55.06
+41,Fraser to Belconnen via Flynn & Melba,weekday_offpeak,-1.54,-1.5,1.62,2314,38.59,81.33,0.0,1.73,84.63
+41,Fraser to Belconnen via Flynn & Melba,weekday_peak,0.55,0.0,1.92,762,45.28,84.91,0.39,0.0,94.5
+42,Fraser Loop via Charnwood & Kippax,weekday_offpeak,-3.11,-4.3,9.73,5241,12.06,32.25,2.31,42.4,68.91
+42,Fraser Loop via Charnwood & Kippax,weekday_peak,0.05,0.6,1.44,102,44.12,97.06,0.0,0.0,99.52
+43,Spence to Belconnen via Evatt & McKellar,weekday_offpeak,-0.66,-0.7,1.78,1944,45.27,86.68,0.0,0.0,93.44
+43,Spence to Belconnen via Evatt & McKellar,weekday_peak,-0.07,0.0,0.88,535,72.15,100.0,0.0,0.0,99.34
+44,Kippax to Belconnen via West Macgregor & Higgins,weekday_offpeak,0.39,0.2,1.28,3419,56.92,98.04,0.0,0.03,96.11
+44,Kippax to Belconnen via West Macgregor & Higgins,weekday_peak,1.85,3.4,2.59,794,17.0,42.82,0.76,0.0,81.53
+45,Kippax to Belconnen via Hawker & Weetangera,weekday_offpeak,0.51,0.5,1.09,2394,62.78,98.04,0.0,0.0,94.92
+45,Kippax to Belconnen via Hawker & Weetangera,weekday_peak,0.81,0.8,1.32,762,50.26,95.41,0.0,0.0,91.93
+46,Kippax to Belconnen via Latham & Florey,weekday_offpeak,0.53,0.4,1.55,1464,50.89,93.1,0.0,0.0,94.66
+46,Kippax to Belconnen via Latham & Florey,weekday_peak,3.71,3.6,1.91,447,4.7,45.64,31.32,0.0,62.9
+47,Whitlam Denman Loop,weekday_offpeak,-1.49,-1.6,2.17,2029,29.62,69.99,0.79,2.91,85.06
+47,Whitlam Denman Loop,weekday_peak,-3.1,-3.1,1.9,668,13.77,49.1,0.0,16.77,68.98
+50,Watson to City via Dickson & Lyneham,weekday_offpeak,-1.69,-1.5,2.16,2778,34.49,69.01,0.0,6.88,83.07
+50,Watson to City via Dickson & Lyneham,weekday_peak,-0.08,0.2,2.2,602,33.06,83.72,0.0,2.49,99.22
+51,Dickson to City via North Lyneham & O'Connor,weekday_offpeak,0.45,0.3,1.45,1842,57.82,94.63,0.6,0.0,95.47
+51,Dickson to City via North Lyneham & O'Connor,weekday_peak,2.63,2.9,1.64,582,14.09,52.41,1.55,0.0,73.7
+53,Dickson to National Museum via Hackett & Ainslie,weekday_offpeak,-1.56,-1.5,1.9,2901,32.75,78.08,0.0,3.93,84.44
+53,Dickson to National Museum via Hackett & Ainslie,weekday_peak,-3.21,-3.9,2.41,602,22.26,35.55,0.0,20.6,67.93
+54,Majura Park Loop via Campbell Park,weekday_offpeak,-3.45,-3.5,2.58,1245,13.98,42.41,0.0,26.99,65.45
+54,Majura Park Loop via Campbell Park,weekday_peak,-2.19,-2.55,1.46,72,31.94,68.06,0.0,0.0,78.14
+55,ADFA Loop via Campbell & Reid,weekday_offpeak,-1.49,-1.4,2.03,4214,31.87,78.07,0.0,4.86,85.1
+55,ADFA Loop via Campbell & Reid,weekday_peak,-2.06,-2.3,1.56,1384,27.31,71.46,0.0,2.38,79.39
+56,Fyshwick to City via Red Hill & Kingston,weekday_offpeak,0.04,0.0,1.65,8765,41.24,95.69,0.0,0.0,99.56
+56,Fyshwick to City via Red Hill & Kingston,weekday_peak,1.11,1.1,1.66,1998,39.54,87.39,1.5,0.0,88.92
+57,Woden to City via Hughes & Yarralumla,weekday_offpeak,1.31,1.4,2.58,3483,31.18,73.18,4.77,3.7,86.86
+57,Woden to City via Hughes & Yarralumla,weekday_peak,1.51,1.5,2.1,569,31.46,73.81,2.46,1.23,84.87
+58,Woden to City via Curtin & Deakin,weekday_offpeak,-1.5,-0.8,2.81,3524,41.4,76.48,0.0,9.73,85.03
+58,Woden to City via Curtin & Deakin,weekday_peak,-3.1,-2.6,1.92,617,11.83,55.92,0.0,22.04,68.95
+59,Woden to City ANU via Barton & Russell,weekday_offpeak,-1.3,-1.2,2.29,1853,29.9,71.45,0.0,4.91,86.99
+59,Woden to City ANU via Barton & Russell,weekday_peak,2.34,1.7,3.52,490,21.63,59.39,22.45,0.0,76.64
+60,Mawson Loop via O'Malley & Farrer,weekday_offpeak,4.1,3.95,2.41,502,6.77,37.85,39.04,0.0,59.03
+60,Mawson Loop via O'Malley & Farrer,weekday_peak,1.38,0.95,2.45,484,35.33,70.25,5.37,0.0,86.15
+61,Mawson Loop via Farrer & O'Malley,weekday_offpeak,1.94,1.9,1.34,1111,23.76,82.72,2.79,0.0,80.57
+61,Mawson Loop via Farrer & O'Malley,weekday_peak,1.87,2.4,1.87,487,36.55,66.32,2.46,0.0,81.32
+62,Torrens Loop via Lyons & Pearce,weekday_offpeak,2.4,2.6,2.07,2063,17.6,57.39,7.37,0.0,75.98
+62,Torrens Loop via Lyons & Pearce,weekday_peak,4.25,4.5,2.14,672,10.57,21.88,38.99,0.0,57.55
+63,Cooleman Court to Woden via Stirling & Fisher,weekday_offpeak,1.14,0.5,2.57,1333,51.01,76.59,11.03,1.43,88.61
+63,Cooleman Court to Woden via Stirling & Fisher,weekday_peak,-0.36,-0.3,1.59,332,59.04,92.77,0.3,0.9,96.42
+64,Chapman to Woden via Rivett & Cooleman Court,weekday_offpeak,0.54,0.8,1.89,1981,41.6,87.13,0.1,1.11,94.63
+64,Chapman to Woden via Rivett & Cooleman Court,weekday_peak,2.31,2.3,3.35,507,13.02,64.3,3.94,0.59,76.92
+65,Duffy to Woden via Holder & Cooleman Court,weekday_offpeak,0.73,0.6,1.7,1338,49.48,95.44,0.9,0.0,92.68
+65,Duffy to Woden via Holder & Cooleman Court,weekday_peak,1.74,1.7,1.23,127,28.35,83.46,0.0,0.0,82.62
+66,Cooleman Court to Woden via Denman Prospect,weekday_offpeak,0.03,0.1,2.1,6018,46.03,83.07,1.55,0.27,99.7
+66,Cooleman Court to Woden via Denman Prospect,weekday_peak,1.33,1.3,1.37,885,38.42,90.06,0.34,0.0,86.69
+70,Tuggeranong to Woden via Kambah West & Cooleman Ct,weekday_offpeak,-0.34,0.0,2.2,3158,39.68,85.56,0.03,4.46,96.61
+70,Tuggeranong to Woden via Kambah West & Cooleman Ct,weekday_peak,0.11,0.2,1.35,1061,62.68,97.17,0.0,0.19,98.86
+71,Tuggeranong to Woden via Kambah East & Cooleman Ct,weekday_offpeak,1.74,1.8,1.87,3260,30.0,75.15,3.9,0.34,82.62
+71,Tuggeranong to Woden via Kambah East & Cooleman Ct,weekday_peak,0.96,1.0,1.75,718,42.34,88.02,1.39,0.28,90.39
+72,Tuggeranong to Woden via Oxley & Erindale,weekday_offpeak,-0.87,0.0,2.62,3006,40.75,75.42,0.0,11.41,91.25
+72,Tuggeranong to Woden via Oxley & Erindale,weekday_peak,-0.75,-0.45,3.09,656,32.62,60.98,1.68,9.91,92.51
+73,Tuggeranong to Woden via Monash & Wanniassa,weekday_offpeak,0.71,0.7,3.49,3498,36.54,69.24,3.2,5.89,92.88
+73,Tuggeranong to Woden via Monash & Wanniassa,weekday_peak,1.72,-2.9,7.84,48,0.0,22.92,29.17,8.33,82.81
+74,Chisholm Loop via Erindale & Richardson,weekday_offpeak,0.24,0.15,1.98,3544,41.85,90.12,3.61,0.23,97.65
+74,Chisholm Loop via Erindale & Richardson,weekday_peak,-2.23,-2.3,1.53,1077,21.82,75.67,0.0,3.81,77.74
+75,Chisholm Loop via Richardson & Erindale,weekday_offpeak,1.16,1.5,2.21,2331,31.23,72.33,0.82,0.17,88.38
+75,Chisholm Loop via Richardson & Erindale,weekday_peak,0.43,0.6,1.53,1023,50.24,95.8,0.0,0.29,95.74
+76,Tuggeranong to Woden via Calwell & Erindale,weekday_offpeak,0.32,0.5,3.49,4816,32.97,63.58,9.61,9.59,96.81
+76,Tuggeranong to Woden via Calwell & Erindale,weekday_peak,0.15,0.5,2.5,1650,35.39,72.24,1.21,0.67,98.49
+77,Tuggeranong to Woden via Gowrie & Erindale,weekday_offpeak,-1.09,-0.2,3.51,3381,31.91,63.59,0.98,17.83,89.1
+77,Tuggeranong to Woden via Gowrie & Erindale,weekday_peak,-0.0,0.6,3.03,995,23.52,65.93,4.12,4.62,99.97
+78,Richardson Loop via Chisholm,weekday_offpeak,-0.42,0.0,2.49,3384,45.21,85.49,0.06,5.91,95.79
+78,Richardson Loop via Chisholm,weekday_peak,-6.7,-6.7,,1,0.0,0.0,0.0,100.0,33.0
+79,Calwell to Tuggeranong via Theodore,weekday_offpeak,-0.31,-0.2,2.19,2373,39.02,82.98,1.26,1.85,96.9
+79,Calwell to Tuggeranong via Theodore,weekday_peak,4.78,4.95,1.65,408,0.49,17.16,48.04,0.0,52.25
+80,Lanyon Marketplace to Tuggeranong via Banks,weekday_offpeak,-0.78,-0.5,2.16,2444,46.73,87.81,0.74,0.74,92.16
+80,Lanyon Marketplace to Tuggeranong via Banks,weekday_peak,-0.06,-0.3,1.82,731,31.6,91.79,0.0,0.14,99.42
+81,Lanyon Marketplace to Tuggeranong via Gordon,weekday_offpeak,-0.77,-0.7,1.28,3393,53.67,95.34,0.0,0.03,92.32
+81,Lanyon Marketplace to Tuggeranong via Gordon,weekday_peak,-0.26,0.0,0.97,1105,73.48,98.82,0.0,0.0,97.37
+903,Strathnairn Loop,weekday_offpeak,1.84,1.4,2.42,1764,36.11,70.35,6.46,0.0,81.6
+903,Strathnairn Loop,weekday_peak,1.97,1.9,0.91,87,12.64,88.51,0.0,0.0,80.3

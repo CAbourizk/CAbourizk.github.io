@@ -1,0 +1,251 @@
+route_id,route_short_name,route_long_name,service_type,mean_headway_min,departures
+10-10657,10,Denman Prospect to City ANU,saturday,30.0,32
+10-10657,10,Denman Prospect to City ANU,sunday,30.0,28
+10-10657,10,Denman Prospect to City ANU,weekday_offpeak,16.205882352941178,36
+10-10657,10,Denman Prospect to City ANU,weekday_peak,12.411764705882353,19
+18-10657,18,Gungahlin to Dickson via Franklin & Mitchell,saturday,32.77777777777778,28
+18-10657,18,Gungahlin to Dickson via Franklin & Mitchell,sunday,59.857142857142854,15
+18-10657,18,Gungahlin to Dickson via Franklin & Mitchell,weekday_offpeak,15.054054054054054,39
+18-10657,18,Gungahlin to Dickson via Franklin & Mitchell,weekday_peak,14.142857142857142,16
+180-10657,180,Lanyon to City ANU via Banks & Conder,weekday_peak,23.666666666666668,5
+181-10657,181,Lanyon to City ANU via Banks & Gordon,weekday_peak,29.333333333333332,5
+182-10657,182,Lanyon to City ANU via Calwell & Chisholm,weekday_peak,31.0,6
+19-10657,19,Bonner Loop via Forde & Amaroo,saturday,67.5,13
+19-10657,19,Bonner Loop via Forde & Amaroo,sunday,120.0,7
+19-10657,19,Bonner Loop via Forde & Amaroo,weekday_offpeak,32.0625,18
+19-10657,19,Bonner Loop via Forde & Amaroo,weekday_peak,31.0,8
+2-10657,2,Fraser to Fyshwick via Belconnen & City,saturday,15.11111111111111,64
+2-10657,2,Fraser to Fyshwick via Belconnen & City,sunday,14.641509433962264,54
+2-10657,2,Fraser to Fyshwick via Belconnen & City,weekday_offpeak,6.6477272727272725,90
+2-10657,2,Fraser to Fyshwick via Belconnen & City,weekday_peak,4.326923076923077,54
+20-10657,20,Bonner Loop via Amaroo & Forde,saturday,69.23076923076923,14
+20-10657,20,Bonner Loop via Amaroo & Forde,sunday,120.0,7
+20-10657,20,Bonner Loop via Amaroo & Forde,weekday_offpeak,31.41176470588235,19
+20-10657,20,Bonner Loop via Amaroo & Forde,weekday_peak,29.833333333333332,8
+21-10657,21,Harrison Loop via Palmerston & Throsby,saturday,72.5,13
+21-10657,21,Harrison Loop via Palmerston & Throsby,sunday,120.0,7
+21-10657,21,Harrison Loop via Palmerston & Throsby,weekday_offpeak,33.0,18
+21-10657,21,Harrison Loop via Palmerston & Throsby,weekday_peak,29.5,8
+22-10657,22,Harrison Loop via Throsby & Palmerston,saturday,70.0,13
+22-10657,22,Harrison Loop via Throsby & Palmerston,sunday,120.0,7
+22-10657,22,Harrison Loop via Throsby & Palmerston,weekday_offpeak,32.5625,18
+22-10657,22,Harrison Loop via Throsby & Palmerston,weekday_peak,27.571428571428573,9
+23-10657,23,Gungahlin to Belconnen via Crace & Giralang,saturday,33.333333333333336,28
+23-10657,23,Gungahlin to Belconnen via Crace & Giralang,sunday,61.76923076923077,14
+23-10657,23,Gungahlin to Belconnen via Crace & Giralang,weekday_offpeak,14.833333333333334,38
+23-10657,23,Gungahlin to Belconnen via Crace & Giralang,weekday_peak,14.785714285714286,16
+24-10657,24,Gungahlin to Belconnen via Nicholls & McKellar,saturday,31.296296296296298,28
+24-10657,24,Gungahlin to Belconnen via Nicholls & McKellar,sunday,55.76923076923077,14
+24-10657,24,Gungahlin to Belconnen via Nicholls & McKellar,weekday_offpeak,15.529411764705882,36
+24-10657,24,Gungahlin to Belconnen via Nicholls & McKellar,weekday_peak,14.071428571428571,16
+25-10657,25,Taylor Loop via Amaroo & Moncrieff,saturday,67.5,13
+25-10657,25,Taylor Loop via Amaroo & Moncrieff,sunday,120.0,7
+25-10657,25,Taylor Loop via Amaroo & Moncrieff,weekday_offpeak,30.705882352941178,19
+25-10657,25,Taylor Loop via Amaroo & Moncrieff,weekday_peak,29.5,8
+26-10657,26,Taylor Loop via Moncrieff & Amaroo,saturday,69.23076923076923,14
+26-10657,26,Taylor Loop via Moncrieff & Amaroo,sunday,120.0,7
+26-10657,26,Taylor Loop via Moncrieff & Amaroo,weekday_offpeak,29.941176470588236,19
+26-10657,26,Taylor Loop via Moncrieff & Amaroo,weekday_peak,25.714285714285715,9
+27-10657,27,Casey to Gungahlin via Ngunnawal & Moncrieff,saturday,34.61538461538461,27
+27-10657,27,Casey to Gungahlin via Ngunnawal & Moncrieff,sunday,61.84615384615385,14
+27-10657,27,Casey to Gungahlin via Ngunnawal & Moncrieff,weekday_offpeak,15.88888888888889,38
+27-10657,27,Casey to Gungahlin via Ngunnawal & Moncrieff,weekday_peak,14.928571428571429,16
+28-10657,28,Casey to Gungahlin via Ngunnawal,saturday,33.46153846153846,27
+28-10657,28,Casey to Gungahlin via Ngunnawal,sunday,58.15384615384615,14
+28-10657,28,Casey to Gungahlin via Ngunnawal,weekday_offpeak,16.147058823529413,36
+28-10657,28,Casey to Gungahlin via Ngunnawal,weekday_peak,13.928571428571429,16
+3-10657,3,Spence to CBR Airport via City & Brindabella Park,saturday,15.245901639344263,62
+3-10657,3,Spence to CBR Airport via City & Brindabella Park,sunday,15.0,57
+3-10657,3,Spence to CBR Airport via City & Brindabella Park,weekday_offpeak,7.851351351351352,76
+3-10657,3,Spence to CBR Airport via City & Brindabella Park,weekday_peak,7.4,32
+30-10657,30,Belconnen to Dickson via Giralang & Kaleen North,saturday,31.20689655172414,30
+30-10657,30,Belconnen to Dickson via Giralang & Kaleen North,sunday,56.333333333333336,16
+30-10657,30,Belconnen to Dickson via Giralang & Kaleen North,weekday_offpeak,14.921052631578947,40
+30-10657,30,Belconnen to Dickson via Giralang & Kaleen North,weekday_peak,14.071428571428571,16
+31-10657,31,Belconnen to City via Kaleen South & Dickson,saturday,33.333333333333336,28
+31-10657,31,Belconnen to City via Kaleen South & Dickson,sunday,60.53846153846154,14
+31-10657,31,Belconnen to City via Kaleen South & Dickson,weekday_offpeak,15.771428571428572,37
+31-10657,31,Belconnen to City via Kaleen South & Dickson,weekday_peak,12.875,18
+32-10657,32,Belconnen to City via Jamison & Aranda,saturday,34.81481481481482,28
+32-10657,32,Belconnen to City via Jamison & Aranda,sunday,56.92307692307692,14
+32-10657,32,Belconnen to City via Jamison & Aranda,weekday_offpeak,16.08108108108108,39
+32-10657,32,Belconnen to City via Jamison & Aranda,weekday_peak,11.352941176470589,19
+4-10657,4,Belconnen to Tuggeranong via City & Woden,saturday,7.47244094488189,128
+4-10657,4,Belconnen to Tuggeranong via City & Woden,sunday,7.535087719298246,115
+4-10657,4,Belconnen to Tuggeranong via City & Woden,weekday_offpeak,5.637254901960785,104
+4-10657,4,Belconnen to Tuggeranong via City & Woden,weekday_peak,2.783132530120482,85
+40-10657,40,Fraser Loop via Kippax & Charnwood,saturday,64.61538461538461,14
+40-10657,40,Fraser Loop via Kippax & Charnwood,sunday,120.0,7
+40-10657,40,Fraser Loop via Kippax & Charnwood,weekday_offpeak,32.875,18
+40-10657,40,Fraser Loop via Kippax & Charnwood,weekday_peak,30.0,8
+41-10657,41,Fraser to Belconnen via Flynn & Melba,saturday,34.2962962962963,28
+41-10657,41,Fraser to Belconnen via Flynn & Melba,sunday,58.0,14
+41-10657,41,Fraser to Belconnen via Flynn & Melba,weekday_offpeak,16.38235294117647,36
+41-10657,41,Fraser to Belconnen via Flynn & Melba,weekday_peak,12.294117647058824,19
+42-10657,42,Fraser Loop via Charnwood & Kippax,saturday,66.92307692307692,14
+42-10657,42,Fraser Loop via Charnwood & Kippax,sunday,120.0,8
+42-10657,42,Fraser Loop via Charnwood & Kippax,weekday_offpeak,31.9375,18
+42-10657,42,Fraser Loop via Charnwood & Kippax,weekday_peak,30.0,8
+43-10657,43,Spence to Belconnen via Evatt & McKellar,saturday,34.370370370370374,28
+43-10657,43,Spence to Belconnen via Evatt & McKellar,sunday,57.84615384615385,14
+43-10657,43,Spence to Belconnen via Evatt & McKellar,weekday_offpeak,15.82857142857143,37
+43-10657,43,Spence to Belconnen via Evatt & McKellar,weekday_peak,12.266666666666667,17
+44-10657,44,Kippax to Belconnen via West Macgregor & Higgins,saturday,32.142857142857146,29
+44-10657,44,Kippax to Belconnen via West Macgregor & Higgins,sunday,60.0,15
+44-10657,44,Kippax to Belconnen via West Macgregor & Higgins,weekday_offpeak,15.11111111111111,38
+44-10657,44,Kippax to Belconnen via West Macgregor & Higgins,weekday_peak,12.461538461538462,15
+45-10657,45,Kippax to Belconnen via Hawker & Weetangera,saturday,32.142857142857146,29
+45-10657,45,Kippax to Belconnen via Hawker & Weetangera,sunday,60.0,15
+45-10657,45,Kippax to Belconnen via Hawker & Weetangera,weekday_offpeak,14.128205128205128,41
+45-10657,45,Kippax to Belconnen via Hawker & Weetangera,weekday_peak,13.5,16
+46-10657,46,Kippax to Belconnen via Latham & Florey,saturday,33.57142857142857,29
+46-10657,46,Kippax to Belconnen via Latham & Florey,sunday,60.0,15
+46-10657,46,Kippax to Belconnen via Latham & Florey,weekday_offpeak,16.08823529411765,36
+46-10657,46,Kippax to Belconnen via Latham & Florey,weekday_peak,13.0625,18
+47-10657,47,Belconnen to Denman Prospect via Whitlam,saturday,60.0,16
+47-10657,47,Belconnen to Denman Prospect via Whitlam,sunday,120.0,8
+47-10657,47,Belconnen to Denman Prospect via Whitlam,weekday_offpeak,49.0,13
+47-10657,47,Belconnen to Denman Prospect via Whitlam,weekday_peak,30.25,6
+5-10657,5,Lanyon to City ANU via Erindale & Woden,saturday,15.080645161290322,63
+5-10657,5,Lanyon to City ANU via Erindale & Woden,sunday,15.185185185185185,55
+5-10657,5,Lanyon to City ANU via Erindale & Woden,weekday_offpeak,6.488636363636363,90
+5-10657,5,Lanyon to City ANU via Erindale & Woden,weekday_peak,6.0256410256410255,41
+50-10657,50,Watson to City via Dickson & Lyneham,saturday,33.333333333333336,28
+50-10657,50,Watson to City via Dickson & Lyneham,sunday,60.0,15
+50-10657,50,Watson to City via Dickson & Lyneham,weekday_offpeak,16.4,37
+50-10657,50,Watson to City via Dickson & Lyneham,weekday_peak,14.785714285714286,16
+51-10657,51,Dickson to City via Lyneham & O'Connor,saturday,34.61538461538461,27
+51-10657,51,Dickson to City via Lyneham & O'Connor,sunday,60.76923076923077,14
+51-10657,51,Dickson to City via Lyneham & O'Connor,weekday_offpeak,15.243243243243244,39
+51-10657,51,Dickson to City via Lyneham & O'Connor,weekday_peak,16.0,16
+53-10657,53,Dickson to National Museum via Hackett & Ainslie,saturday,33.51851851851852,28
+53-10657,53,Dickson to National Museum via Hackett & Ainslie,sunday,59.0,14
+53-10657,53,Dickson to National Museum via Hackett & Ainslie,weekday_offpeak,14.657894736842104,40
+53-10657,53,Dickson to National Museum via Hackett & Ainslie,weekday_peak,14.142857142857142,16
+54-10657,54,City to Majura Park via Campbell Park,saturday,64.61538461538461,14
+54-10657,54,City to Majura Park via Campbell Park,sunday,120.0,7
+54-10657,54,City to Majura Park via Campbell Park,weekday_offpeak,33.6875,18
+54-10657,54,City to Majura Park via Campbell Park,weekday_peak,27.428571428571427,9
+55-10657,55,Duntroon Loop via Campbell & Reid,saturday,64.61538461538461,14
+55-10657,55,Duntroon Loop via Campbell & Reid,sunday,120.0,7
+55-10657,55,Duntroon Loop via Campbell & Reid,weekday_offpeak,32.5625,18
+55-10657,55,Duntroon Loop via Campbell & Reid,weekday_peak,30.0,8
+56-10657,56,Fyshwick to City via Red Hill & Kingston,saturday,31.76923076923077,27
+56-10657,56,Fyshwick to City via Red Hill & Kingston,sunday,58.642857142857146,15
+56-10657,56,Fyshwick to City via Red Hill & Kingston,weekday_offpeak,14.789473684210526,40
+56-10657,56,Fyshwick to City via Red Hill & Kingston,weekday_peak,14.785714285714286,16
+57-10657,57,Woden to City via Hughes & Yarralumla,saturday,31.444444444444443,28
+57-10657,57,Woden to City via Hughes & Yarralumla,sunday,56.07692307692308,14
+57-10657,57,Woden to City via Hughes & Yarralumla,weekday_offpeak,14.571428571428571,37
+57-10657,57,Woden to City via Hughes & Yarralumla,weekday_peak,12.857142857142858,16
+58-10657,58,Woden to City via Curtin & Deakin,saturday,32.241379310344826,30
+58-10657,58,Woden to City via Curtin & Deakin,sunday,56.07692307692308,14
+58-10657,58,Woden to City via Curtin & Deakin,weekday_offpeak,15.588235294117647,36
+58-10657,58,Woden to City via Curtin & Deakin,weekday_peak,13.428571428571429,16
+59-10657,59,City ANU to Woden via Russell & Barton,saturday,34.074074074074076,28
+59-10657,59,City ANU to Woden via Russell & Barton,sunday,58.46153846153846,14
+59-10657,59,City ANU to Woden via Russell & Barton,weekday_offpeak,8.661538461538461,67
+59-10657,59,City ANU to Woden via Russell & Barton,weekday_peak,7.033333333333333,32
+6-10657,6,Woden to City ANU via Kingston,saturday,14.777777777777779,64
+6-10657,6,Woden to City ANU via Kingston,sunday,15.017857142857142,57
+6-10657,6,Woden to City ANU via Kingston,weekday_offpeak,6.588888888888889,92
+6-10657,6,Woden to City ANU via Kingston,weekday_peak,5.657894736842105,40
+60-10657,60,Mawson Loop via O'Malley & Farrer,saturday,66.92307692307692,14
+60-10657,60,Mawson Loop via O'Malley & Farrer,sunday,120.0,8
+60-10657,60,Mawson Loop via O'Malley & Farrer,weekday_offpeak,32.875,18
+60-10657,60,Mawson Loop via O'Malley & Farrer,weekday_peak,30.166666666666668,8
+61-10657,61,Mawson Loop via Farrer & O'Malley,saturday,65.0,13
+61-10657,61,Mawson Loop via Farrer & O'Malley,sunday,120.0,7
+61-10657,61,Mawson Loop via Farrer & O'Malley,weekday_offpeak,31.9375,18
+61-10657,61,Mawson Loop via Farrer & O'Malley,weekday_peak,29.833333333333332,8
+62-10657,62,Woden to Southlands via Lyons & Pearce,saturday,64.28571428571429,15
+62-10657,62,Woden to Southlands via Lyons & Pearce,sunday,120.0,7
+62-10657,62,Woden to Southlands via Lyons & Pearce,weekday_offpeak,32.0,18
+62-10657,62,Woden to Southlands via Lyons & Pearce,weekday_peak,29.666666666666668,8
+63-10657,63,Cooleman Court to Woden via Stirling & Fisher,saturday,32.30769230769231,27
+63-10657,63,Cooleman Court to Woden via Stirling & Fisher,sunday,58.07692307692308,14
+63-10657,63,Cooleman Court to Woden via Stirling & Fisher,weekday_offpeak,15.971428571428572,37
+63-10657,63,Cooleman Court to Woden via Stirling & Fisher,weekday_peak,12.25,18
+64-10657,64,Weston Creek to Woden via Rivett & Cooleman Court,saturday,31.666666666666668,28
+64-10657,64,Weston Creek to Woden via Rivett & Cooleman Court,sunday,57.69230769230769,14
+64-10657,64,Weston Creek to Woden via Rivett & Cooleman Court,weekday_offpeak,15.694444444444445,38
+64-10657,64,Weston Creek to Woden via Rivett & Cooleman Court,weekday_peak,15.428571428571429,16
+65-10657,65,Weston Creek to Woden via Duffy & Cooleman Court,saturday,33.333333333333336,28
+65-10657,65,Weston Creek to Woden via Duffy & Cooleman Court,sunday,60.0,15
+65-10657,65,Weston Creek to Woden via Duffy & Cooleman Court,weekday_offpeak,14.8,37
+65-10657,65,Weston Creek to Woden via Duffy & Cooleman Court,weekday_peak,13.857142857142858,16
+66-10657,66,Cooleman Court to Woden via Denman Prospect,saturday,33.407407407407405,28
+66-10657,66,Cooleman Court to Woden via Denman Prospect,sunday,60.0,15
+66-10657,66,Cooleman Court to Woden via Denman Prospect,weekday_offpeak,14.567567567567568,39
+66-10657,66,Cooleman Court to Woden via Denman Prospect,weekday_peak,11.933333333333334,17
+7-10657,7,Weston Creek to City ANU via Cooleman Court,saturday,15.0,63
+7-10657,7,Weston Creek to City ANU via Cooleman Court,sunday,15.0,57
+7-10657,7,Weston Creek to City ANU via Cooleman Court,weekday_offpeak,8.140845070422536,73
+7-10657,7,Weston Creek to City ANU via Cooleman Court,weekday_peak,7.5,32
+70-10657,70,Tuggeranong to Woden via Kambah West & Cooleman Ct,saturday,32.73076923076923,27
+70-10657,70,Tuggeranong to Woden via Kambah West & Cooleman Ct,sunday,60.0,15
+70-10657,70,Tuggeranong to Woden via Kambah West & Cooleman Ct,weekday_offpeak,15.444444444444445,38
+70-10657,70,Tuggeranong to Woden via Kambah West & Cooleman Ct,weekday_peak,13.857142857142858,16
+71-10657,71,Tuggeranong to Woden via Kambah East & Cooleman Ct,saturday,33.74074074074074,28
+71-10657,71,Tuggeranong to Woden via Kambah East & Cooleman Ct,sunday,60.0,15
+71-10657,71,Tuggeranong to Woden via Kambah East & Cooleman Ct,weekday_offpeak,15.352941176470589,36
+71-10657,71,Tuggeranong to Woden via Kambah East & Cooleman Ct,weekday_peak,14.0,16
+72-10657,72,Tuggeranong to Woden via Oxley & Erindale,saturday,33.333333333333336,28
+72-10657,72,Tuggeranong to Woden via Oxley & Erindale,sunday,60.0,15
+72-10657,72,Tuggeranong to Woden via Oxley & Erindale,weekday_offpeak,16.485714285714284,37
+72-10657,72,Tuggeranong to Woden via Oxley & Erindale,weekday_peak,15.214285714285714,16
+73-10657,73,Tuggeranong to Woden via Monash & Wanniassa,saturday,32.67857142857143,29
+73-10657,73,Tuggeranong to Woden via Monash & Wanniassa,sunday,58.84615384615385,14
+73-10657,73,Tuggeranong to Woden via Monash & Wanniassa,weekday_offpeak,15.764705882352942,36
+73-10657,73,Tuggeranong to Woden via Monash & Wanniassa,weekday_peak,14.142857142857142,16
+74-10657,74,Chisholm Loop via Erindale & Richardson,saturday,64.61538461538461,14
+74-10657,74,Chisholm Loop via Erindale & Richardson,sunday,120.0,7
+74-10657,74,Chisholm Loop via Erindale & Richardson,weekday_offpeak,32.125,18
+74-10657,74,Chisholm Loop via Erindale & Richardson,weekday_peak,31.166666666666668,8
+75-10657,75,Chisholm Loop via Richardson & Erindale,saturday,66.42857142857143,15
+75-10657,75,Chisholm Loop via Richardson & Erindale,sunday,120.0,7
+75-10657,75,Chisholm Loop via Richardson & Erindale,weekday_offpeak,32.8125,18
+75-10657,75,Chisholm Loop via Richardson & Erindale,weekday_peak,30.166666666666668,8
+76-10657,76,Tuggeranong to Woden via Calwell & Erindale,saturday,34.18518518518518,28
+76-10657,76,Tuggeranong to Woden via Calwell & Erindale,sunday,57.23076923076923,14
+76-10657,76,Tuggeranong to Woden via Calwell & Erindale,weekday_offpeak,15.058823529411764,36
+76-10657,76,Tuggeranong to Woden via Calwell & Erindale,weekday_peak,12.2,17
+77-10657,77,Tuggeranong to Woden via Gowrie & Erindale,saturday,34.88461538461539,27
+77-10657,77,Tuggeranong to Woden via Gowrie & Erindale,sunday,58.0,14
+77-10657,77,Tuggeranong to Woden via Gowrie & Erindale,weekday_offpeak,15.514285714285714,37
+77-10657,77,Tuggeranong to Woden via Gowrie & Erindale,weekday_peak,13.533333333333333,17
+78-10657,78,Richardson Loop via Bonython & Isabella Plains,saturday,65.0,13
+78-10657,78,Richardson Loop via Bonython & Isabella Plains,sunday,120.0,7
+78-10657,78,Richardson Loop via Bonython & Isabella Plains,weekday_offpeak,32.375,18
+78-10657,78,Richardson Loop via Bonython & Isabella Plains,weekday_peak,30.166666666666668,8
+79-10657,79,Calwell to Tuggeranong via Theodore,saturday,33.357142857142854,29
+79-10657,79,Calwell to Tuggeranong via Theodore,sunday,60.0,15
+79-10657,79,Calwell to Tuggeranong via Theodore,weekday_offpeak,15.6,37
+79-10657,79,Calwell to Tuggeranong via Theodore,weekday_peak,13.714285714285714,16
+8-10657,8,Gunghalin to Belconnen,saturday,14.885245901639344,62
+8-10657,8,Gunghalin to Belconnen,sunday,15.403508771929825,58
+8-10657,8,Gunghalin to Belconnen,weekday_offpeak,8.314285714285715,72
+8-10657,8,Gunghalin to Belconnen,weekday_peak,7.833333333333333,32
+80-10657,80,Lanyon to Tuggeranong via Banks & Conder,saturday,33.333333333333336,28
+80-10657,80,Lanyon to Tuggeranong via Banks & Conder,sunday,60.357142857142854,15
+80-10657,80,Lanyon to Tuggeranong via Banks & Conder,weekday_offpeak,15.588235294117647,36
+80-10657,80,Lanyon to Tuggeranong via Banks & Conder,weekday_peak,14.285714285714286,16
+81-10657,81,Lanyon to Tuggeranong via Gordon & Bonython,saturday,32.30769230769231,27
+81-10657,81,Lanyon to Tuggeranong via Gordon & Bonython,sunday,55.76923076923077,14
+81-10657,81,Lanyon to Tuggeranong via Gordon & Bonython,weekday_offpeak,16.21212121212121,35
+81-10657,81,Lanyon to Tuggeranong via Gordon & Bonython,weekday_peak,13.5625,18
+9-10657,9,Belconnen to Watson via Bruce & Dickson,saturday,14.968253968253968,64
+9-10657,9,Belconnen to Watson via Bruce & Dickson,sunday,14.964912280701755,58
+9-10657,9,Belconnen to Watson via Bruce & Dickson,weekday_offpeak,7.888888888888889,74
+9-10657,9,Belconnen to Watson via Bruce & Dickson,weekday_peak,7.133333333333334,32
+902-10657,902,Woden to AMC & Hume via CBR Hospital,saturday,92.14285714285714,8
+902-10657,902,Woden to AMC & Hume via CBR Hospital,sunday,92.14285714285714,8
+902-10657,902,Woden to AMC & Hume via CBR Hospital,weekday_offpeak,93.75,6
+903-10657,903,Kippax to Strathnairn Loop,saturday,30.0,24
+903-10657,903,Kippax to Strathnairn Loop,sunday,30.0,24
+903-10657,903,Kippax to Strathnairn Loop,weekday_offpeak,25.294117647058822,19
+903-10657,903,Kippax to Strathnairn Loop,weekday_peak,15.76923076923077,15
+R1-LR,R1,Gungahlin to City (Light Rail),saturday,10.0,50
+R1-LR,R1,Gungahlin to City (Light Rail),sunday,12.0,50
+R1-LR,R1,Gungahlin to City (Light Rail),weekday_offpeak,10.0,60
+R1-LR,R1,Gungahlin to City (Light Rail),weekday_peak,6.0,60

@@ -1,0 +1,127 @@
+================================================================================
+OUTLIER SA1s ANALYSIS: Distance to Nearest Bus Stop > 3,000 metres
+Generated: 2025-12-01
+================================================================================
+
+SUMMARY
+-------
+Total outliers: 9 SA1s out of 1,164 total (0.8%)
+Distance range: 3,811m - 21,369m (3.8km - 21.4km)
+Population affected: 1,096 people (0.2% of total ACT population in dataset)
+
+KEY FINDINGS
+------------
+1. Most outliers are in remote/rural districts:
+   - Uriarra-Namadgi: 5 SA1s (545 people)
+   - Canberra East: 4 SA1s (551 people)
+
+2. Many outliers have very low density (0-4 persons/km²)
+   - These are likely parks, rural areas, or conservation zones
+   - Providing bus service may not be cost-effective
+
+3. 99th percentile distance is 2,470m
+   - Only 1% of SA1s have distance > 2.5km
+   - Current chart showing 0-3,000m captures 99.2% of data
+
+================================================================================
+DETAILED OUTLIER LIST (sorted by distance, furthest first)
+================================================================================
+
+1. SA1: 80111114101 (Uriarra-Namadgi)
+   Distance: 21,369m (21.4 km) ⚠️ EXTREME OUTLIER
+   Population: 63
+   Density: 0 persons/km²
+   Notes: Likely Namadgi National Park area - unpopulated/conservation
+
+2. SA1: 80103103201 (Canberra East)
+   Distance: 10,594m (10.6 km)
+   Population: 25
+   Density: 0 persons/km²
+   Notes: Very remote with minimal population
+
+3. SA1: 80111114005 (Uriarra-Namadgi)
+   Distance: 9,853m (9.9 km)
+   Population: 15
+   Density: 0 persons/km²
+   Notes: Rural/conservation area
+
+4. SA1: 80111114006 (Uriarra-Namadgi)
+   Distance: 8,809m (8.8 km)
+   Population: 309 ⚠️ NOTABLE POPULATION
+   Density: 336 persons/km²
+   Notes: Highest population among outliers - potential policy priority
+
+5. SA1: 80111114002 (Uriarra-Namadgi)
+   Distance: 7,853m (7.9 km)
+   Population: 76
+   Density: 0 persons/km²
+   Notes: Rural area
+
+6. SA1: 80111114004 (Uriarra-Namadgi)
+   Distance: 4,734m (4.7 km)
+   Population: 82
+   Density: 21 persons/km²
+   Notes: Low-density rural
+
+7. SA1: 80103111504 (Canberra East)
+   Distance: 4,399m (4.4 km)
+   Population: 34
+   Density: 1 person/km²
+   Notes: Very low density
+
+8. SA1: 80103111301 (Canberra East)
+   Distance: 4,157m (4.2 km)
+   Population: 375 ⚠️ HIGHEST POPULATION
+   Density: 916 persons/km²
+   Notes: Highest population outlier - clear policy priority
+
+9. SA1: 80103111506 (Canberra East)
+   Distance: 3,811m (3.8 km)
+   Population: 117
+   Density: 4 persons/km²
+   Notes: Low density
+
+================================================================================
+DISTRICT SUMMARY
+================================================================================
+
+Uriarra-Namadgi (5 SA1s)
+- Population: 545 people
+- Distance range: 4.7km - 21.4km
+- Average distance: 10.5km
+- Character: Rural/conservation, mostly very low density
+
+Canberra East (4 SA1s)
+- Population: 551 people
+- Distance range: 3.8km - 10.6km
+- Average distance: 5.7km
+- Character: Mixed - includes one moderate-density SA1 (916/km²)
+
+================================================================================
+POLICY RECOMMENDATIONS
+================================================================================
+
+HIGH PRIORITY (consider service extension):
+✓ SA1 80103111301 (Canberra East) - 375 people, 916 persons/km², 4.2km
+✓ SA1 80111114006 (Uriarra-Namadgi) - 309 people, 336 persons/km², 8.8km
+
+MEDIUM PRIORITY:
+• SA1 80103111506 (Canberra East) - 117 people, 4 persons/km², 3.8km
+
+LOW PRIORITY (cost-benefit likely unfavorable):
+• All other outliers (populations < 100, very low density)
+
+FILTERING RECOMMENDATION
+-------------------------
+For visualization purposes:
+- KEEP all SA1s for completeness and transparency
+- EXTEND y-axis to show full data range (0-22,000m or 0-25,000m)
+- Consider adding annotation/highlight for the 2 high-priority SA1s
+- Alternative: Create two charts (main + inset for outliers)
+
+For policy analysis:
+- Consider separate analysis for SA1s with density < 50 persons/km²
+  (likely rural/conservation areas where PT service is impractical)
+- Focus intervention on moderate-high density outliers (2 SA1s identified)
+
+================================================================================

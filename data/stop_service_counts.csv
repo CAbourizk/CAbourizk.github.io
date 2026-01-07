@@ -1,0 +1,61 @@
+stop_id,saturday_departures,sunday_departures,weekday_offpeak_departures,weekday_peak_departures,weekday_total_departures,stop_name,stop_lat,stop_lon,District
+49,45.0,21.0,43.0,24.0,94.0,Tuggeranong Interchange Plt 5,-35.414225,149.065303,Tuggeranong
+941,0.0,0.0,11.0,1.0,12.0,Cohen St Interchange Plt 1,-35.239471,149.06032,Belconnen
+942,92.0,43.0,85.0,52.0,196.0,Cohen St Interchange Plt 2,-35.2396,149.06022,Belconnen
+946,0.0,0.0,1.0,0.0,1.0,Dickson Interchange Plt 2,-35.251121,149.13443,North Canberra
+1017,15.0,7.0,15.0,8.0,32.0,Calwell Shops Webber Cr,-35.435094,149.113745,Tuggeranong
+1148,0.0,0.0,0.0,0.0,1.0,Benham St opp Chisholm Shops,-35.414484,149.129233,Tuggeranong
+1173,0.0,0.0,0.0,0.0,2.0,Erindale Interchange Plt 2,-35.404053,149.099282,Tuggeranong
+1215,31.0,15.0,27.0,20.0,69.0,Box Hill Av opp Lanyon Marketplace,-35.456171,149.092495,Tuggeranong
+1217,36.0,27.0,35.0,22.0,78.0,Lanyon Marketplace Box Hill Av,-35.456354,149.092463,Tuggeranong
+1637,15.0,8.0,14.0,8.0,32.0,Weston Creek Terminus Hindmarsh Dr,-35.34392,149.02766,Weston Creek
+1803,46.0,23.0,42.0,24.0,93.0,Tuggeranong Interchange Plt 3,-35.414656,149.065635,Tuggeranong
+1804,60.0,29.0,56.0,32.0,125.0,Tuggeranong Interchange Plt 4,-35.414427,149.065463,Tuggeranong
+1807,29.0,14.0,28.0,16.0,62.0,Tuggeranong Interchange Plt 7,-35.414616,149.065388,Tuggeranong
+1808,74.0,57.0,40.0,38.0,110.0,Tuggeranong Interchange Plt 8,-35.414923,149.065626,Tuggeranong
+2139,51.0,36.0,41.0,24.0,94.0,Weston Creek Terminus,-35.34403,149.02786,Weston Creek
+2205,31.0,14.0,30.0,16.0,63.0,Cooleman Court Interchange Plt 1,-35.342365,149.05347,Weston Creek
+2572,0.0,0.0,1.0,0.0,1.0,St Michaels PS Tyrell Cct,-35.223607,149.108981,Belconnen
+2761,91.0,43.0,84.0,50.0,185.0,Woden Temporary Interchange Plt 1,-35.342973,149.08746,Woden Valley
+2762,75.0,36.0,70.0,41.0,154.0,Woden Temporary Interchange Plt 2,-35.343496,149.087577,Woden Valley
+2763,0.0,0.0,0.0,7.0,7.0,Woden Temporary Interchange Plt 3,-35.342741,149.087308,Woden Valley
+2767,36.0,29.0,38.0,21.0,79.0,Woden Temporary Interchange Plt 4,-35.343484,149.087318,Woden Valley
+2768,78.0,36.0,86.0,48.0,179.0,Woden Temporary Interchange Plt 5,-35.342746,149.087036,Woden Valley
+2769,8.0,8.0,5.0,2.0,8.0,Woden Temporary Interchange Plt 6,-35.343299,149.087169,Woden Valley
+2824,44.0,34.0,50.0,27.0,105.0,Fyshwick Park & Ride Iron Knob St,-35.338688,149.182785,South Canberra
+2831,0.0,0.0,0.0,3.0,4.0,Felstead Vista opp Denman Prospect Shops,-35.29904,149.022293,Molonglo
+3044,2.0,1.0,0.0,0.0,0.0,Narrabundah Terminus Matina St,-35.331589,149.158968,South Canberra
+3132,61.0,30.0,57.0,31.0,133.0,Dickson Shops Cowper St,-35.250482,149.140589,North Canberra
+3318,4.0,0.0,0.0,4.0,6.0,Canberra Railway Stn Burke Cr,-35.319524,149.148638,South Canberra
+3319,0.0,0.0,0.0,2.0,2.0,Fred Daly Av after John Gorton Dr,-35.318909,149.038165,Molonglo
+3345,15.0,8.0,14.0,8.0,31.0,Aspinall St opp Watson Terminus,-35.230062,149.161883,North Canberra
+3353,30.0,28.0,28.0,16.0,64.0,Canberra Airport,-35.307607,149.189463,Canberra East
+3384,37.0,29.0,28.0,16.0,62.0,Watson Terminus Aspinall St,-35.2302,149.16192,North Canberra
+3401,46.0,21.0,43.0,24.0,94.0,City Interchange Plt 10,-35.279369,149.130579,North Canberra
+3404,45.0,21.0,43.0,25.0,96.0,City Interchange Plt 12,-35.278735,149.130509,North Canberra
+3410,16.0,7.0,16.0,9.0,37.0,City Interchange Plt 6,-35.277767,149.130619,North Canberra
+3413,29.0,14.0,28.0,17.0,61.0,City Interchange Plt 8,-35.278333,149.13071,North Canberra
+3419,4.0,0.0,0.0,0.0,0.0,City Interchange Plt 1,-35.278322,149.12815,North Canberra
+4006,0.0,0.0,3.0,0.0,3.0,Radford College College St,-35.242521,149.088549,Belconnen
+4221,51.0,34.0,49.0,31.0,108.0,Fraser West Terminus Shakespeare Cr,-35.190579,149.036036,Belconnen
+4230,0.0,0.0,0.0,0.0,1.0,Kerrigan St after Crowley Ct,-35.193772,149.040123,Belconnen
+4333,71.0,47.0,57.0,40.0,135.0,Kippax Interchange,-35.22243,149.019477,Belconnen
+4479,148.0,116.0,93.0,82.0,247.0,Cohen St Interchange Plt 3,-35.239773,149.060494,Belconnen
+4529,159.0,119.0,155.0,100.0,344.0,ANU Rimmer St,-35.276452,149.125783,North Canberra
+4632,14.0,7.0,14.0,8.0,28.0,National Museum Lennox Crossing,-35.291673,149.118763,North Canberra
+4774,0.0,0.0,0.0,0.0,2.0,Kosciuszko Av opp Redcliffe St,-35.194948,149.12519,Gungahlin
+4807,52.0,36.0,42.0,25.0,94.0,Copland Dr Spence Terminus,-35.200702,149.068587,Belconnen
+4809,0.0,0.0,2.0,0.0,2.0,Hirschfeld Cr Macgregor PS SSO,-35.213215,149.01265,Belconnen
+4888,0.0,0.0,0.0,0.0,3.0,Tillyard opp Fraser East Terminus,-35.190819,149.045561,Belconnen
+5083,0.0,0.0,0.0,1.0,1.0,The Valley Av opp Burgmann School Valley Campus,-35.186933,149.124061,Gungahlin
+5128,0.0,0.0,2.0,0.0,2.0,Alfred Deakin High School Grounds SSO,-35.324106,149.093537,South Canberra
+5182,0.0,0.0,1.0,0.0,1.0,John Paul College School Grounds SSO,-35.177066,149.100304,Gungahlin
+5515,93.0,44.0,86.0,49.0,183.0,Belconnen Interchange Plt 5,-35.240015,149.068853,Belconnen
+5516,16.0,8.0,9.0,6.0,23.0,Belconnen Interchange Plt 6,-35.240011,149.069342,Belconnen
+6092,0.0,0.0,0.0,0.0,2.0,Well Station Dr after Flemington Rd,-35.208676,149.148401,Gungahlin
+6109,30.0,14.0,29.0,17.0,67.0,Casey Market Town Kingsland Pde,-35.17378,149.096479,Gungahlin
+6165,0.0,0.0,1.0,0.0,1.0,Burgmann Anglican School Forde Campus,-35.170833,149.143845,Gungahlin
+6330,0.0,0.0,0.0,0.0,2.0,Bonner Shops Mabo Bvd,-35.161314,149.139551,Gungahlin
+6331,0.0,0.0,0.0,0.0,1.0,Neville Bonner PS Mabo Bvd,-35.162156,149.139512,Gungahlin
+7011,73.0,35.0,72.0,41.0,155.0,Gungahlin Place Plt 3,-35.18535,149.13516,Gungahlin
+7012,123.0,71.0,113.0,63.0,243.0,Gungahlin Place Plt 4,-35.18461,149.134956,Gungahlin
