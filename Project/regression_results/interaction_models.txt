@@ -1,0 +1,156 @@
+================================================================================
+INCOME_INTERACTION
+================================================================================
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:        pt_commute_rate   R-squared:                       0.460
+Model:                            OLS   Adj. R-squared:                  0.455
+Method:                 Least Squares   F-statistic:                     101.9
+Date:                Sat, 03 Jan 2026   Prob (F-statistic):          1.81e-137
+Time:                        18:17:26   Log-Likelihood:                -2821.6
+No. Observations:                1088   AIC:                             5663.
+Df Residuals:                    1078   BIC:                             5713.
+Df Model:                           9                                         
+Covariance Type:            nonrobust                                         
+================================================================================================
+                                   coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------------------------
+Intercept                        0.6507      5.184      0.126      0.900      -9.520      10.822
+median_income                   -0.0126      0.004     -3.213      0.001      -0.020      -0.005
+log_departures                   0.3724      0.341      1.093      0.274      -0.296       1.041
+log_distance                    -1.1251      0.863     -1.303      0.193      -2.819       0.569
+log_density                      0.7288      0.134      5.424      0.000       0.465       0.992
+median_income:log_departures    -0.0001      0.000     -0.525      0.600      -0.001       0.000
+median_income:log_distance       0.0008      0.001      1.223      0.222      -0.000       0.002
+pct_working_age                  0.1764      0.015     11.797      0.000       0.147       0.206
+pct_bachelor_plus                0.1710      0.010     17.358      0.000       0.152       0.190
+labor_force_participation       -0.0639      0.015     -4.150      0.000      -0.094      -0.034
+==============================================================================
+Omnibus:                       99.631   Durbin-Watson:                   1.595
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              172.888
+Skew:                           0.625   Prob(JB):                     2.87e-38
+Kurtosis:                       4.500   Cond. No.                     4.03e+05
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 4.03e+05. This might indicate that there are
+strong multicollinearity or other numerical problems.
+
+================================================================================
+EDUCATION_INTERACTION
+================================================================================
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:        pt_commute_rate   R-squared:                       0.464
+Model:                            OLS   Adj. R-squared:                  0.459
+Method:                 Least Squares   F-statistic:                     103.5
+Date:                Sat, 03 Jan 2026   Prob (F-statistic):          3.19e-139
+Time:                        18:17:26   Log-Likelihood:                -2817.5
+No. Observations:                1088   AIC:                             5655.
+Df Residuals:                    1078   BIC:                             5705.
+Df Model:                           9                                         
+Covariance Type:            nonrobust                                         
+====================================================================================================
+                                       coef    std err          t      P>|t|      [0.025      0.975]
+----------------------------------------------------------------------------------------------------
+Intercept                          -13.2829      3.250     -4.086      0.000     -19.661      -6.905
+pct_bachelor_plus                    0.3677      0.066      5.608      0.000       0.239       0.496
+log_departures                       0.1027      0.214      0.481      0.631      -0.316       0.522
+log_distance                         1.3850      0.502      2.761      0.006       0.401       2.369
+log_density                          0.8293      0.137      6.040      0.000       0.560       1.099
+pct_bachelor_plus:log_departures     0.0021      0.005      0.445      0.656      -0.007       0.011
+pct_bachelor_plus:log_distance      -0.0361      0.011     -3.159      0.002      -0.059      -0.014
+median_income                       -0.0082      0.001    -13.752      0.000      -0.009      -0.007
+pct_working_age                      0.1750      0.015     11.712      0.000       0.146       0.204
+labor_force_participation           -0.0701      0.015     -4.575      0.000      -0.100      -0.040
+==============================================================================
+Omnibus:                       98.167   Durbin-Watson:                   1.619
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              173.370
+Skew:                           0.612   Prob(JB):                     2.25e-38
+Kurtosis:                       4.526   Cond. No.                     4.26e+04
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 4.26e+04. This might indicate that there are
+strong multicollinearity or other numerical problems.
+
+================================================================================
+DENSITY_INTERACTION
+================================================================================
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:        pt_commute_rate   R-squared:                       0.461
+Model:                            OLS   Adj. R-squared:                  0.457
+Method:                 Least Squares   F-statistic:                     115.2
+Date:                Sat, 03 Jan 2026   Prob (F-statistic):          5.95e-139
+Time:                        18:17:26   Log-Likelihood:                -2820.5
+No. Observations:                1088   AIC:                             5659.
+Df Residuals:                    1079   BIC:                             5704.
+Df Model:                           8                                         
+Covariance Type:            nonrobust                                         
+==============================================================================================
+                                 coef    std err          t      P>|t|      [0.025      0.975]
+----------------------------------------------------------------------------------------------
+Intercept                    -11.8049      3.523     -3.351      0.001     -18.718      -4.892
+log_density                    1.8215      0.476      3.826      0.000       0.887       2.756
+log_departures                -1.5680      0.583     -2.691      0.007      -2.711      -0.425
+log_distance                   1.5690      0.483      3.245      0.001       0.620       2.518
+log_density:log_departures     0.2327      0.075      3.088      0.002       0.085       0.381
+log_density:log_distance      -0.2480      0.065     -3.827      0.000      -0.375      -0.121
+median_income                 -0.0094      0.001    -17.538      0.000      -0.010      -0.008
+pct_bachelor_plus              0.1795      0.010     18.635      0.000       0.161       0.198
+pct_working_age                0.1224      0.011     10.848      0.000       0.100       0.144
+==============================================================================
+Omnibus:                      101.017   Durbin-Watson:                   1.567
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              173.036
+Skew:                           0.637   Prob(JB):                     2.66e-38
+Kurtosis:                       4.482   Cond. No.                     4.54e+04
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 4.54e+04. This might indicate that there are
+strong multicollinearity or other numerical problems.
+
+================================================================================
+BINARY_INTERACTION
+================================================================================
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:        pt_commute_rate   R-squared:                       0.348
+Model:                            OLS   Adj. R-squared:                  0.342
+Method:                 Least Squares   F-statistic:                     57.38
+Date:                Sat, 03 Jan 2026   Prob (F-statistic):           6.87e-93
+Time:                        18:17:26   Log-Likelihood:                -2924.0
+No. Observations:                1088   AIC:                             5870.
+Df Residuals:                    1077   BIC:                             5925.
+Df Model:                          10                                         
+Covariance Type:            nonrobust                                         
+=================================================================================================
+                                    coef    std err          t      P>|t|      [0.025      0.975]
+-------------------------------------------------------------------------------------------------
+Intercept                        -1.8119      1.969     -0.920      0.358      -5.676       2.052
+high_income                      -1.2578      2.166     -0.581      0.562      -5.508       2.992
+high_education                    4.3417      2.118      2.050      0.041       0.186       8.497
+log_departures                    0.0751      0.108      0.696      0.487      -0.137       0.287
+log_distance                     -0.4856      0.312     -1.554      0.120      -1.099       0.127
+high_income:log_departures       -0.1535      0.144     -1.063      0.288      -0.437       0.130
+high_income:log_distance         -0.0272      0.375     -0.073      0.942      -0.762       0.708
+high_education:log_departures     0.3245      0.144      2.247      0.025       0.041       0.608
+high_education:log_distance      -0.3718      0.366     -1.017      0.309      -1.089       0.346
+pct_working_age                   0.2406      0.016     15.271      0.000       0.210       0.272
+labor_force_participation        -0.1051      0.016     -6.655      0.000      -0.136      -0.074
+==============================================================================
+Omnibus:                      158.337   Durbin-Watson:                   1.573
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              393.411
+Skew:                           0.789   Prob(JB):                     3.73e-86
+Kurtosis:                       5.488   Cond. No.                     2.41e+03
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 2.41e+03. This might indicate that there are
+strong multicollinearity or other numerical problems.
+

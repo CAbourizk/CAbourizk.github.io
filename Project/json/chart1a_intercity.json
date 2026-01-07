@@ -1,0 +1,151 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Public transport trips per person - intercity comparison across Australian capital cities",
+  "title": {
+    "text": "Public Transport Trips Per Person - Australian Capital Cities",
+    "subtitle": "Financial years 2001-02 to 2023-24 (Source: BITRE Yearbook 2024 & ABS GCC Population)",
+    "anchor": "start"
+  },
+  "width": 800,
+  "height": 500,
+  "data": {
+    "url": "data/chart1a_intercity_comparison.csv",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "params": [
+    {
+      "name": "startYear",
+      "value": 2001,
+      "bind": {
+        "input": "range",
+        "min": 2001,
+        "max": 2024,
+        "step": 1,
+        "name": "Start Year: "
+      }
+    },
+    {
+      "name": "endYear",
+      "value": 2024,
+      "bind": {
+        "input": "range",
+        "min": 2001,
+        "max": 2024,
+        "step": 1,
+        "name": "End Year: "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "filter": "datum.city == 'Sydney' || datum.city == 'Melbourne' || datum.city == 'Brisbane' || datum.city == 'Canberra'"
+    },
+    {
+      "calculate": "toNumber(datum.year)",
+      "as": "year_numeric"
+    },
+    {
+      "calculate": "toNumber(datum.trips_per_person)",
+      "as": "trips_pp_numeric"
+    },
+    {
+      "filter": "datum.year_numeric >= startYear && datum.year_numeric <= endYear"
+    }
+  ],
+  "mark": {
+    "type": "line",
+    "interpolate": "monotone",
+    "strokeWidth": 2.5,
+    "point": true
+  },
+  "encoding": {
+    "x": {
+      "field": "year_numeric",
+      "type": "quantitative",
+      "title": "Year",
+      "axis": {
+        "format": "d",
+        "tickCount": 10
+      }
+    },
+    "y": {
+      "field": "trips_pp_numeric",
+      "type": "quantitative",
+      "title": "Public Transport Trips per Person per Year",
+      "axis": {
+        "format": ",.0f"
+      },
+      "scale": {
+        "zero": false
+      }
+    },
+    "color": {
+      "field": "city",
+      "type": "nominal",
+      "title": "City",
+      "scale": {
+        "domain": [
+          "Sydney",
+          "Melbourne",
+          "Brisbane",
+          "Canberra"
+        ],
+        "range": [
+          "#0173B2",
+          "#DE8F05",
+          "#029E73",
+          "#D55E00"
+        ]
+      },
+      "legend": {
+        "orient": "right",
+        "title": "City"
+      }
+    },
+    "tooltip": [
+      {
+        "field": "city",
+        "type": "nominal",
+        "title": "City"
+      },
+      {
+        "field": "financial_year",
+        "type": "nominal",
+        "title": "Financial Year"
+      },
+      {
+        "field": "trips_per_person",
+        "type": "quantitative",
+        "title": "Trips per Person",
+        "format": ",.1f"
+      },
+      {
+        "field": "total",
+        "type": "quantitative",
+        "title": "Total Trips (millions)",
+        "format": ",.2f"
+      },
+      {
+        "field": "population",
+        "type": "quantitative",
+        "title": "GCC Population (ABS)",
+        "format": ",.0f"
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    },
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    }
+  }
+}

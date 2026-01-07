@@ -1,0 +1,118 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Scatter of SA1 density vs best headway within selected distance/method/service window",
+  "title": {
+    "text": "Service Accessibility by SA1",
+    "subtitle": "Best mean headway at stops within chosen distance (toggle distance, method, service window)",
+    "anchor": "start"
+  },
+  "width": 720,
+  "height": 460,
+  "data": { "url": "data/chart7_sa1_headway_scatter.csv", "format": { "type": "csv" } },
+  "params": [
+    {
+      "name": "distance_band",
+      "value": 400,
+      "bind": { "input": "select", "options": [200, 400, 600, 800], "name": "Highlight distance (m): " }
+    },
+    {
+      "name": "distance_method",
+      "value": "straight",
+      "bind": {
+        "input": "select",
+        "options": ["straight", "walking"],
+        "labels": ["Straight-line", "Walking (1.35x)"],
+        "name": "Distance method: "
+      }
+    },
+    {
+      "name": "service_type",
+      "value": "weekday_peak",
+      "bind": {
+        "input": "select",
+        "options": ["weekday_peak", "weekday_offpeak", "saturday", "sunday"],
+        "labels": ["Weekday peak", "Weekday off-peak", "Saturday", "Sunday"],
+        "name": "Service window: "
+      }
+    },
+    {
+      "name": "sa3_focus",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All",
+          "Belconnen",
+          "Gungahlin",
+          "North Canberra",
+          "South Canberra",
+          "Tuggeranong",
+          "Weston Creek",
+          "Woden Valley",
+          "Molonglo"
+        ],
+        "name": "Highlight SA3: "
+      }
+    }
+  ],
+  "transform": [
+    { "filter": "datum.method == distance_method && datum.service_type == service_type" },
+    { "filter": "datum.density_pop_per_km2 >= 1000" },
+    { "filter": "isValid(datum.best_headway_min) && datum.best_headway_min > 0" }
+  ],
+  "mark": { "type": "circle", "opacity": 0.7, "size": 50 },
+  "encoding": {
+    "x": {
+      "field": "density_pop_per_km2",
+      "type": "quantitative",
+      "title": "Population Density (persons per km²)",
+      "scale": { "type": "log", "domain": [1000, 60000] },
+      "axis": { "format": ",.0f" }
+    },
+    "y": {
+      "field": "best_headway_min",
+      "type": "quantitative",
+      "title": "Best Mean Headway (min)",
+      "scale": { "domain": [0, 120] }
+    },
+    "color": {
+      "field": "sa3_name",
+      "type": "nominal",
+      "title": "District (SA3)",
+      "scale": {
+        "domain": [
+          "Belconnen",
+          "Gungahlin",
+          "North Canberra",
+          "South Canberra",
+          "Tuggeranong",
+          "Weston Creek",
+          "Woden Valley",
+          "Molonglo"
+        ],
+        "range": ["#332288", "#88CCEE", "#44AA99", "#117733", "#DDCC77", "#CC6677", "#882255", "#AA4499"]
+      },
+      "legend": { "orient": "right" }
+    },
+    "opacity": {
+      "condition": [
+        { "test": "sa3_focus == 'All' || datum.sa3_name == sa3_focus", "value": 0.9 },
+        { "test": "datum.distance_band_m == distance_band", "value": 0.9 }
+      ],
+      "value": 0.2
+    },
+    "tooltip": [
+      { "field": "SA1_Code", "type": "nominal", "title": "SA1" },
+      { "field": "Suburb", "type": "nominal", "title": "Suburb (SA2)" },
+      { "field": "sa3_name", "type": "nominal", "title": "District (SA3)" },
+      { "field": "best_headway_min", "type": "quantitative", "title": "Best headway (min)", "format": ",.1f" },
+      { "field": "density_pop_per_km2", "type": "quantitative", "title": "Density (per km²)", "format": ",.0f" },
+      { "field": "euclidean_distance_m", "type": "quantitative", "title": "Nearest stop distance (m)", "format": ",.0f" },
+      { "field": "walking_distance_m", "type": "quantitative", "title": "Nearest stop walking (m)", "format": ",.0f" }
+    ]
+  },
+  "config": {
+    "view": { "stroke": "transparent" },
+    "axis": { "labelFontSize": 11, "titleFontSize": 12 }
+  }
+}

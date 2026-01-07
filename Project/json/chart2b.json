@@ -1,0 +1,218 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "SA1 Population Density and Distance to Nearest Stop",
+    "fontSize": 16,
+    "anchor": "start"
+  },
+  "width": 720,
+  "height": 460,
+  "data": {
+    "url": "data/chart2b_sa1_accessibility.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "sa1_code": "string"
+      }
+    }
+  },
+  "params": [
+    {
+      "name": "distance_type",
+      "value": "walking",
+      "bind": {
+        "input": "select",
+        "options": ["euclidean", "walking"],
+        "labels": ["Straight-line Distance", "Walking Distance (1.35x)"],
+        "name": "Distance Type: "
+      }
+    },
+    {
+      "name": "selected_district",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": ["All", "Belconnen", "Gungahlin", "North Canberra", "South Canberra", "Tuggeranong", "Weston Creek", "Woden Valley", "Molonglo"],
+        "name": "District: "
+      }
+    },
+    {
+      "name": "hover_sa1_ext",
+      "value": null
+    }
+  ],
+  "transform": [
+    {
+      "lookup": "sa1_code",
+      "from": {
+        "data": {
+          "url": "data/chart2a_sa1_boundaries.geojson",
+          "format": {
+            "type": "json",
+            "property": "features"
+          }
+        },
+        "key": "properties.SA1_Code",
+        "fields": ["properties.Suburb"]
+      },
+      "as": ["sa2_name"]
+    },
+    {
+      "lookup": "sa1_code",
+      "from": {
+        "data": {
+          "url": "data/sa1_exclude.csv",
+          "format": {
+            "type": "csv",
+            "parse": {
+              "sa1_code": "string"
+            }
+          }
+        },
+        "key": "sa1_code",
+        "fields": ["sa1_code"]
+      },
+      "as": ["excluded_sa1"]
+    },
+    {
+      "filter": "datum.excluded_sa1 == null"
+    },
+    {
+      "filter": "datum.sa3_name !== 'No usual address (ACT)' && datum.sa3_name !== 'Uriarra - Namadgi' && datum.sa3_name !== 'Canberra East' && datum.population > 0 && datum.density_pop_per_km2 >= 1000"
+    },
+    {
+      "calculate": "distance_type === 'walking' ? datum.walking_distance_m : datum.euclidean_distance_m",
+      "as": "selected_distance"
+    },
+    {
+      "calculate": "selected_district !== 'All' && datum.sa3_name === selected_district ? 1 : 0",
+      "as": "district_order"
+    }
+  ],
+  "layer": [
+    {
+      "params": [
+        {
+          "name": "sa1_hover_sel_scatter",
+          "select": {
+            "type": "point",
+            "fields": ["sa1_code"],
+            "on": "mouseover",
+            "clear": "mouseout"
+          }
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "opacity": 0.7,
+        "size": 60
+      },
+      "encoding": {
+        "x": {
+          "field": "density_pop_per_km2",
+          "type": "quantitative",
+          "title": "Population Density (persons per km²)",
+          "scale": {
+            "type": "log",
+            "domain": [1000, 60000]
+          },
+          "axis": {
+            "format": ",.0f",
+            "tickCount": 10
+          }
+        },
+        "y": {
+          "field": "selected_distance",
+          "type": "quantitative",
+          "title": "Distance to Nearest Stop (metres)",
+          "scale": {
+            "domain": [0, 2000]
+          },
+          "axis": {
+            "format": ",.0f",
+            "tickCount": 10
+          }
+        },
+        "color": {
+          "field": "sa3_name",
+          "type": "nominal",
+          "title": "District (SA3)",
+          "scale": {
+            "domain": [
+              "Belconnen",
+              "Gungahlin",
+              "North Canberra",
+              "South Canberra",
+              "Tuggeranong",
+              "Weston Creek",
+              "Woden Valley",
+              "Molonglo"
+            ],
+            "range": [
+              "#332288",
+              "#88CCEE",
+              "#44AA99",
+              "#117733",
+              "#DDCC77",
+              "#CC6677",
+              "#882255",
+              "#AA4499"
+            ]
+          },
+          "legend": {
+            "orient": "right",
+            "titleFontSize": 11,
+            "labelFontSize": 10,
+            "labelLimit": 150,
+            "symbolOpacity": 1
+          }
+        },
+        "opacity": {
+          "condition": [
+            {
+              "test": "hover_sa1_ext != null && datum.sa1_code == hover_sa1_ext",
+              "value": 1
+            },
+            {
+              "test": "hover_sa1_ext != null",
+              "value": 0.12
+            },
+            {
+              "param": "sa1_hover_sel_scatter",
+              "value": 1
+            },
+            {
+              "test": "selected_district === 'All' || datum.sa3_name === selected_district",
+              "value": 0.7
+            }
+          ],
+          "value": 0.15
+        },
+        "order": {
+          "field": "district_order",
+          "type": "quantitative"
+        },
+        "strokeWidth": {
+          "value": 0
+        },
+        "tooltip": [
+          {"field": "sa3_name", "type": "nominal", "title": "District"},
+          {"field": "sa1_code", "type": "nominal", "title": "SA1 Code"},
+          {"field": "population", "type": "quantitative", "title": "Population", "format": ","},
+          {"field": "density_pop_per_km2", "type": "quantitative", "title": "Density (per km²)", "format": ",.0f"},
+          {"field": "euclidean_distance_m", "type": "quantitative", "title": "Straight-line (m)", "format": ",.0f"},
+          {"field": "walking_distance_m", "type": "quantitative", "title": "Walking (m)", "format": ",.0f"}
+        ]
+      }
+    }
+  ],
+  "resolve": {
+    "scale": {
+      "color": "independent"
+    }
+  },
+  "config": {
+    "view": {"stroke": "transparent"},
+    "axis": {"labelFontSize": 11, "titleFontSize": 12}
+  }
+}

@@ -1,0 +1,231 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Mean scheduled headways by route and service type (weekday peak/off-peak, weekend) from GTFS stop_times",
+  "title": {
+    "text": "Canberra public trasnport routes by headway",
+    "subtitle": "Mean scheduled headway (minutes) by route",
+    "anchor": "start"
+  },
+  "width": 720,
+  "height": 500,
+  "data": {
+    "url": "data/chart6_headways.csv",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "params": [
+    {
+      "name": "service_type",
+      "value": "weekday_peak",
+      "bind": {
+        "input": "select",
+        "options": [
+          "weekday_peak",
+          "weekday_offpeak",
+          "saturday",
+          "sunday"
+        ],
+        "labels": [
+          "Weekday peak (7-9, 16-18)",
+          "Weekday off-peak (9-16, 18-21)",
+          "Saturday",
+          "Sunday"
+        ],
+        "name": "Service type: "
+      }
+    },
+    {
+      "name": "hover_route_ext",
+      "value": null
+    }
+  ],
+  "transform": [
+    {
+      "filter": "datum.service_type == service_type"
+    },
+    {
+      "filter": "toString(datum.route_short_name) != '902'"
+    },
+    {
+      "calculate": "datum.mean_headway_min",
+      "as": "headway"
+    },
+    {
+      "calculate": "datum.route_short_name == 'R1' ? 'Light Rail' : toString(datum.route_short_name)",
+      "as": "route_str"
+    },
+    {
+      "calculate": "datum.headway < 5 ? '<5 min' : datum.headway <= 10 ? '5-10 min' : datum.headway <= 20 ? '11-20 min' : datum.headway <= 60 ? '21-60 min' : '60+ min'",
+      "as": "headway_bucket"
+    }
+  ],
+  "layer": [
+    {
+      "params": [
+        {
+          "name": "route_hover_sel",
+          "select": {
+            "type": "point",
+            "fields": [
+              "route_str"
+            ],
+            "on": "mouseover",
+            "clear": "mouseout"
+          }
+        }
+      ],
+      "mark": {
+        "type": "bar"
+      },
+      "encoding": {
+        "y": {
+          "field": "route_str",
+          "type": "nominal",
+          "sort": "-x",
+          "title": "Route"
+        },
+        "x": {
+          "field": "headway",
+          "type": "quantitative",
+          "title": "Mean Headway (minutes)",
+          "axis": {
+            "format": ",.1f"
+          }
+        },
+        "opacity": {
+          "condition": [
+            {
+              "test": "hover_route_ext != null && datum.route_str == hover_route_ext",
+              "value": 1
+            },
+            {
+              "test": "hover_route_ext != null",
+              "value": 0.2
+            },
+            {
+              "param": "route_hover_sel",
+              "value": 1
+            }
+          ],
+          "value": 0.6
+        },
+        "color": {
+          "field": "headway_bucket",
+          "type": "nominal",
+          "title": "Headway",
+          "sort": [
+            "<5 min",
+            "5-10 min",
+            "11-20 min",
+            "21-60 min",
+            "60+ min"
+          ],
+          "scale": {
+            "domain": [
+              "<5 min",
+              "5-10 min",
+              "11-20 min",
+              "21-60 min",
+              "60+ min"
+            ],
+            "range": [
+              "#1A9850",
+              "#91CF60",
+              "#FED976",
+              "#FC8D59",
+              "#D73027"
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "route_str",
+            "type": "nominal",
+            "title": "Route"
+          },
+          {
+            "field": "route_long_name",
+            "type": "nominal",
+            "title": "Route name"
+          },
+          {
+            "field": "service_type",
+            "type": "nominal",
+            "title": "Service type"
+          },
+          {
+            "field": "mean_headway_min",
+            "type": "quantitative",
+            "title": "Mean headway (min)",
+            "format": ",.1f"
+          },
+          {
+            "field": "departures",
+            "type": "quantitative",
+            "title": "Departures counted"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "strokeDash": [
+          6,
+          3
+        ],
+        "strokeWidth": 1.5,
+        "color": "#555",
+        "opacity": 0.7
+      },
+      "data": {
+        "values": [
+          {
+            "threshold": 5,
+            "label": "5 min"
+          },
+          {
+            "threshold": 10,
+            "label": "10 min"
+          },
+          {
+            "threshold": 20,
+            "label": "20 min"
+          },
+          {
+            "threshold": 60,
+            "label": "60 min"
+          }
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "threshold",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "label",
+            "type": "nominal",
+            "title": "Threshold"
+          },
+          {
+            "field": "threshold",
+            "type": "quantitative",
+            "title": "Headway (min)"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    },
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    }
+  }
+}

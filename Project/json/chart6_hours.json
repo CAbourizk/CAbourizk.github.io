@@ -1,0 +1,50 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Hourly departure counts (first stop of each trip) by day type from GTFS",
+  "title": {
+    "text": "Departures by Hour and Day Type",
+    "subtitle": "First stop departures per hour (weekday / Saturday / Sunday)",
+    "anchor": "start"
+  },
+  "width": 720,
+  "height": 380,
+  "data": {
+    "url": "data/chart6_hourly_counts.csv",
+    "format": { "type": "csv" }
+  },
+  "transform": [
+    { "calculate": "toNumber(datum.dep_hour)", "as": "hour_num" }
+  ],
+  "mark": { "type": "line", "point": true },
+  "encoding": {
+    "x": {
+      "field": "hour_num",
+      "type": "quantitative",
+      "title": "Hour of day",
+      "axis": { "format": "02d" }
+    },
+    "y": {
+      "field": "departures",
+      "type": "quantitative",
+      "title": "Departures (count)"
+    },
+    "color": {
+      "field": "day_type",
+      "type": "nominal",
+      "title": "Day type",
+      "scale": {
+        "domain": ["weekday", "saturday", "sunday"],
+        "range": ["#1f77b4", "#ff7f0e", "#2ca02c"]
+      }
+    },
+    "tooltip": [
+      { "field": "day_type", "type": "nominal", "title": "Day type" },
+      { "field": "hour_num", "type": "quantitative", "title": "Hour" },
+      { "field": "departures", "type": "quantitative", "title": "Departures" }
+    ]
+  },
+  "config": {
+    "view": { "stroke": "transparent" },
+    "axis": { "labelFontSize": 11, "titleFontSize": 12 }
+  }
+}

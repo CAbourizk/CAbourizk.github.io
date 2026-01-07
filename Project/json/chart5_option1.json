@@ -1,0 +1,347 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "ML Option 1: Classification of high vs low PT propensity areas based on demographics",
+  "title": {
+    "text": "Predicting PT Commute Propensity from Demographics",
+    "subtitle": "Gradient Boosting Classifier: Which SA1 areas have high transit propensity?",
+    "anchor": "start"
+  },
+  "width": 800,
+  "height": 500,
+  "data": {
+    "url": "data/chart5_propensity.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "sa1_code": "string"
+      }
+    }
+  },
+  "params": [
+    {
+      "name": "sa3_focus",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All",
+          "Belconnen",
+          "Canberra East",
+          "Gungahlin",
+          "North Canberra",
+          "South Canberra",
+          "Tuggeranong",
+          "Weston Creek",
+          "Woden Valley",
+          "Molonglo"
+        ],
+        "name": "Highlight District: "
+      }
+    },
+    {
+      "name": "color_by",
+      "value": "prediction",
+      "bind": {
+        "input": "select",
+        "options": [
+          "prediction",
+          "actual",
+          "accuracy",
+          "young_adults",
+          "education"
+        ],
+        "labels": [
+          "Prediction (High/Low)",
+          "Actual (High/Low)",
+          "Prediction Accuracy",
+          "% Young Adults (20-34)",
+          "% Bachelor+ Education"
+        ],
+        "name": "Color by: "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "lookup": "sa1_code",
+      "from": {
+        "data": {
+          "url": "data/sa1_exclude.csv",
+          "format": {
+            "type": "csv",
+            "parse": {
+              "sa1_code": "string"
+            }
+          }
+        },
+        "key": "sa1_code",
+        "fields": ["sa1_code"]
+      },
+      "as": ["excluded_sa1"]
+    },
+    {
+      "filter": "datum.excluded_sa1 == null"
+    },
+    {
+      "calculate": "datum.predicted_high_propensity == 1 ? 'High PT Propensity' : 'Low PT Propensity'",
+      "as": "prediction_label"
+    },
+    {
+      "calculate": "datum.high_pt_propensity == 1 ? 'High PT Propensity' : 'Low PT Propensity'",
+      "as": "actual_label"
+    },
+    {
+      "calculate": "datum.prediction_correct == 1 ? 'Correct' : 'Incorrect'",
+      "as": "accuracy_label"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "circle",
+        "opacity": 0.75,
+        "size": 100,
+        "stroke": "black",
+        "strokeWidth": 0.5
+      },
+      "encoding": {
+        "x": {
+          "field": "pt_propensity_score",
+          "type": "quantitative",
+          "title": "PT Propensity Score (Service × Accessibility × Density)",
+          "scale": {
+            "domain": [0, 12]
+          },
+          "axis": {
+            "format": ".2f",
+            "grid": true
+          }
+        },
+        "y": {
+          "field": "propensity_probability",
+          "type": "quantitative",
+          "title": "Predicted Probability of High PT Propensity",
+          "scale": {
+            "domain": [0, 1]
+          },
+          "axis": {
+            "format": ".0%",
+            "grid": true
+          }
+        },
+        "color": {
+          "condition": [
+            {
+              "test": "color_by == 'prediction'",
+              "field": "prediction_label",
+              "type": "nominal",
+              "title": "Predicted Class",
+              "scale": {
+                "domain": ["Low PT Propensity", "High PT Propensity"],
+                "range": ["#e74c3c", "#27ae60"]
+              }
+            },
+            {
+              "test": "color_by == 'actual'",
+              "field": "actual_label",
+              "type": "nominal",
+              "title": "Actual Class",
+              "scale": {
+                "domain": ["Low PT Propensity", "High PT Propensity"],
+                "range": ["#e74c3c", "#27ae60"]
+              }
+            },
+            {
+              "test": "color_by == 'accuracy'",
+              "field": "accuracy_label",
+              "type": "nominal",
+              "title": "Prediction Quality",
+              "scale": {
+                "domain": ["Incorrect", "Correct"],
+                "range": ["#e74c3c", "#27ae60"]
+              }
+            },
+            {
+              "test": "color_by == 'young_adults'",
+              "field": "pct_young_adults",
+              "type": "quantitative",
+              "title": "% Young Adults (20-34)",
+              "scale": {
+                "scheme": "viridis",
+                "domain": [0, 50]
+              }
+            },
+            {
+              "test": "color_by == 'education'",
+              "field": "pct_bachelor_plus",
+              "type": "quantitative",
+              "title": "% Bachelor+ Education",
+              "scale": {
+                "scheme": "plasma",
+                "domain": [0, 80]
+              }
+            }
+          ],
+          "value": "#ccc"
+        },
+        "opacity": {
+          "condition": {
+            "test": "sa3_focus == 'All' || datum.sa3_name == sa3_focus",
+            "value": 0.8
+          },
+          "value": 0.15
+        },
+        "tooltip": [
+          {
+            "field": "sa1_code",
+            "type": "nominal",
+            "title": "SA1 Code"
+          },
+          {
+            "field": "Suburb",
+            "type": "nominal",
+            "title": "Suburb"
+          },
+          {
+            "field": "sa3_name",
+            "type": "nominal",
+            "title": "District"
+          },
+          {
+            "field": "population",
+            "type": "quantitative",
+            "title": "Population",
+            "format": ","
+          },
+          {
+            "field": "pt_propensity_score",
+            "type": "quantitative",
+            "title": "PT Propensity Score",
+            "format": ".3f"
+          },
+          {
+            "field": "actual_label",
+            "type": "nominal",
+            "title": "Actual Class"
+          },
+          {
+            "field": "prediction_label",
+            "type": "nominal",
+            "title": "Predicted Class"
+          },
+          {
+            "field": "propensity_probability",
+            "type": "quantitative",
+            "title": "Prediction Confidence",
+            "format": ".1%"
+          },
+          {
+            "field": "accuracy_label",
+            "type": "nominal",
+            "title": "Prediction"
+          },
+          {
+            "field": "pct_young_adults",
+            "type": "quantitative",
+            "title": "% Young Adults (20-34)",
+            "format": ".1f"
+          },
+          {
+            "field": "pct_bachelor_plus",
+            "type": "quantitative",
+            "title": "% Bachelor+ Education",
+            "format": ".1f"
+          },
+          {
+            "field": "pct_non_english_home",
+            "type": "quantitative",
+            "title": "% Non-English at Home",
+            "format": ".1f"
+          },
+          {
+            "field": "density_pop_per_km2",
+            "type": "quantitative",
+            "title": "Density (per km²)",
+            "format": ",.0f"
+          },
+          {
+            "field": "Median_tot_prsnl_inc_weekly",
+            "type": "quantitative",
+            "title": "Median Weekly Income",
+            "format": "$,.0f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "strokeDash": [4, 4],
+        "color": "#888",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "y": {
+          "datum": 0.5
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 5,
+        "dy": -5,
+        "fontSize": 11,
+        "fontStyle": "italic",
+        "color": "#555"
+      },
+      "data": {
+        "values": [
+          {
+            "x": 0.2,
+            "y": 0.52,
+            "label": "Decision boundary (50% probability)"
+          },
+          {
+            "x": 6,
+            "y": 0.9,
+            "label": "High propensity → Transit-oriented communities"
+          },
+          {
+            "x": 6,
+            "y": 0.1,
+            "label": "Low propensity → Car-dependent areas"
+          }
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    },
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    }
+  }
+}

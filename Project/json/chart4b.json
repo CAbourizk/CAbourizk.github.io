@@ -1,0 +1,222 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "On-time performance by route showing arrival reliability categories",
+  "title": {
+    "text": "Bus Service Reliability by Route",
+    "subtitle": "Percentage of arrivals by reliability category (matching Chart 4 categories)",
+    "anchor": "start"
+  },
+  "width": 720,
+  "height": 500,
+  "data": {
+    "url": "data/chart4b_ontime_percentages.csv",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "params": [
+    {
+      "name": "hover_route_ext",
+      "value": null
+    }
+  ],
+  "transform": [
+    {
+      "filter": "datum.day_type == 'weekday'"
+    },
+    {
+      "filter": "datum.total_observations >= 100"
+    },
+    {
+      "calculate": "datum.category == 'Excellent (±1min)' ? 1 : datum.category == 'Good (1-3min)' ? 2 : datum.category == 'Fair (3-6min)' ? 3 : datum.category == 'Poor (6-9min)' ? 4 : 5",
+      "as": "category_order"
+    },
+    {
+      "calculate": "datum.category == 'Excellent (±1min)' ? datum.percentage : 0",
+      "as": "excellent_pct_for_sort"
+    },
+    {
+      "joinaggregate": [
+        {
+          "op": "max",
+          "field": "excellent_pct_for_sort",
+          "as": "route_excellent_pct"
+        }
+      ],
+      "groupby": ["route_label"]
+    }
+  ],
+  "layer": [
+    {
+      "params": [
+        {
+          "name": "route_hover_sel",
+          "select": {
+            "type": "point",
+            "fields": [
+              "route_label"
+            ],
+            "on": "mouseover",
+            "clear": "mouseout"
+          }
+        }
+      ],
+      "mark": {
+        "type": "bar"
+      },
+      "encoding": {
+        "y": {
+          "field": "route_label",
+          "type": "nominal",
+          "sort": {
+            "field": "route_excellent_pct",
+            "order": "descending"
+          },
+          "title": "Route"
+        },
+        "x": {
+          "field": "percentage",
+          "type": "quantitative",
+          "title": "Percentage of Arrivals (%)",
+          "axis": {
+            "format": ".0f"
+          },
+          "stack": "normalize",
+          "scale": {
+            "domain": [0, 1]
+          }
+        },
+        "opacity": {
+          "condition": [
+            {
+              "test": "hover_route_ext != null && datum.route_label == hover_route_ext",
+              "value": 1
+            },
+            {
+              "test": "hover_route_ext != null",
+              "value": 0.2
+            },
+            {
+              "param": "route_hover_sel",
+              "value": 1
+            }
+          ],
+          "value": 0.85
+        },
+        "color": {
+          "field": "category",
+          "type": "nominal",
+          "title": "Arrival Reliability",
+          "sort": [
+            "Excellent (±1min)",
+            "Good (1-3min)",
+            "Fair (3-6min)",
+            "Poor (6-9min)",
+            "Very Poor (10+min)"
+          ],
+          "scale": {
+            "domain": [
+              "Excellent (±1min)",
+              "Good (1-3min)",
+              "Fair (3-6min)",
+              "Poor (6-9min)",
+              "Very Poor (10+min)"
+            ],
+            "range": [
+              "#1A9850",
+              "#91CF60",
+              "#FED976",
+              "#FC8D59",
+              "#D73027"
+            ]
+          }
+        },
+        "order": {
+          "field": "category_order",
+          "type": "quantitative",
+          "sort": "ascending"
+        },
+        "tooltip": [
+          {
+            "field": "route_label",
+            "type": "nominal",
+            "title": "Route"
+          },
+          {
+            "field": "route_long_name",
+            "type": "nominal",
+            "title": "Route name"
+          },
+          {
+            "field": "day_type",
+            "type": "nominal",
+            "title": "Day type"
+          },
+          {
+            "field": "category",
+            "type": "nominal",
+            "title": "Reliability"
+          },
+          {
+            "field": "percentage",
+            "type": "quantitative",
+            "title": "Percentage",
+            "format": ".1f"
+          },
+          {
+            "field": "count",
+            "type": "quantitative",
+            "title": "Number of arrivals"
+          },
+          {
+            "field": "total_observations",
+            "type": "quantitative",
+            "title": "Total observations"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "strokeDash": [
+          6,
+          3
+        ],
+        "strokeWidth": 1.5,
+        "color": "#555",
+        "opacity": 0.5
+      },
+      "data": {
+        "values": [
+          {
+            "threshold": 0.5,
+            "label": "50%"
+          }
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "threshold",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "label",
+            "type": "nominal",
+            "title": "Threshold"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    },
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    }
+  }
+}

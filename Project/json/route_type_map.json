@@ -1,0 +1,137 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Geographic map showing SA1 areas colored by best available route service type",
+  "title": {
+    "text": "Service Quality by Neighborhood",
+    "subtitle": "SA1 areas colored by best available route service type (within 400m)",
+    "anchor": "start"
+  },
+  "width": 700,
+  "height": 700,
+  "projection": {
+    "type": "mercator"
+  },
+  "params": [
+    {
+      "name": "service_type_filter",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All",
+          "High-Frequency Core Corridors",
+          "Frequent All-Week Services",
+          "Standard Suburban Network",
+          "Weekend Service Gap",
+          "Weekday Peak-Only Express",
+          "No Service"
+        ],
+        "name": "Highlight Service Type: "
+      }
+    },
+    {
+      "name": "hover_sa1_ext",
+      "value": null
+    }
+  ],
+  "data": {
+    "url": "data/sa1_route_service_types.geojson",
+    "format": {
+      "type": "json",
+      "property": "features"
+    }
+  },
+  "mark": {
+    "type": "geoshape",
+    "stroke": "#333",
+    "strokeWidth": 0.3
+  },
+  "encoding": {
+    "color": {
+      "field": "properties.best_service_type",
+      "type": "nominal",
+      "title": "Best Available Service Type",
+      "scale": {
+        "domain": [
+          "High-Frequency Core Corridors",
+          "Frequent All-Week Services",
+          "Standard Suburban Network",
+          "Weekend Service Gap",
+          "Weekday Peak-Only Express",
+          "No Service"
+        ],
+        "range": [
+          "#029E73",
+          "#0173B2",
+          "#949494",
+          "#ECA006",
+          "#CC3311",
+          "#DDDDDD"
+        ]
+      },
+      "legend": {
+        "orient": "right",
+        "labelLimit": 250,
+        "titleLimit": 200
+      }
+    },
+    "opacity": {
+      "condition": [
+        {
+          "test": "service_type_filter != 'All' && datum.properties.best_service_type == service_type_filter",
+          "value": 1
+        },
+        {
+          "test": "service_type_filter != 'All'",
+          "value": 0.1
+        },
+        {
+          "test": "hover_sa1_ext != null && datum.properties.SA1_Code == hover_sa1_ext",
+          "value": 1
+        },
+        {
+          "test": "hover_sa1_ext != null",
+          "value": 0.3
+        }
+      ],
+      "value": 0.9
+    },
+    "tooltip": [
+      {
+        "field": "properties.Suburb",
+        "type": "nominal",
+        "title": "Suburb"
+      },
+      {
+        "field": "properties.District",
+        "type": "nominal",
+        "title": "District"
+      },
+      {
+        "field": "properties.SA1_Code",
+        "type": "nominal",
+        "title": "SA1 Code"
+      },
+      {
+        "field": "properties.best_service_type",
+        "type": "nominal",
+        "title": "Best Service Type"
+      },
+      {
+        "field": "properties.num_service_types",
+        "type": "quantitative",
+        "title": "Number of Service Types"
+      },
+      {
+        "field": "properties.num_stops",
+        "type": "quantitative",
+        "title": "Number of Stops (within 400m)"
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    }
+  }
+}

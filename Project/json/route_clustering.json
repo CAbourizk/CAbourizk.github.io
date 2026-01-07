@@ -1,0 +1,383 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "K-means clustering: Route service type classification",
+  "title": {
+    "text": "Route Service Type Classification",
+    "subtitle": "K-means clustering of routes by frequency, reliability, and service characteristics",
+    "anchor": "start"
+  },
+  "width": 800,
+  "height": 500,
+  "data": {
+    "url": "data/route_clustering.csv",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "params": [
+    {
+      "name": "cluster_filter",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All",
+          "Weekend Service Gap",
+          "High-Frequency Core Corridors",
+          "Frequent All-Week Services",
+          "Standard Suburban Network",
+          "Weekday Peak-Only Express"
+        ],
+        "name": "Highlight Cluster: "
+      }
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontStyle": "italic",
+        "color": "#666",
+        "fontWeight": "normal",
+        "align": "center"
+      },
+      "data": {
+        "values": [
+          {
+            "x": 40,
+            "y": 85,
+            "label": "Frequent &\nReliable",
+            "color": "#029E73"
+          },
+          {
+            "x": 10,
+            "y": 85,
+            "label": "Frequent but\nLess Reliable",
+            "color": "#0173B2"
+          },
+          {
+            "x": 40,
+            "y": 55,
+            "label": "Infrequent\nBut Consistent",
+            "color": "#949494"
+          },
+          {
+            "x": 10,
+            "y": 55,
+            "label": "WEEKEND GAP\nPolicy Priority",
+            "color": "#ECA006"
+          }
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              60
+            ]
+          }
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label",
+          "type": "nominal"
+        },
+        "color": {
+          "field": "color",
+          "type": "nominal",
+          "scale": null
+        },
+        "opacity": {
+          "value": 0.4
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "strokeDash": [
+          4,
+          2
+        ],
+        "strokeWidth": 1,
+        "color": "#999",
+        "opacity": 0.4
+      },
+      "data": {
+        "values": [
+          {
+            "value": 70
+          }
+        ]
+      },
+      "encoding": {
+        "y": {
+          "field": "value",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "strokeDash": [
+          4,
+          2
+        ],
+        "strokeWidth": 1,
+        "color": "#999",
+        "opacity": 0.4
+      },
+      "data": {
+        "values": [
+          {
+            "value": 25
+          }
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "value",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/route_clustering_centroids.csv"
+      },
+      "mark": {
+        "type": "point",
+        "shape": "diamond",
+        "size": 300,
+        "filled": false,
+        "strokeWidth": 3,
+        "opacity": 0.8
+      },
+      "encoding": {
+        "x": {
+          "field": "weighted_headway",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              60
+            ],
+            "reverse": true
+          },
+          "title": "Service Frequency (minutes between services, reversed)",
+          "axis": {
+            "labelExpr": "datum.value == 0 ? 'Very Frequent' : datum.value == 60 ? 'Infrequent' : format(datum.value, '.0f')"
+          }
+        },
+        "y": {
+          "field": "weighted_reliability",
+          "type": "quantitative",
+          "title": "Reliability Score (0-100)",
+          "scale": {
+            "domain": [
+              40,
+              100
+            ]
+          }
+        },
+        "color": {
+          "field": "cluster_name",
+          "type": "nominal",
+          "title": "Service Type",
+          "scale": {
+            "domain": [
+              "High-Frequency Core Corridors",
+              "Frequent All-Week Services",
+              "Standard Suburban Network",
+              "Weekend Service Gap",
+              "Weekday Peak-Only Express"
+            ],
+            "range": [
+              "#029E73",
+              "#0173B2",
+              "#949494",
+              "#ECA006",
+              "#CC3311"
+            ]
+          },
+          "legend": {
+            "orient": "right",
+            "labelLimit": 220
+          }
+        },
+        "tooltip": [
+          {
+            "field": "cluster_name",
+            "type": "nominal",
+            "title": "Cluster"
+          },
+          {
+            "field": "weighted_headway",
+            "type": "quantitative",
+            "title": "Avg Headway (min)",
+            "format": ".1f"
+          },
+          {
+            "field": "weighted_reliability",
+            "type": "quantitative",
+            "title": "Avg Reliability",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "opacity": 0.8
+      },
+      "encoding": {
+        "x": {
+          "field": "weighted_headway",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              60
+            ],
+            "reverse": true
+          },
+          "title": "Service Frequency (minutes between services, reversed)",
+          "axis": {
+            "labelExpr": "datum.value == 0 ? 'Very Frequent' : datum.value == 60 ? 'Infrequent' : format(datum.value, '.0f')"
+          }
+        },
+        "y": {
+          "field": "weighted_reliability",
+          "type": "quantitative",
+          "title": "Reliability Score (0-100)",
+          "scale": {
+            "domain": [
+              40,
+              100
+            ]
+          }
+        },
+        "size": {
+          "field": "total_daily_departures",
+          "type": "quantitative",
+          "title": "Daily Departures",
+          "scale": {
+            "type": "sqrt",
+            "range": [
+              50,
+              800
+            ]
+          }
+        },
+        "color": {
+          "field": "cluster_name",
+          "type": "nominal",
+          "title": "Service Type",
+          "scale": {
+            "domain": [
+              "High-Frequency Core Corridors",
+              "Frequent All-Week Services",
+              "Standard Suburban Network",
+              "Weekend Service Gap",
+              "Weekday Peak-Only Express"
+            ],
+            "range": [
+              "#029E73",
+              "#0173B2",
+              "#949494",
+              "#ECA006",
+              "#CC3311"
+            ]
+          },
+          "legend": {
+            "orient": "right",
+            "labelLimit": 220
+          }
+        },
+        "opacity": {
+          "condition": [
+            {
+              "test": "cluster_filter != 'All' && datum.cluster_name == cluster_filter",
+              "value": 1
+            },
+            {
+              "test": "cluster_filter != 'All'",
+              "value": 0.1
+            }
+          ],
+          "value": 0.85
+        },
+        "tooltip": [
+          {
+            "field": "route_short_name",
+            "type": "nominal",
+            "title": "Route"
+          },
+          {
+            "field": "route_long_name",
+            "type": "nominal",
+            "title": "Route Name"
+          },
+          {
+            "field": "cluster_name",
+            "type": "nominal",
+            "title": "Service Type"
+          },
+          {
+            "field": "weighted_headway",
+            "type": "quantitative",
+            "title": "Avg Headway (min)",
+            "format": ".1f"
+          },
+          {
+            "field": "weighted_reliability",
+            "type": "quantitative",
+            "title": "Reliability Score",
+            "format": ".1f"
+          },
+          {
+            "field": "route_length_km",
+            "type": "quantitative",
+            "title": "Route Length (km)",
+            "format": ".1f"
+          },
+          {
+            "field": "service_span_hours",
+            "type": "quantitative",
+            "title": "Service Span (hrs)",
+            "format": ".1f"
+          },
+          {
+            "field": "weekend_service_ratio",
+            "type": "quantitative",
+            "title": "Weekend/Weekday Ratio",
+            "format": ".2f"
+          },
+          {
+            "field": "total_daily_departures",
+            "type": "quantitative",
+            "title": "Daily Departures"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    },
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    }
+  }
+}

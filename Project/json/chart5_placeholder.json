@@ -1,0 +1,35 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Chart 5: International Comparison (Placeholder)",
+  "width": 400,
+  "height": 250,
+  "data": {
+    "values": [
+      {"city": "Canberra", "headway": 18, "pt_share": 7.5},
+      {"city": "Sydney", "headway": 8, "pt_share": 22},
+      {"city": "Melbourne", "headway": 10, "pt_share": 18},
+      {"city": "London", "headway": 5, "pt_share": 45},
+      {"city": "Paris", "headway": 4, "pt_share": 50},
+      {"city": "Singapore", "headway": 6, "pt_share": 65}
+    ]
+  },
+  "mark": "point",
+  "encoding": {
+    "x": {
+      "field": "headway",
+      "type": "quantitative",
+      "title": "Average Peak Headway (min)"
+    },
+    "y": {
+      "field": "pt_share",
+      "type": "quantitative",
+      "title": "PT Mode Share (%)"
+    },
+    "color": {
+      "field": "city",
+      "type": "nominal",
+      "title": "City"
+    },
+    "size": {"value": 100}
+  }
+}

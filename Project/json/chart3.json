@@ -1,0 +1,199 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Interactive map of ACT public transport stops and SA1 boundaries",
+  "width": 700,
+  "height": 700,
+  "projection": {
+    "type": "mercator"
+  },
+  "layer": [
+    {
+      "name": "SA1 Boundaries",
+      "data": {
+        "url": "data/chart2a_sa1_boundaries.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#666666",
+        "strokeWidth": 0.5
+      },
+      "encoding": {
+        "color": {
+          "field": "properties.Density_per_km2",
+          "type": "quantitative",
+          "title": "Population Density (per km\u00b2)",
+          "scale": {
+            "type": "threshold",
+            "domain": [
+              500,
+              1000,
+              2000,
+              4000,
+              8000
+            ],
+            "range": [
+              "#fee5d9",
+              "#fcbba1",
+              "#fc9272",
+              "#fb6a4a",
+              "#de2d26",
+              "#a50f15"
+            ]
+          },
+          "legend": {
+            "orient": "bottom-right",
+            "direction": "vertical",
+            "titleLimit": 200
+          }
+        },
+        "tooltip": [
+          {
+            "field": "properties.Suburb",
+            "type": "nominal",
+            "title": "Suburb (SA2)"
+          },
+          {
+            "field": "properties.District",
+            "type": "nominal",
+            "title": "District (SA3)"
+          },
+          {
+            "field": "properties.SA1_Code",
+            "type": "nominal",
+            "title": "SA1 Code"
+          },
+          {
+            "field": "properties.Population",
+            "type": "quantitative",
+            "title": "Population",
+            "format": ","
+          },
+          {
+            "field": "properties.Area_km2",
+            "type": "quantitative",
+            "title": "Area (km\u00b2)",
+            "format": ".2f"
+          },
+          {
+            "field": "properties.Density_per_km2",
+            "type": "quantitative",
+            "title": "Density (per km\u00b2)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Bus Stops",
+      "data": {
+        "url": "Project/json/all_stops.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.properties.mode == 'bus'"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 15,
+        "opacity": 0.6,
+        "color": "#2563eb"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "geometry.coordinates[0]",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "geometry.coordinates[1]",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "properties.Name",
+            "type": "nominal",
+            "title": "Stop Name"
+          },
+          {
+            "field": "properties.description",
+            "type": "nominal",
+            "title": "Stop ID"
+          },
+          {
+            "field": "properties.mode",
+            "type": "nominal",
+            "title": "Mode"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Light Rail Stops",
+      "data": {
+        "url": "Project/json/all_stops.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.properties.mode == 'light_rail'"
+        }
+      ],
+      "mark": {
+        "type": "square",
+        "size": 100,
+        "opacity": 1.0,
+        "color": "#fbbf24",
+        "stroke": "#92400e",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "longitude": {
+          "field": "geometry.coordinates[0]",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "geometry.coordinates[1]",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "properties.Name",
+            "type": "nominal",
+            "title": "Stop Name"
+          },
+          {
+            "field": "properties.stopname",
+            "type": "nominal",
+            "title": "Station Name"
+          },
+          {
+            "field": "properties.description",
+            "type": "nominal",
+            "title": "Stop ID"
+          },
+          {
+            "field": "properties.mode",
+            "type": "nominal",
+            "title": "Mode"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

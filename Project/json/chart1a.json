@@ -1,0 +1,116 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Total public transport patronage (all modes) – Table 5.5h BITRE Yearbook 2024",
+  "title": {
+    "text": "Total Public Transport Patronage (all modes)",
+    "subtitle": "Australia, financial years 1976-77 to 2023-24 (Table 5.5h, BITRE Yearbook 2024)",
+    "anchor": "start"
+  },
+  "width": 720,
+  "height": 420,
+  "data": {
+    "url": "data/chart1a_patronage.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [
+    {
+      "calculate": "toNumber(substring(datum.financial_year, 0, 4))",
+      "as": "year_start"
+    },
+    {
+      "calculate": "toNumber(datum.trips_per_person)",
+      "as": "tpp_numeric"
+    }
+  ],
+  "layer": [
+    {
+      "transform": [
+        {"calculate": "\"Total trips\"", "as": "series_label"}
+      ],
+      "mark": {
+        "type": "line",
+        "interpolate": "monotone",
+        "point": true
+      },
+      "encoding": {
+        "x": {
+          "field": "financial_year",
+          "type": "ordinal",
+          "title": "Financial Year",
+          "sort": {"field": "year_start", "order": "ascending"},
+          "axis": {
+            "labelAngle": -45,
+            "labelOverlap": true
+          }
+        },
+        "y": {
+          "field": "total_millions",
+          "type": "quantitative",
+          "title": "Passenger Trips (millions)",
+          "axis": {"format": ",.0f"}
+        },
+        "color": {
+          "field": "series_label",
+          "type": "nominal",
+          "title": "Series",
+          "scale": {
+            "domain": ["Total trips", "Trips per person"],
+            "range": ["#1f77b4", "#d62728"]
+          }
+        },
+        "tooltip": [
+          {"field": "financial_year", "type": "nominal", "title": "Financial Year"},
+          {"field": "total_millions", "type": "quantitative", "title": "Passenger Trips (millions)", "format": ",.2f"}
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "isValid(datum.tpp_numeric) && isFinite(datum.tpp_numeric)"
+        },
+        {"calculate": "\"Trips per person\"", "as": "series_label"}
+      ],
+      "mark": {
+        "type": "line",
+        "interpolate": "monotone",
+        "point": true
+      },
+      "encoding": {
+        "x": {
+          "field": "financial_year",
+          "type": "ordinal",
+          "sort": {"field": "year_start", "order": "ascending"}
+        },
+        "y": {
+          "field": "tpp_numeric",
+          "type": "quantitative",
+          "title": "Trips per Person",
+          "axis": {"format": ",.0f", "orient": "right"}
+        },
+        "color": {
+          "field": "series_label",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Total trips", "Trips per person"],
+            "range": ["#1f77b4", "#d62728"]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {"field": "financial_year", "type": "nominal", "title": "Financial Year"},
+          {"field": "trips_per_person", "type": "quantitative", "title": "Trips per Person", "format": ",.1f"}
+        ]
+      }
+    }
+  ],
+  "resolve": {
+    "scale": {
+      "y": "independent"
+    }
+  },
+  "config": {
+    "view": {"stroke": "transparent"},
+    "axis": {"labelFontSize": 11, "titleFontSize": 12}
+  }
+}

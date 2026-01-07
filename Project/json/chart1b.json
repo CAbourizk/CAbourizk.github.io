@@ -1,0 +1,142 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Stacked passenger-kilometres by mode (Table 5.3h, BITRE Yearbook 2024)",
+  "title": {
+    "text": "Motorised Passenger Kilometres by Mode",
+    "subtitle": "Canberra 1980-81 to 2023-24 (billion passenger-km)",
+    "anchor": "start",
+    "offset": 20
+  },
+  "width": 800,
+  "height": 500,
+  "padding": {
+    "top": 40
+  },
+  "data": {
+    "url": "data/chart1b_passenger_km_tidy.csv",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "params": [
+    {
+      "name": "metric",
+      "value": "per_capita",
+      "bind": {
+        "input": "select",
+        "options": [
+          "absolute",
+          "per_capita"
+        ],
+        "labels": [
+          "Total (billion passenger-km)",
+          "Per person (km per person)"
+        ],
+        "name": "Measure: "
+      }
+    },
+    {
+      "name": "travel_filter",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All",
+          "Private travel",
+          "Commercial travel",
+          "Public transport"
+        ],
+        "name": "Travel type: "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "filter": "datum.mode != 'heavy_rail' && datum.mode != 'ferry'"
+    },
+    {
+      "filter": "datum.year_start >= 1980"
+    },
+    {
+      "calculate": "datum.mode == 'passenger_cars' || datum.mode == 'motor_cycles' ? 'Private travel' : datum.mode == 'commercial_vehicles' ? 'Commercial travel' : datum.mode == 'bus' || datum.mode == 'light_rail' ? 'Public transport' : null",
+      "as": "category"
+    },
+    {
+      "filter": "datum.category != null && (travel_filter == 'All' || datum.category == travel_filter)"
+    },
+    {
+      "calculate": "metric === 'per_capita' ? datum.per_person_km : datum.billion_passenger_km",
+      "as": "value_to_plot"
+    }
+  ],
+  "mark": {
+    "type": "bar"
+  },
+  "encoding": {
+    "x": {
+      "field": "financial_year",
+      "type": "ordinal",
+      "sort": {
+        "field": "year_start",
+        "order": "ascending"
+      },
+      "title": "Financial Year",
+      "axis": {
+        "labelAngle": -45,
+        "labelOverlap": true
+      }
+    },
+    "y": {
+      "aggregate": "sum",
+      "field": "value_to_plot",
+      "type": "quantitative",
+      "title": "Passenger Kilometres (billion) / km per person",
+      "stack": "zero"
+    },
+    "color": {
+      "field": "category",
+      "type": "nominal",
+      "title": "Category",
+      "scale": {
+        "domain": [
+          "Private travel",
+          "Commercial travel",
+          "Public transport"
+        ],
+        "range": [
+          "#1f77b4",
+          "#ff7f0e",
+          "#2ca02c"
+        ]
+      }
+    },
+    "tooltip": [
+      {
+        "field": "financial_year",
+        "type": "nominal",
+        "title": "Financial Year"
+      },
+      {
+        "field": "category",
+        "type": "nominal",
+        "title": "Category"
+      },
+      {
+        "aggregate": "sum",
+        "field": "billion_passenger_km",
+        "type": "quantitative",
+        "title": "Passenger km (billion)",
+        "format": ",.2f"
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    },
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    }
+  }
+}

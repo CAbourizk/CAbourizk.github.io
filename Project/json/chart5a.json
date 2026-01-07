@@ -1,0 +1,249 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "ML prediction: Demographics-only model",
+  "title": {
+    "text": "Predicting PT Commuting: Demographics-Only Model",
+    "subtitle": "Gradient boosting predictions using demographic features only (R\u00b2=0.185)",
+    "anchor": "start"
+  },
+  "width": 800,
+  "height": 500,
+  "data": {
+    "url": "data/chart5_predictions_comparison.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "sa1_code": "string"
+      }
+    }
+  },
+  "params": [
+    {
+      "name": "sa3_focus",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All",
+          "Belconnen",
+          "Gungahlin",
+          "North Canberra",
+          "South Canberra",
+          "Tuggeranong",
+          "Weston Creek",
+          "Woden Valley"
+        ],
+        "name": "Highlight District: "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "calculate": "datum.pred_demographics",
+      "as": "predicted_rate"
+    },
+    {
+      "calculate": "datum.residual_demographics",
+      "as": "residual"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeDash": [
+          4,
+          4
+        ],
+        "color": "#888",
+        "strokeWidth": 1.5
+      },
+      "data": {
+        "values": [
+          {
+            "x": 0,
+            "y": 0
+          },
+          {
+            "x": 35,
+            "y": 35
+          }
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 80,
+        "filled": true
+      },
+      "encoding": {
+        "x": {
+          "field": "pt_commute_rate",
+          "type": "quantitative",
+          "title": "Actual PT Commute Rate (%)",
+          "scale": {
+            "domain": [
+              0,
+              35
+            ]
+          },
+          "axis": {
+            "format": ".1f",
+            "grid": true
+          }
+        },
+        "y": {
+          "field": "predicted_rate",
+          "type": "quantitative",
+          "title": "Predicted PT Commute Rate (%)",
+          "scale": {
+            "domain": [
+              0,
+              35
+            ]
+          },
+          "axis": {
+            "format": ".1f",
+            "grid": true
+          }
+        },
+        "color": {
+          "field": "sa3_name",
+          "type": "nominal",
+          "title": "District (SA3)",
+          "scale": {
+            "domain": [
+              "Belconnen",
+              "Gungahlin",
+              "North Canberra",
+              "South Canberra",
+              "Tuggeranong",
+              "Weston Creek",
+              "Woden Valley"
+            ],
+            "range": [
+              "#0173B2",
+              "#DE8F05",
+              "#029E73",
+              "#CC78BC",
+              "#CA9161",
+              "#949494",
+              "#ECE133"
+            ]
+          }
+        },
+        "opacity": {
+          "condition": {
+            "test": "sa3_focus == 'All' || datum.sa3_name == sa3_focus",
+            "value": 0.7
+          },
+          "value": 0.1
+        },
+        "tooltip": [
+          {
+            "field": "sa1_code",
+            "type": "nominal",
+            "title": "SA1 Code"
+          },
+          {
+            "field": "Suburb",
+            "type": "nominal",
+            "title": "Suburb"
+          },
+          {
+            "field": "sa3_name",
+            "type": "nominal",
+            "title": "District"
+          },
+          {
+            "field": "population",
+            "type": "quantitative",
+            "title": "Population",
+            "format": ","
+          },
+          {
+            "field": "pt_commute_rate",
+            "type": "quantitative",
+            "title": "Actual PT Commute Rate (%)",
+            "format": ".2f"
+          },
+          {
+            "field": "predicted_rate",
+            "type": "quantitative",
+            "title": "Predicted PT Commute Rate (%)",
+            "format": ".2f"
+          },
+          {
+            "field": "residual",
+            "type": "quantitative",
+            "title": "Residual (Actual - Predicted, %)",
+            "format": ".2f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "dy": -10,
+        "fontSize": 11,
+        "fontStyle": "italic",
+        "color": "#555"
+      },
+      "data": {
+        "values": [
+          {
+            "x": 2,
+            "y": 20,
+            "label": "Points above line = higher-than-expected PT usage"
+          },
+          {
+            "x": 15,
+            "y": 5,
+            "label": "Points below line = lower-than-expected PT usage"
+          }
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    },
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    }
+  }
+}

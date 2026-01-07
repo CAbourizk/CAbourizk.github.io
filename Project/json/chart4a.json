@@ -1,0 +1,282 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Bus Service Reliability: Arrival Time Deviations by Route",
+    "subtitle": "Distribution of delays (scheduled vs actual arrival) by route",
+    "anchor": "start"
+  },
+  "data": {
+    "url": "data/chart4_reliability_combined.csv",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.day_type == 'weekday'"
+    },
+    {
+      "filter": "datum.route_short_name < 10"
+    },
+    {
+      "calculate": "datum.delay_min < -10 ? -10 : datum.delay_min > 10 ? 10 : datum.delay_min",
+      "as": "delay_min_capped"
+    },
+    {
+      "calculate": "datum.route_short_name == 1 ? 'Light Rail' : toString(datum.route_short_name)",
+      "as": "route_label"
+    },
+    {
+      "calculate": "datum.route_short_name == 1 ? 0 : datum.route_short_name == 2 ? 1 : datum.route_short_name == 3 ? 2 : datum.route_short_name == 4 ? 3 : datum.route_short_name == 5 ? 4 : datum.route_short_name == 6 ? 5 : datum.route_short_name == 7 ? 6 : datum.route_short_name == 8 ? 7 : 8",
+      "as": "grid_index"
+    },
+    {
+      "calculate": "floor(datum.grid_index / 3)",
+      "as": "grid_row"
+    },
+    {
+      "calculate": "datum.grid_index % 3",
+      "as": "grid_col"
+    },
+    {
+      "calculate": "abs(datum.delay_min) <= 1 ? 'Excellent (\u00b11min)' : abs(datum.delay_min) <= 3 ? 'Good (1-3min)' : abs(datum.delay_min) <= 6 ? 'Fair (3-6min)' : abs(datum.delay_min) <= 9 ? 'Poor (6-9min)' : 'Very Poor (10+min)'",
+      "as": "delay_category"
+    }
+  ],
+  "spacing": 10,
+  "columns": 3,
+  "facet": {
+    "row": {
+      "field": "grid_row",
+      "type": "ordinal",
+      "header": {
+        "title": null,
+        "labels": false
+      }
+    },
+    "column": {
+      "field": "grid_col",
+      "type": "ordinal",
+      "header": {
+        "title": null,
+        "labels": false
+      }
+    }
+  },
+  "spec": {
+    "width": 260,
+    "height": 160,
+    "transform": [
+      {
+        "joinaggregate": [
+          {
+            "op": "count",
+            "as": "total_trips"
+          }
+        ],
+        "groupby": [
+          "route_label"
+        ]
+      },
+      {
+        "calculate": "1 / datum.total_trips * 100",
+        "as": "percentage_per_observation"
+      },
+      {
+        "bin": {
+          "step": 1
+        },
+        "field": "delay_min_capped",
+        "as": [
+          "delay_bin_start",
+          "delay_bin_end"
+        ]
+      },
+      {
+        "calculate": "format(datum.delay_bin_start, '.0f') + ' to ' + format(datum.delay_bin_end, '.0f')",
+        "as": "delay_bin_label"
+      },
+      {
+        "aggregate": [
+          {
+            "op": "sum",
+            "field": "percentage_per_observation",
+            "as": "pct_in_bin"
+          },
+          {
+            "op": "count",
+            "as": "observations"
+          }
+        ],
+        "groupby": [
+          "route_label",
+          "route_long_name",
+          "delay_bin_start",
+          "delay_bin_end",
+          "delay_bin_label",
+          "delay_category"
+        ]
+      }
+    ],
+    "layer": [
+      {
+        "mark": {
+          "type": "text",
+          "align": "left",
+          "baseline": "top",
+          "dx": 5,
+          "dy": 5,
+          "fontSize": 14,
+          "fontWeight": "bold",
+          "color": "#333"
+        },
+        "encoding": {
+          "text": {
+            "field": "route_label",
+            "type": "nominal"
+          },
+          "x": {
+            "value": 0
+          },
+          "y": {
+            "value": 0
+          }
+        },
+        "transform": [
+          {
+            "aggregate": [
+              {
+                "op": "count",
+                "as": "count"
+              }
+            ],
+            "groupby": [
+              "route_label"
+            ]
+          }
+        ]
+      },
+      {
+        "mark": {
+          "type": "bar"
+        },
+        "encoding": {
+          "x": {
+            "field": "delay_bin_start",
+            "type": "quantitative",
+            "bin": "binned",
+            "title": "Delay (minutes)",
+            "axis": {
+              "labelAngle": 0,
+              "labelFontSize": 9,
+              "labelExpr": "datum.value <= -10 ? '10+ min early' : datum.value >= 9 ? '10+ min late' : format(datum.value, '.0f')"
+            },
+            "scale": {
+              "domain": [
+                -10,
+                10
+              ]
+            }
+          },
+          "x2": {
+            "field": "delay_bin_end"
+          },
+          "y": {
+            "field": "pct_in_bin",
+            "type": "quantitative",
+            "title": "Percentage of Trips (%)",
+            "axis": {
+              "labelFontSize": 9,
+              "format": ".1f"
+            }
+          },
+          "color": {
+            "field": "delay_category",
+            "type": "nominal",
+            "scale": {
+              "domain": [
+                "Excellent (\u00b11min)",
+                "Good (1-3min)",
+                "Fair (3-6min)",
+                "Poor (6-9min)",
+                "Very Poor (10+min)"
+              ],
+              "range": [
+                "#1A9850",
+                "#91CF60",
+                "#FED976",
+                "#FC8D59",
+                "#D73027"
+              ]
+            },
+            "legend": {
+              "title": "Arrival Reliability",
+              "orient": "bottom",
+              "labelFontSize": 10,
+              "titleFontSize": 11
+            }
+          },
+          "tooltip": [
+            {
+              "field": "route_label",
+              "type": "nominal",
+              "title": "Route"
+            },
+            {
+              "field": "route_long_name",
+              "type": "nominal",
+              "title": "Route name"
+            },
+            {
+              "field": "delay_category",
+              "type": "nominal",
+              "title": "Reliability category"
+            },
+            {
+              "field": "delay_bin_label",
+              "type": "nominal",
+              "title": "Delay bin (min)"
+            },
+            {
+              "field": "pct_in_bin",
+              "type": "quantitative",
+              "title": "Percentage of trips (%)",
+              "format": ".1f"
+            },
+            {
+              "field": "observations",
+              "type": "quantitative",
+              "title": "Number of observations"
+            }
+          ]
+        }
+      },
+      {
+        "mark": {
+          "type": "rule",
+          "strokeDash": [
+            4,
+            2
+          ],
+          "strokeWidth": 1,
+          "color": "#333",
+          "opacity": 0.6
+        },
+        "encoding": {
+          "x": {
+            "datum": 0
+          }
+        }
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    },
+    "axis": {
+      "labelFontSize": 9,
+      "titleFontSize": 10
+    }
+  }
+}

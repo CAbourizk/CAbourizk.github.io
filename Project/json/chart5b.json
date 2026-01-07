@@ -1,0 +1,398 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "K-means clustering: Demand-supply mismatch in Canberra PT",
+  "title": {
+    "text": "Demand-Supply Mismatch: Where Should We Invest?",
+    "subtitle": "K-means clustering of SA1 areas by demographic PT propensity vs. service quality",
+    "anchor": "start"
+  },
+  "width": 800,
+  "height": 500,
+  "data": {
+    "url": "data/chart5c_clustering_mismatch.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "sa1_code": "string"
+      }
+    }
+  },
+  "params": [
+    {
+      "name": "cluster_filter",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All",
+          "Undersupplied Urban",
+          "Oversupplied Suburban",
+          "Suburban Baseline",
+          "Urban Core - Well Served"
+        ],
+        "name": "Highlight Cluster: "
+      }
+    },
+    {
+      "name": "sa3_focus",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All",
+          "Belconnen",
+          "Gungahlin",
+          "North Canberra",
+          "South Canberra",
+          "Tuggeranong",
+          "Weston Creek",
+          "Woden Valley"
+        ],
+        "name": "Focus District: "
+      }
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 13,
+        "fontStyle": "italic",
+        "color": "#666",
+        "fontWeight": "normal",
+        "align": "center"
+      },
+      "data": {
+        "values": [
+          {
+            "x": 70,
+            "y": 70,
+            "label": "Well-Served\nUrban Core",
+            "color": "#029E73"
+          },
+          {
+            "x": 35,
+            "y": 70,
+            "label": "UNDERSUPPLIED\nPriority for Investment",
+            "color": "#CC3311"
+          },
+          {
+            "x": 70,
+            "y": 35,
+            "label": "Oversupplied\nSuburban",
+            "color": "#0173B2"
+          },
+          {
+            "x": 35,
+            "y": 35,
+            "label": "Baseline\nSuburban",
+            "color": "#949494"
+          }
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ]
+          }
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ]
+          }
+        },
+        "text": {
+          "field": "label",
+          "type": "nominal"
+        },
+        "color": {
+          "field": "color",
+          "type": "nominal",
+          "scale": null
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "strokeDash": [
+          4,
+          4
+        ],
+        "color": "#ccc",
+        "strokeWidth": 1
+      },
+      "data": {
+        "values": [
+          {
+            "x": 50
+          }
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "strokeDash": [
+          4,
+          4
+        ],
+        "color": "#ccc",
+        "strokeWidth": 1
+      },
+      "data": {
+        "values": [
+          {
+            "y": 50
+          }
+        ]
+      },
+      "encoding": {
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "shape": "diamond",
+        "size": 300,
+        "filled": false,
+        "stroke": "black",
+        "strokeWidth": 3
+      },
+      "data": {
+        "url": "data/chart5c_cluster_centroids.csv"
+      },
+      "encoding": {
+        "x": {
+          "field": "supply_score_centroid",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ]
+          }
+        },
+        "y": {
+          "field": "demand_score_centroid",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ]
+          }
+        },
+        "color": {
+          "field": "cluster_name",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Undersupplied Urban",
+              "Oversupplied Suburban",
+              "Suburban Baseline",
+              "Urban Core - Well Served"
+            ],
+            "range": [
+              "#CC3311",
+              "#0173B2",
+              "#949494",
+              "#029E73"
+            ]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "filled": true,
+        "stroke": "black",
+        "strokeWidth": 0.5
+      },
+      "encoding": {
+        "x": {
+          "field": "supply_score",
+          "type": "quantitative",
+          "title": "Service Quality Score (accessibility + frequency + coverage)",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ]
+          },
+          "axis": {
+            "format": ".0f",
+            "grid": true
+          }
+        },
+        "y": {
+          "field": "demand_score",
+          "type": "quantitative",
+          "title": "Demographic PT Propensity Score (working age + education + density)",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ]
+          },
+          "axis": {
+            "format": ".0f",
+            "grid": true
+          }
+        },
+        "size": {
+          "field": "density_pop_per_km2",
+          "type": "quantitative",
+          "scale": {
+            "type": "sqrt",
+            "range": [
+              30,
+              200
+            ]
+          },
+          "legend": {
+            "title": "Population Density (per km²)",
+            "format": ",.0f"
+          }
+        },
+        "color": {
+          "field": "cluster_name",
+          "type": "nominal",
+          "title": "Cluster",
+          "scale": {
+            "domain": [
+              "Undersupplied Urban",
+              "Oversupplied Suburban",
+              "Suburban Baseline",
+              "Urban Core - Well Served"
+            ],
+            "range": [
+              "#CC3311",
+              "#0173B2",
+              "#949494",
+              "#029E73"
+            ]
+          }
+        },
+        "opacity": {
+          "condition": {
+            "test": "(cluster_filter == 'All' || datum.cluster_name == cluster_filter) && (sa3_focus == 'All' || datum.sa3_name == sa3_focus)",
+            "value": 0.75
+          },
+          "value": 0.1
+        },
+        "tooltip": [
+          {
+            "field": "sa1_code",
+            "type": "nominal",
+            "title": "SA1 Code"
+          },
+          {
+            "field": "Suburb",
+            "type": "nominal",
+            "title": "Suburb"
+          },
+          {
+            "field": "sa3_name",
+            "type": "nominal",
+            "title": "District"
+          },
+          {
+            "field": "cluster_name",
+            "type": "nominal",
+            "title": "Cluster"
+          },
+          {
+            "field": "population",
+            "type": "quantitative",
+            "title": "Population",
+            "format": ","
+          },
+          {
+            "field": "demand_score",
+            "type": "quantitative",
+            "title": "Demand Score",
+            "format": ".1f"
+          },
+          {
+            "field": "supply_score",
+            "type": "quantitative",
+            "title": "Supply Score",
+            "format": ".1f"
+          },
+          {
+            "field": "mismatch_score",
+            "type": "quantitative",
+            "title": "Mismatch (Demand - Supply)",
+            "format": "+.1f"
+          },
+          {
+            "field": "priority_score",
+            "type": "quantitative",
+            "title": "Priority Score for Investment",
+            "format": ".1f"
+          },
+          {
+            "field": "pt_commute_rate",
+            "type": "quantitative",
+            "title": "PT Commute Rate (%)",
+            "format": ".2f"
+          },
+          {
+            "field": "walking_distance_m",
+            "type": "quantitative",
+            "title": "Distance to Nearest Stop (m)",
+            "format": ".0f"
+          },
+          {
+            "field": "weekday_peak_departures",
+            "type": "quantitative",
+            "title": "Weekday Peak Departures",
+            "format": ".0f"
+          },
+          {
+            "field": "weekend_departures",
+            "type": "quantitative",
+            "title": "Weekend Departures",
+            "format": ".1f"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    },
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    }
+  }
+}

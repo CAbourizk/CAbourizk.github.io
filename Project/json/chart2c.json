@@ -1,0 +1,234 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Population Density vs Distance to Nearest Bus Stop by District",
+    "fontSize": 16,
+    "anchor": "start"
+  },
+  "width": 720,
+  "height": 460,
+  "data": {
+    "url": "data/chart2b_sa1_accessibility.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "sa1_code": "string"
+      }
+    }
+  },
+  "params": [
+    {
+      "name": "distance_type",
+      "value": "walking",
+      "bind": {
+        "input": "select",
+        "options": ["euclidean", "walking"],
+        "labels": ["Straight-line Distance", "Walking Distance (1.35x)"],
+        "name": "Distance Type: "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "lookup": "sa1_code",
+      "from": {
+        "data": {
+          "url": "data/chart2a_sa1_boundaries.geojson",
+          "format": {
+            "type": "json",
+            "property": "features"
+          }
+        },
+        "key": "properties.SA1_Code",
+        "fields": ["properties.Suburb"]
+      },
+      "as": ["sa2_name"]
+    },
+    {
+      "lookup": "sa1_code",
+      "from": {
+        "data": {
+          "url": "data/sa1_exclude.csv",
+          "format": {
+            "type": "csv",
+            "parse": {
+              "sa1_code": "string"
+            }
+          }
+        },
+        "key": "sa1_code",
+        "fields": ["sa1_code"]
+      },
+      "as": ["excluded_sa1"]
+    },
+    {
+      "filter": "datum.excluded_sa1 == null"
+    },
+    {
+      "filter": "datum.sa3_name !== 'No usual address (ACT)' && datum.sa3_name !== 'Uriarra - Namadgi' && datum.sa3_name !== 'Canberra East' && datum.population > 0 && datum.density_pop_per_km2 >= 1000"
+    },
+    {
+      "calculate": "distance_type === 'walking' ? datum.walking_distance_m : datum.euclidean_distance_m",
+      "as": "selected_distance"
+    }
+  ],
+  "layer": [
+    {
+      "params": [
+        {
+          "name": "sa3_click",
+          "select": {
+            "type": "point",
+            "fields": ["sa3_name"]
+          },
+          "bind": "legend"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 60
+      },
+      "encoding": {
+        "x": {
+          "field": "density_pop_per_km2",
+          "type": "quantitative",
+          "title": "Population Density (persons per km²)",
+          "scale": {
+            "type": "log",
+            "domain": [1000, 60000]
+          },
+          "axis": {
+            "format": ",.0f",
+            "tickCount": 10
+          }
+        },
+        "y": {
+          "field": "selected_distance",
+          "type": "quantitative",
+          "title": "Distance to Nearest Stop (metres)",
+          "scale": {
+            "domain": [0, 2000]
+          },
+          "axis": {
+            "format": ",.0f",
+            "tickCount": 10
+          }
+        },
+        "color": {
+          "field": "sa3_name",
+          "type": "nominal",
+          "title": "District (SA3)",
+          "scale": {
+            "domain": [
+              "Belconnen",
+              "Gungahlin",
+              "North Canberra",
+              "South Canberra",
+              "Tuggeranong",
+              "Weston Creek",
+              "Woden Valley",
+              "Molonglo"
+            ],
+            "range": [
+              "#332288",
+              "#88CCEE",
+              "#44AA99",
+              "#117733",
+              "#DDCC77",
+              "#CC6677",
+              "#882255",
+              "#AA4499"
+            ]
+          },
+          "legend": {
+            "orient": "right",
+            "titleFontSize": 11,
+            "labelFontSize": 10,
+            "labelLimit": 150
+          }
+        },
+        "opacity": {
+          "condition": [
+            {
+              "param": "sa3_click",
+              "value": 0.9
+            },
+            {
+              "param": "sa3_click",
+              "empty": true,
+              "value": 0.7
+            }
+          ],
+          "value": 0.2
+        },
+        "strokeWidth": {
+          "condition": {
+            "param": "sa3_click",
+            "value": 2,
+            "empty": false
+          },
+          "value": 0
+        },
+        "stroke": {
+          "condition": {
+            "param": "sa3_click",
+            "value": "#000000",
+            "empty": false
+          },
+          "value": null
+        },
+        "tooltip": [
+          {"field": "sa3_name", "type": "nominal", "title": "District"},
+          {"field": "sa1_code", "type": "nominal", "title": "SA1 Code"},
+          {"field": "population", "type": "quantitative", "title": "Population", "format": ","},
+          {"field": "density_pop_per_km2", "type": "quantitative", "title": "Density (per km²)", "format": ",.0f"},
+          {"field": "euclidean_distance_m", "type": "quantitative", "title": "Straight-line (m)", "format": ",.0f"},
+          {"field": "walking_distance_m", "type": "quantitative", "title": "Walking (m)", "format": ",.0f"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "strokeDash": [4, 4],
+        "opacity": 0.6,
+        "strokeWidth": 1.5
+      },
+      "data": {
+        "values": [
+          {"threshold": 200, "label": "200m"},
+          {"threshold": 400, "label": "400m (optimal)"},
+          {"threshold": 600, "label": "600m"},
+          {"threshold": 800, "label": "800m (maximum)"}
+        ]
+      },
+      "encoding": {
+        "y": {"field": "threshold", "type": "quantitative"},
+        "color": {
+          "field": "label",
+          "type": "nominal",
+          "scale": {
+            "domain": ["200m", "400m (optimal)", "600m", "800m (maximum)"],
+            "range": ["#66c2a5", "#fc8d62", "#8da0cb", "#e78ac3"]
+          },
+          "legend": {
+            "title": "Accessibility Standards",
+            "orient": "right",
+            "titleFontSize": 11,
+            "labelFontSize": 10,
+            "offset": 80
+          }
+        }
+      }
+    }
+  ],
+  "resolve": {
+    "scale": {
+      "color": "independent"
+    }
+  },
+  "config": {
+    "view": {"stroke": "transparent"},
+    "axis": {"labelFontSize": 11, "titleFontSize": 12}
+  }
+}

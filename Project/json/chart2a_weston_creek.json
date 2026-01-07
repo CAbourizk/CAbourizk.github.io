@@ -1,0 +1,409 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Weston Creek population density with public transport stops",
+  "title": "Weston Creek: Population Density and Public Transport Stops",
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  },
+  "params": [
+    {
+      "name": "hover_sa1_ext",
+      "value": null
+    }
+  ],
+  "hconcat": [
+    {
+      "width": 650,
+      "height": 600,
+      "projection": {
+        "type": "mercator"
+      },
+      "layer": [
+        {
+          "name": "SA1 Boundaries",
+          "data": {
+            "url": "data/chart2a_sa1_boundaries.geojson",
+            "format": {
+              "type": "json",
+              "property": "features"
+            }
+          },
+          "transform": [
+            {
+              "filter": {
+                "field": "properties.District",
+                "equal": "Weston Creek"
+              }
+            },
+            {
+              "lookup": "properties.SA1_Code",
+              "from": {
+                "data": {
+                  "url": "data/sa1_exclude.csv",
+                  "format": {
+                    "type": "csv",
+                    "parse": {
+                      "sa1_code": "string"
+                    }
+                  }
+                },
+                "key": "sa1_code",
+                "fields": [
+                  "sa1_code"
+                ]
+              },
+              "as": [
+                "excluded_sa1"
+              ]
+            },
+            {
+              "filter": "datum.excluded_sa1 == null"
+            },
+            {
+              "calculate": "toString(datum.properties.SA1_Code)",
+              "as": "sa1_code"
+            }
+          ],
+          "mark": {
+            "type": "geoshape",
+            "stroke": "#666666",
+            "strokeWidth": 0.6
+          },
+          "encoding": {
+            "color": {
+              "field": "properties.Density_per_km2",
+              "type": "quantitative",
+              "title": "Population Density (per km\u00b2)",
+              "scale": {
+                "type": "threshold",
+                "domain": [
+                  1,
+                  500,
+                  1000,
+                  2000,
+                  4000,
+                  8000
+                ],
+                "range": [
+                  "#fff5f0",
+                  "#fee0d2",
+                  "#fcbba1",
+                  "#fc9272",
+                  "#fb6a4a",
+                  "#de2d26",
+                  "#a50f15"
+                ]
+              },
+              "legend": {
+                "orient": "bottom",
+                "direction": "horizontal",
+                "titleLimit": 200,
+                "labelLimit": 200,
+                "columns": 4,
+                "offset": 10
+              }
+            },
+            "tooltip": [
+              {
+                "field": "properties.Suburb",
+                "type": "nominal",
+                "title": "Suburb (SA2)"
+              },
+              {
+                "field": "properties.District",
+                "type": "nominal",
+                "title": "District (SA3)"
+              },
+              {
+                "field": "properties.SA1_Code",
+                "type": "nominal",
+                "title": "SA1 Code"
+              },
+              {
+                "field": "properties.Population",
+                "type": "quantitative",
+                "title": "Population",
+                "format": ","
+              },
+              {
+                "field": "properties.Area_km2",
+                "type": "quantitative",
+                "title": "Area (km\u00b2)",
+                "format": ".2f"
+              },
+              {
+                "field": "properties.Density_per_km2",
+                "type": "quantitative",
+                "title": "Density (per km\u00b2)",
+                "format": ".1f"
+              }
+            ],
+            "stroke": {
+              "condition": [
+                {
+                  "test": "hover_sa1_ext != null && datum.sa1_code == hover_sa1_ext",
+                  "value": "#111111"
+                },
+                {
+                  "test": "isValid(sa1_hover_sel_map.sa1_code) && datum.sa1_code == sa1_hover_sel_map.sa1_code",
+                  "value": "#111111"
+                }
+              ],
+              "value": "#666666"
+            },
+            "strokeWidth": {
+              "condition": [
+                {
+                  "test": "hover_sa1_ext != null && datum.sa1_code == hover_sa1_ext",
+                  "value": 2.2
+                },
+                {
+                  "test": "isValid(sa1_hover_sel_map.sa1_code) && datum.sa1_code == sa1_hover_sel_map.sa1_code",
+                  "value": 2.2
+                }
+              ],
+              "value": 0.6
+            }
+          },
+          "params": [
+            {
+              "name": "sa1_hover_sel_map",
+              "select": {
+                "type": "point",
+                "fields": [
+                  "sa1_code"
+                ],
+                "on": "mouseover",
+                "clear": "mouseout",
+                "empty": "none"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Stop Legend",
+          "data": {
+            "url": "data/chart2a_stops_weston_creek.geojson",
+            "format": {
+              "type": "json",
+              "property": "features"
+            }
+          },
+          "mark": {
+            "type": "point",
+            "opacity": 0
+          },
+          "encoding": {
+            "longitude": {
+              "field": "geometry.coordinates[0]",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "geometry.coordinates[1]",
+              "type": "quantitative"
+            },
+            "shape": {
+              "field": "properties.mode",
+              "type": "nominal",
+              "scale": {
+                "domain": [
+                  "bus",
+                  "light_rail"
+                ],
+                "range": [
+                  "circle",
+                  "square"
+                ]
+              },
+              "legend": {
+                "title": "Stop type",
+                "labelExpr": "datum.value == 'bus' ? 'Bus' : 'Light rail'",
+                "symbolSize": 120,
+                "orient": "bottom",
+                "direction": "horizontal",
+                "columns": 2,
+                "offset": 10
+              }
+            },
+            "color": {
+              "field": "properties.mode",
+              "type": "nominal",
+              "scale": {
+                "domain": [
+                  "bus",
+                  "light_rail"
+                ],
+                "range": [
+                  "#2563eb",
+                  "#fbbf24"
+                ]
+              },
+              "legend": null
+            }
+          }
+        },
+        {
+          "name": "Bus Stops",
+          "data": {
+            "url": "data/chart2a_stops_weston_creek.geojson",
+            "format": {
+              "type": "json",
+              "property": "features"
+            }
+          },
+          "transform": [
+            {
+              "filter": "datum.properties.mode == 'bus'"
+            }
+          ],
+          "mark": {
+            "type": "circle",
+            "size": 15,
+            "opacity": 0.6,
+            "color": "#2563eb"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "geometry.coordinates[0]",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "geometry.coordinates[1]",
+              "type": "quantitative"
+            },
+            "tooltip": [
+              {
+                "field": "properties.Name",
+                "type": "nominal",
+                "title": "Stop Name"
+              },
+              {
+                "field": "properties.description",
+                "type": "nominal",
+                "title": "Stop ID"
+              },
+              {
+                "field": "properties.mode",
+                "type": "nominal",
+                "title": "Mode"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Light Rail Stops",
+          "data": {
+            "url": "data/chart2a_stops_weston_creek.geojson",
+            "format": {
+              "type": "json",
+              "property": "features"
+            }
+          },
+          "transform": [
+            {
+              "filter": "datum.properties.mode == 'light_rail'"
+            }
+          ],
+          "mark": {
+            "type": "square",
+            "size": 100,
+            "opacity": 1,
+            "color": "#fbbf24",
+            "stroke": "#92400e",
+            "strokeWidth": 1.5
+          },
+          "encoding": {
+            "longitude": {
+              "field": "geometry.coordinates[0]",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "geometry.coordinates[1]",
+              "type": "quantitative"
+            },
+            "tooltip": [
+              {
+                "field": "properties.stopname",
+                "type": "nominal",
+                "title": "Station Name"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "width": 180,
+      "height": 160,
+      "projection": {
+        "type": "mercator"
+      },
+      "data": {
+        "url": "data/chart2a_sa1_boundaries.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "transform": [
+        {
+          "lookup": "properties.SA1_Code",
+          "from": {
+            "data": {
+              "url": "data/sa1_exclude.csv",
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "sa1_code": "string"
+                }
+              }
+            },
+            "key": "sa1_code",
+            "fields": [
+              "sa1_code"
+            ]
+          },
+          "as": [
+            "excluded_sa1"
+          ]
+        },
+        {
+          "filter": "datum.excluded_sa1 == null"
+        },
+        {
+          "calculate": "datum.properties.District == 'Weston Creek' ? 'focus' : 'other'",
+          "as": "focus_area"
+        }
+      ],
+      "mark": {
+        "type": "geoshape"
+      },
+      "encoding": {
+        "color": {
+          "field": "focus_area",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "other",
+              "focus"
+            ],
+            "range": [
+              "#e5e7eb",
+              "#60a5fa"
+            ]
+          },
+          "legend": null
+        },
+        "stroke": {
+          "value": "#9ca3af"
+        },
+        "strokeWidth": {
+          "value": 0.3
+        }
+      }
+    }
+  ],
+  "spacing": 10
+}

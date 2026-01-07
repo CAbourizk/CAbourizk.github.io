@@ -1,0 +1,704 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Interactive map of Canberra transit routes colored by service frequency",
+  "title": {
+    "text": "Canberra Public Transport Route Map",
+    "subtitle": "Routes colored by service frequency",
+    "anchor": "start"
+  },
+  "width": 700,
+  "height": 700,
+  "projection": {
+    "type": "mercator"
+  },
+  "params": [
+    {
+      "name": "service_type",
+      "value": "weekday_peak",
+      "bind": {
+        "input": "select",
+        "options": [
+          "weekday_peak",
+          "weekday_offpeak",
+          "saturday",
+          "sunday"
+        ],
+        "labels": [
+          "Weekday Peak (7-9am, 4-6pm)",
+          "Weekday Off-Peak (9am-4pm, 6-9pm)",
+          "Saturday",
+          "Sunday"
+        ],
+        "name": "Service Period: "
+      }
+    },
+    {
+      "name": "selected_route",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All",
+          "Light Rail",
+          "R1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "30",
+          "31",
+          "32",
+          "40",
+          "41",
+          "42",
+          "43",
+          "44",
+          "45",
+          "46",
+          "47",
+          "50",
+          "51",
+          "53",
+          "54",
+          "55",
+          "56",
+          "57",
+          "58",
+          "59",
+          "60",
+          "61",
+          "62",
+          "63",
+          "64",
+          "65",
+          "66",
+          "70",
+          "71",
+          "72",
+          "73",
+          "74",
+          "75",
+          "76",
+          "77",
+          "78",
+          "79",
+          "80",
+          "81",
+          "180",
+          "181",
+          "182",
+          "901",
+          "903"
+        ],
+        "name": "Highlight Route: "
+      }
+    },
+    {
+      "name": "hover_route",
+      "value": null
+    }
+  ],
+  "layer": [
+    {
+      "name": "SA1 Boundaries",
+      "data": {
+        "url": "data/chart2a_sa1_boundaries.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "transform": [
+        {
+          "lookup": "properties.SA1_Code",
+          "from": {
+            "data": {
+              "url": "data/sa1_exclude.csv",
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "sa1_code": "string"
+                }
+              }
+            },
+            "key": "sa1_code",
+            "fields": [
+              "sa1_code"
+            ]
+          },
+          "as": [
+            "excluded_sa1"
+          ]
+        },
+        {
+          "filter": "datum.excluded_sa1 == null"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#666666",
+        "strokeWidth": 0.3,
+        "fill": null,
+        "fillOpacity": 0
+      }
+    },
+    {
+      "name": "All Routes",
+      "data": {
+        "url": "data/chart8_route_shapes.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "transform": [
+        {
+          "calculate": "datum.properties['headway_' + service_type]",
+          "as": "current_headway"
+        },
+        {
+          "filter": "isValid(datum.current_headway)"
+        },
+        {
+          "calculate": "datum.current_headway < 5 ? '<5 min' : datum.current_headway <= 10 ? '5-10 min' : datum.current_headway <= 20 ? '11-20 min' : datum.current_headway <= 60 ? '21-60 min' : '60+ min'",
+          "as": "headway_category"
+        },
+        {
+          "calculate": "datum.properties.route_short_name == 'R1' ? 'Light Rail' : replace(toString(datum.properties.route_short_name), /\\.0$/, '')",
+          "as": "route_str"
+        }
+      ],
+      "layer": [
+        {
+          "params": [
+            {
+              "name": "route_hover_map",
+              "select": {
+                "type": "point",
+                "fields": [
+                  "route_str"
+                ],
+                "on": "mouseover",
+                "clear": "mouseout"
+              }
+            }
+          ],
+          "transform": [
+            {
+              "filter": "datum.headway_category == '60+ min'"
+            }
+          ],
+          "mark": {
+            "type": "geoshape",
+            "filled": false
+          },
+          "encoding": {
+            "stroke": {
+              "field": "headway_category",
+              "type": "nominal",
+              "title": "Headway",
+              "sort": [
+                "<5 min",
+                "5-10 min",
+                "11-20 min",
+                "21-60 min",
+                "60+ min"
+              ],
+              "scale": {
+                "domain": [
+                  "<5 min",
+                  "5-10 min",
+                  "11-20 min",
+                  "21-60 min",
+                  "60+ min"
+                ],
+                "range": [
+                  "#1A9850",
+                  "#91CF60",
+                  "#FED976",
+                  "#FC8D59",
+                  "#D73027"
+                ]
+              },
+              "legend": {
+                "orient": "bottom-right",
+                "direction": "vertical",
+                "titleLimit": 150
+              }
+            },
+            "strokeWidth": {
+              "condition": [
+                {
+                  "test": "hover_route != null && datum.route_str == hover_route",
+                  "value": 5
+                },
+                {
+                  "test": "hover_route == null && selected_route != 'All' && datum.route_str == selected_route",
+                  "value": 5
+                }
+              ],
+              "value": 2.5
+            },
+            "opacity": {
+              "condition": [
+                {
+                  "test": "hover_route != null && datum.route_str == hover_route",
+                  "value": 0.95
+                },
+                {
+                  "test": "hover_route != null",
+                  "value": 0.2
+                },
+                {
+                  "test": "selected_route == 'All' || datum.route_str == selected_route",
+                  "value": 0.95
+                }
+              ],
+              "value": 0.2
+            },
+            "tooltip": [
+              {
+                "field": "route_str",
+                "type": "nominal",
+                "title": "Route"
+              },
+              {
+                "field": "properties.route_long_name",
+                "type": "nominal",
+                "title": "Route Name"
+              },
+              {
+                "field": "current_headway",
+                "type": "quantitative",
+                "title": "Mean Headway (min)",
+                "format": ".1f"
+              },
+              {
+                "field": "headway_category",
+                "type": "nominal",
+                "title": "Frequency Category"
+              }
+            ]
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.headway_category == '21-60 min'"
+            }
+          ],
+          "mark": {
+            "type": "geoshape",
+            "filled": false
+          },
+          "encoding": {
+            "stroke": {
+              "field": "headway_category",
+              "type": "nominal",
+              "title": "Headway",
+              "sort": [
+                "<5 min",
+                "5-10 min",
+                "11-20 min",
+                "21-60 min",
+                "60+ min"
+              ],
+              "scale": {
+                "domain": [
+                  "<5 min",
+                  "5-10 min",
+                  "11-20 min",
+                  "21-60 min",
+                  "60+ min"
+                ],
+                "range": [
+                  "#1A9850",
+                  "#91CF60",
+                  "#FED976",
+                  "#FC8D59",
+                  "#D73027"
+                ]
+              },
+              "legend": {
+                "orient": "bottom-right",
+                "direction": "vertical",
+                "titleLimit": 150
+              }
+            },
+            "strokeWidth": {
+              "condition": [
+                {
+                  "test": "hover_route != null && datum.route_str == hover_route",
+                  "value": 5
+                },
+                {
+                  "test": "hover_route == null && selected_route != 'All' && datum.route_str == selected_route",
+                  "value": 5
+                }
+              ],
+              "value": 2.5
+            },
+            "opacity": {
+              "condition": [
+                {
+                  "test": "hover_route != null && datum.route_str == hover_route",
+                  "value": 0.95
+                },
+                {
+                  "test": "hover_route != null",
+                  "value": 0.2
+                },
+                {
+                  "test": "selected_route == 'All' || datum.route_str == selected_route",
+                  "value": 0.95
+                }
+              ],
+              "value": 0.2
+            },
+            "tooltip": [
+              {
+                "field": "route_str",
+                "type": "nominal",
+                "title": "Route"
+              },
+              {
+                "field": "properties.route_long_name",
+                "type": "nominal",
+                "title": "Route Name"
+              },
+              {
+                "field": "current_headway",
+                "type": "quantitative",
+                "title": "Mean Headway (min)",
+                "format": ".1f"
+              },
+              {
+                "field": "headway_category",
+                "type": "nominal",
+                "title": "Frequency Category"
+              }
+            ]
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.headway_category == '11-20 min'"
+            }
+          ],
+          "mark": {
+            "type": "geoshape",
+            "filled": false
+          },
+          "encoding": {
+            "stroke": {
+              "field": "headway_category",
+              "type": "nominal",
+              "title": "Headway",
+              "sort": [
+                "<5 min",
+                "5-10 min",
+                "11-20 min",
+                "21-60 min",
+                "60+ min"
+              ],
+              "scale": {
+                "domain": [
+                  "<5 min",
+                  "5-10 min",
+                  "11-20 min",
+                  "21-60 min",
+                  "60+ min"
+                ],
+                "range": [
+                  "#1A9850",
+                  "#91CF60",
+                  "#FED976",
+                  "#FC8D59",
+                  "#D73027"
+                ]
+              },
+              "legend": {
+                "orient": "bottom-right",
+                "direction": "vertical",
+                "titleLimit": 150
+              }
+            },
+            "strokeWidth": {
+              "condition": [
+                {
+                  "test": "hover_route != null && datum.route_str == hover_route",
+                  "value": 5
+                },
+                {
+                  "test": "hover_route == null && selected_route != 'All' && datum.route_str == selected_route",
+                  "value": 5
+                }
+              ],
+              "value": 2.5
+            },
+            "opacity": {
+              "condition": [
+                {
+                  "test": "hover_route != null && datum.route_str == hover_route",
+                  "value": 0.95
+                },
+                {
+                  "test": "hover_route != null",
+                  "value": 0.2
+                },
+                {
+                  "test": "selected_route == 'All' || datum.route_str == selected_route",
+                  "value": 0.95
+                }
+              ],
+              "value": 0.2
+            },
+            "tooltip": [
+              {
+                "field": "route_str",
+                "type": "nominal",
+                "title": "Route"
+              },
+              {
+                "field": "properties.route_long_name",
+                "type": "nominal",
+                "title": "Route Name"
+              },
+              {
+                "field": "current_headway",
+                "type": "quantitative",
+                "title": "Mean Headway (min)",
+                "format": ".1f"
+              },
+              {
+                "field": "headway_category",
+                "type": "nominal",
+                "title": "Frequency Category"
+              }
+            ]
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.headway_category == '5-10 min'"
+            }
+          ],
+          "mark": {
+            "type": "geoshape",
+            "filled": false
+          },
+          "encoding": {
+            "stroke": {
+              "field": "headway_category",
+              "type": "nominal",
+              "title": "Headway",
+              "sort": [
+                "<5 min",
+                "5-10 min",
+                "11-20 min",
+                "21-60 min",
+                "60+ min"
+              ],
+              "scale": {
+                "domain": [
+                  "<5 min",
+                  "5-10 min",
+                  "11-20 min",
+                  "21-60 min",
+                  "60+ min"
+                ],
+                "range": [
+                  "#1A9850",
+                  "#91CF60",
+                  "#FED976",
+                  "#FC8D59",
+                  "#D73027"
+                ]
+              },
+              "legend": {
+                "orient": "bottom-right",
+                "direction": "vertical",
+                "titleLimit": 150
+              }
+            },
+            "strokeWidth": {
+              "condition": [
+                {
+                  "test": "hover_route != null && datum.route_str == hover_route",
+                  "value": 5
+                },
+                {
+                  "test": "hover_route == null && selected_route != 'All' && datum.route_str == selected_route",
+                  "value": 5
+                }
+              ],
+              "value": 2.5
+            },
+            "opacity": {
+              "condition": [
+                {
+                  "test": "hover_route != null && datum.route_str == hover_route",
+                  "value": 0.95
+                },
+                {
+                  "test": "hover_route != null",
+                  "value": 0.2
+                },
+                {
+                  "test": "selected_route == 'All' || datum.route_str == selected_route",
+                  "value": 0.95
+                }
+              ],
+              "value": 0.2
+            },
+            "tooltip": [
+              {
+                "field": "route_str",
+                "type": "nominal",
+                "title": "Route"
+              },
+              {
+                "field": "properties.route_long_name",
+                "type": "nominal",
+                "title": "Route Name"
+              },
+              {
+                "field": "current_headway",
+                "type": "quantitative",
+                "title": "Mean Headway (min)",
+                "format": ".1f"
+              },
+              {
+                "field": "headway_category",
+                "type": "nominal",
+                "title": "Frequency Category"
+              }
+            ]
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.headway_category == '<5 min'"
+            }
+          ],
+          "mark": {
+            "type": "geoshape",
+            "filled": false
+          },
+          "encoding": {
+            "stroke": {
+              "field": "headway_category",
+              "type": "nominal",
+              "title": "Headway",
+              "sort": [
+                "<5 min",
+                "5-10 min",
+                "11-20 min",
+                "21-60 min",
+                "60+ min"
+              ],
+              "scale": {
+                "domain": [
+                  "<5 min",
+                  "5-10 min",
+                  "11-20 min",
+                  "21-60 min",
+                  "60+ min"
+                ],
+                "range": [
+                  "#1A9850",
+                  "#91CF60",
+                  "#FED976",
+                  "#FC8D59",
+                  "#D73027"
+                ]
+              },
+              "legend": {
+                "orient": "bottom-right",
+                "direction": "vertical",
+                "titleLimit": 150
+              }
+            },
+            "strokeWidth": {
+              "condition": [
+                {
+                  "test": "hover_route != null && datum.route_str == hover_route",
+                  "value": 5
+                },
+                {
+                  "test": "hover_route == null && selected_route != 'All' && datum.route_str == selected_route",
+                  "value": 5
+                }
+              ],
+              "value": 2.5
+            },
+            "opacity": {
+              "condition": [
+                {
+                  "test": "hover_route != null && datum.route_str == hover_route",
+                  "value": 0.95
+                },
+                {
+                  "test": "hover_route != null",
+                  "value": 0.2
+                },
+                {
+                  "test": "selected_route == 'All' || datum.route_str == selected_route",
+                  "value": 0.95
+                }
+              ],
+              "value": 0.2
+            },
+            "tooltip": [
+              {
+                "field": "route_str",
+                "type": "nominal",
+                "title": "Route"
+              },
+              {
+                "field": "properties.route_long_name",
+                "type": "nominal",
+                "title": "Route Name"
+              },
+              {
+                "field": "current_headway",
+                "type": "quantitative",
+                "title": "Mean Headway (min)",
+                "format": ".1f"
+              },
+              {
+                "field": "headway_category",
+                "type": "nominal",
+                "title": "Frequency Category"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}
