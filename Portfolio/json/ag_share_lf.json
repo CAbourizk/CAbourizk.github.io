@@ -42,8 +42,8 @@
       "title": "Country"
     }
   },
-  "height": 300,
-  "width": "container",
+  "height": 500,
+  "width": 800,
   "autosize": {
     "type": "fit",
     "contains": "padding"

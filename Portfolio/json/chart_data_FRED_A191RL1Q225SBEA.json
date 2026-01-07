@@ -2,12 +2,15 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Real GDP Growth Rate",
-    "subtitle": ["Real Gross Domestic Product, Percent Change from Preceding Period (A191RL1Q225SBEA)", "Source: U.S. Bureau of Economic Analysis, Federal Reserve Bank of St. Louis (FRED)"],
+    "subtitle": [
+      "Real Gross Domestic Product, Percent Change from Preceding Period (A191RL1Q225SBEA)",
+      "Source: U.S. Bureau of Economic Analysis, Federal Reserve Bank of St. Louis (FRED)"
+    ],
     "fontSize": 16,
     "anchor": "start"
   },
-  "width": 400,
-  "height": 300,
+  "width": 800,
+  "height": 500,
   "data": {
     "url": "https://raw.githubusercontent.com/CAbourizk/CAbourizk.github.io/refs/heads/main/Portfolio/json/data_FRED_A191RL1Q225SBEA.json",
     "format": {
@@ -48,12 +51,24 @@
       }
     },
     "tooltip": [
-      {"field": "date", "type": "temporal", "title": "Date", "format": "%B %Y"},
-      {"field": "numValue", "type": "quantitative", "title": "Growth Rate (%)", "format": ".1f"}
+      {
+        "field": "date",
+        "type": "temporal",
+        "title": "Date",
+        "format": "%B %Y"
+      },
+      {
+        "field": "numValue",
+        "type": "quantitative",
+        "title": "Growth Rate (%)",
+        "format": ".1f"
+      }
     ]
   },
   "config": {
-    "view": {"strokeWidth": 0},
+    "view": {
+      "strokeWidth": 0
+    },
     "title": {
       "subtitleFontSize": 10,
       "subtitleColor": "gray"

@@ -51,8 +51,14 @@
           "field": "countryiso3code",
           "title": "Country",
           "scale": {
-            "domain": ["AUS", "KOR"],
-            "range": ["#8CAA9E", "#D4A574"]
+            "domain": [
+              "AUS",
+              "KOR"
+            ],
+            "range": [
+              "#8CAA9E",
+              "#D4A574"
+            ]
           }
         },
         "y": {
@@ -68,14 +74,20 @@
     {
       "mark": "rule",
       "encoding": {
-        "y": {"datum": 0},
-        "color": {"value": "black"},
-        "strokeWidth": {"value": 1}
+        "y": {
+          "datum": 0
+        },
+        "color": {
+          "value": "black"
+        },
+        "strokeWidth": {
+          "value": 1
+        }
       }
     }
   ],
-  "height": 300,
-  "width": "container",
+  "height": 500,
+  "width": 800,
   "autosize": {
     "type": "fit",
     "contains": "padding"

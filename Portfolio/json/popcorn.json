@@ -10,7 +10,6 @@
       "type": "csv"
     }
   },
-  
   "mark": "line",
   "encoding": {
     "x": {
@@ -21,7 +20,7 @@
     "y": {
       "field": "price",
       "type": "quantitative",
-      "title": "Price (£)",
+      "title": "Price (\u00a3)",
       "axis": {
         "grid": false
       }
@@ -32,6 +31,6 @@
       "title": "Price Type"
     }
   },
-  "width": 300,
-  "height": 200
+  "width": 800,
+  "height": 500
 }

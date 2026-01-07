@@ -1,8 +1,8 @@
 {
   "config": {
     "view": {
-      "continuousWidth": 300,
-      "continuousHeight": 300
+      "continuousWidth": 800,
+      "continuousHeight": 500
     }
   },
   "data": {
@@ -27,7 +27,7 @@
     },
     "y": {
       "field": "price",
-      "title": "Price (£)",
+      "title": "Price (\u00a3)",
       "type": "quantitative",
       "axis": {
         "grid": false
@@ -3421,5 +3421,7 @@
         "price": 11.5
       }
     ]
-  }
+  },
+  "width": 800,
+  "height": 500
 }

@@ -1,22 +1,37 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
-  "data": {"url": "https://raw.githubusercontent.com/CAbourizk/CAbourizk.github.io/refs/heads/main/Portfolio/csv/trade_data.csv"},
-  
-  "width": "container",
-  
+  "data": {
+    "url": "https://raw.githubusercontent.com/CAbourizk/CAbourizk.github.io/refs/heads/main/Portfolio/csv/trade_data.csv"
+  },
+  "width": 800,
   "title": {
     "text": "Goods and services trade",
-    "subtitle": "2024, million US$ | Source:Wikipedia"},
-
+    "subtitle": "2024, million US$ | Source:Wikipedia"
+  },
   "mark": {
     "type": "bar",
-    "tooltip": {"content": "data"}},
-
+    "tooltip": {
+      "content": "data"
+    }
+  },
   "encoding": {
     "tooltip": [
-      {"field": "State", "type": "nominal", "title": "Country"},
-      {"field": "Trade_Category", "type": "nominal", "title": "Trade Type"},
-      {"field": "Value", "type": "quantitative", "title": "Value ($m USD)", "format": ","}
+      {
+        "field": "State",
+        "type": "nominal",
+        "title": "Country"
+      },
+      {
+        "field": "Trade_Category",
+        "type": "nominal",
+        "title": "Trade Type"
+      },
+      {
+        "field": "Value",
+        "type": "quantitative",
+        "title": "Value ($m USD)",
+        "format": ","
+      }
     ],
     "x": {
       "field": "State",
@@ -26,7 +41,7 @@
     "y": {
       "field": "Value",
       "type": "quantitative",
-      "axis":{
+      "axis": {
         "title": "Trade Value ($m USD)"
       },
       "stack": "zero"
@@ -36,15 +51,18 @@
       "type": "nominal",
       "title": "Category",
       "scale": {
-        "range": ["#8CAA9E", "#D4A574"]
+        "range": [
+          "#8CAA9E",
+          "#D4A574"
+        ]
       }
     },
     "order": {
       "field": "Trade_Category",
       "sort": "ascending"
     }
-    },
-  "height": 300,
+  },
+  "height": 500,
   "autosize": {
     "type": "fit",
     "contains": "padding"

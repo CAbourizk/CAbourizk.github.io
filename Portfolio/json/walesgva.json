@@ -4,11 +4,14 @@
     "text": "Wales GVA per hour by Local Authority (2023)",
     "subtitle": "Source: ONS and RADataHub"
   },
-  "width": 350,
-  "height": 450,
+  "width": 800,
+  "height": 500,
   "data": {
     "url": "https://raw.githubusercontent.com/jhellingsdata/RADataHub/refs/heads/main/MappingWorkshop/geo_data/LAD_WLS_2025_05.topojson",
-    "format": {"type": "topojson", "feature": "object_name"}
+    "format": {
+      "type": "topojson",
+      "feature": "object_name"
+    }
   },
   "transform": [
     {
@@ -18,17 +21,26 @@
           "url": "https://raw.githubusercontent.com/CAbourizk/CAbourizk.github.io/refs/heads/main/Portfolio/csv/gross-value-added-per-hour-worked-map-data.csv"
         },
         "key": "geo_id",
-        "fields": ["value", "date"]
+        "fields": [
+          "value",
+          "date"
+        ]
       }
     }
   ],
-  "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 0.5},
+  "mark": {
+    "type": "geoshape",
+    "stroke": "white",
+    "strokeWidth": 0.5
+  },
   "encoding": {
     "color": {
       "field": "value",
       "type": "quantitative",
-      "scale": {"scheme": "greens"},
-      "title": "GVA per hour worked (£)"
+      "scale": {
+        "scheme": "greens"
+      },
+      "title": "GVA per hour worked (\u00a3)"
     },
     "tooltip": [
       {
@@ -39,10 +51,12 @@
       {
         "field": "value",
         "type": "quantitative",
-        "title": "GVA per hour (£)",
+        "title": "GVA per hour (\u00a3)",
         "format": ",.0f"
       }
     ]
   },
-  "projection": {"type": "mercator"}
+  "projection": {
+    "type": "mercator"
+  }
 }

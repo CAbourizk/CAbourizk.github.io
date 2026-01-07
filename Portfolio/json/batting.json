@@ -7,31 +7,72 @@
   },
   "data": {
     "url": "https://raw.githubusercontent.com/CAbourizk/CAbourizk.github.io/refs/heads/main/Portfolio/csv/Batting_average.csv",
-    "format": {"type": "csv"}
+    "format": {
+      "type": "csv"
+    }
   },
   "transform": [
     {
-      "fold": ["Runs", "Avg"],
-      "as": ["Metric", "Value"]
+      "fold": [
+        "Runs",
+        "Avg"
+      ],
+      "as": [
+        "Metric",
+        "Value"
+      ]
     }
   ],
   "mark": "bar",
   "encoding": {
-    "x": {"field": "Value", "type": "quantitative", "title": null},
-    "y": {"field": "City", "type": "nominal", "title": null, "sort": {"field": "Avg", "op": "max", "order": "descending"}},
-    "color": {"field": "City", "type": "nominal", "legend": null},
+    "x": {
+      "field": "Value",
+      "type": "quantitative",
+      "title": null
+    },
+    "y": {
+      "field": "City",
+      "type": "nominal",
+      "title": null,
+      "sort": {
+        "field": "Batting Average",
+        "op": "max",
+        "order": "descending"
+      }
+    },
+    "color": {
+      "field": "City",
+      "type": "nominal",
+      "legend": null
+    },
     "facet": {
       "field": "Metric",
       "type": "nominal",
       "title": null,
-      "header": {"labelFontSize": 14}
+      "header": {
+        "labelFontSize": 14,
+        "labelOrient": "bottom",
+        "labelPadding": 8
+      }
     },
     "tooltip": [
-      {"field": "City", "type": "nominal"},
-      {"field": "Value", "type": "quantitative", "format": ",.0f", "title": "Value"}
+      {
+        "field": "City",
+        "type": "nominal"
+      },
+      {
+        "field": "Value",
+        "type": "quantitative",
+        "format": ",.0f",
+        "title": "Value"
+      }
     ]
   },
   "resolve": {
-    "scale": {"x": "independent"}
-  }
+    "scale": {
+      "x": "independent"
+    }
+  },
+  "width": 395,
+  "height": 500
 }

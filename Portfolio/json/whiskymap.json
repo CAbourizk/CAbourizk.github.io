@@ -4,21 +4,32 @@
     "text": "Whiskies of Scotland",
     "subtitle": "Sources: Distillery locations scraped and geocoded via Google Maps API; Scotland geography from RADataHub TopoJSON"
   },
-  "width": 350,
-  "height": 400,
+  "width": 800,
+  "height": 500,
   "config": {
-  "legend": { "disable": true },
-  "view": { "stroke": null }
-},
+    "legend": {
+      "disable": true
+    },
+    "view": {
+      "stroke": null
+    }
+  },
   "projection": {
     "type": "mercator",
-    "center": [-4.5, 57.8],
-    "scale": 2000},
+    "center": [
+      -4.5,
+      57.8
+    ],
+    "scale": 2000
+  },
   "layer": [
     {
       "data": {
         "url": "https://raw.githubusercontent.com/jhellingsdata/RADataHub/refs/heads/main/MappingWorkshop/geo_data/scotland.topojson",
-        "format": {"type": "topojson", "feature": "data"}
+        "format": {
+          "type": "topojson",
+          "feature": "data"
+        }
       },
       "mark": {
         "type": "geoshape",
@@ -26,7 +37,6 @@
         "stroke": "white",
         "strokeWidth": 0.1
       }
-
     },
     {
       "data": {
@@ -34,11 +44,22 @@
       },
       "mark": "circle",
       "encoding": {
-        "longitude": {"field": "lon", "type": "quantitative"},
-        "latitude": {"field": "lat", "type": "quantitative"},
-        "color": {"value": "#005F6B"},
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "color": {
+          "value": "#005F6B"
+        },
         "tooltip": [
-          {"field": "name", "title": "Distillery name:"}
+          {
+            "field": "name",
+            "title": "Distillery name:"
+          }
         ]
       }
     }

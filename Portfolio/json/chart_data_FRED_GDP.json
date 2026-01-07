@@ -2,12 +2,15 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Nominal GDP Growth Rate (Year-over-Year)",
-    "subtitle": ["Gross Domestic Product (GDP)", "Source: U.S. Bureau of Economic Analysis, Federal Reserve Bank of St. Louis (FRED)"],
+    "subtitle": [
+      "Gross Domestic Product (GDP)",
+      "Source: U.S. Bureau of Economic Analysis, Federal Reserve Bank of St. Louis (FRED)"
+    ],
     "fontSize": 16,
     "anchor": "start"
   },
-  "width": 400,
-  "height": 300,
+  "width": 800,
+  "height": 500,
   "data": {
     "url": "https://raw.githubusercontent.com/CAbourizk/CAbourizk.github.io/refs/heads/main/Portfolio/json/data_FRED_GDP.json",
     "format": {
@@ -24,8 +27,19 @@
       "as": "numValue"
     },
     {
-      "window": [{"op": "lag", "field": "numValue", "param": 4, "as": "lagValue"}],
-      "sort": [{"field": "date"}]
+      "window": [
+        {
+          "op": "lag",
+          "field": "numValue",
+          "param": 4,
+          "as": "lagValue"
+        }
+      ],
+      "sort": [
+        {
+          "field": "date"
+        }
+      ]
     },
     {
       "calculate": "((datum.numValue - datum.lagValue) / datum.lagValue) * 100",
@@ -59,12 +73,24 @@
       }
     },
     "tooltip": [
-      {"field": "date", "type": "temporal", "title": "Date", "format": "%B %Y"},
-      {"field": "gdpGrowth", "type": "quantitative", "title": "GDP Growth (%)", "format": ".2f"}
+      {
+        "field": "date",
+        "type": "temporal",
+        "title": "Date",
+        "format": "%B %Y"
+      },
+      {
+        "field": "gdpGrowth",
+        "type": "quantitative",
+        "title": "GDP Growth (%)",
+        "format": ".2f"
+      }
     ]
   },
   "config": {
-    "view": {"strokeWidth": 0},
+    "view": {
+      "strokeWidth": 0
+    },
     "title": {
       "subtitleFontSize": 10,
       "subtitleColor": "gray"

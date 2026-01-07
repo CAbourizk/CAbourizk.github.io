@@ -8,8 +8,8 @@
     "text": "10 Year Gilt",
     "subtitle": "Yield, % | Source: BoE through ECO API"
   },
-  "height": 300,
-  "width": "container",
+  "height": 500,
+  "width": 800,
   "autosize": {
     "type": "fit",
     "contains": "padding"
@@ -18,18 +18,30 @@
     {
       "filter": "datum.date >= toDate('2000-01-01') && datum.date <= toDate('2024-12-31')"
     },
-    {"calculate": "datum.value *100", "as":"value"}
+    {
+      "calculate": "datum.value *100",
+      "as": "value"
+    }
   ],
-  "mark": {"type": "line", "color": "#8CAA9E"},
+  "mark": {
+    "type": "line",
+    "color": "#8CAA9E"
+  },
   "encoding": {
     "x": {
       "field": "date",
       "type": "temporal",
-      "scale": {
-        "domain":["2000-01-01", "2024-12-31"],
-        "clamp": true
-        }
+      "axis": {
+        "title": "Year"
       },
+      "scale": {
+        "domain": [
+          "2000-01-01",
+          "2024-12-31"
+        ],
+        "clamp": true
+      }
+    },
     "y": {
       "field": "value",
       "type": "quantitative",
