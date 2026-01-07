@@ -20,7 +20,7 @@
         <div class="section-header">
            
             <p>
-                Canberra has invested heavily in public transport, yet ridership remains low. Data suggest that route coverage and reliability are reasonable, but weekend frequency remains a major service gap. This analysis examines how Canberra's public transport service quality (coverage, frequency, reliability) falls short of likely demand and aims to identify which areas stand to benefit most from improvements.
+                Canberra has invested heavily in public transport, yet ridership remains low. Data suggest that route coverage and reliability are reasonable, but weekend frequency remains a major service gap. This analysis examines how Canberra's public transport service quality (coverage, frequency, reliability) likely falls short of demand and aims to identify which areas stand to benefit most from improvements.
             </p>
         </div>
     </section>
@@ -126,7 +126,7 @@
             <h2>Looking for areas of latent demand</h2>
         </div>
         <p>Coverage, frequency, and reliability are not the only determinants of public transport use. For example, a university student is often more likely to use public transport than a high-income retiree. Looking at these demographic variables, we can identify which areas of Canberra use more or less public transport than predicted by their demographics. If the ACT government wants to increase public transport use, it should focus on areas that have strong demographic predictors of public transport use and poor service quality. 
-            <br> Using machine learning techniques on census data, we can identify SA1s with higher or lower public transport use than expected. Comparing this with a service quality score reveals 206 "undersupplied" SA1s covering 90,425 residents, with a high propensity to use public transport but low service quality. In the chart on the right, the 'Urban core - well served' cluster demonstrates what's possible. This cluster has similar demographics to the 'Undersupplied' group but 19% higher public transport use, facilitated by higher service levels. </p>
+            <br> Using machine learning techniques on census data, we can identify SA1s with higher or lower public transport use than expected. Comparing this with a service quality score reveals 206 "undersupplied" SA1s covering 90,425 residents, with a high propensity to use public transport but low service quality. In the chart on the right, the 'Urban core - well served' cluster demonstrates what's possible. This cluster has similar demographics to the 'Undersupplied Urban' group but 19% higher public transport use, facilitated by higher service levels. </p>
                 
         <div class="chart-container">
             <div class="chart-item">
@@ -158,7 +158,7 @@
                         <strong>Findings:</strong> The clustering reveals 206 "Undersupplied Urban" SA1 areas (red points) serving 90,425 residents who have high demographic propensity scores but receive below-average service quality. 
                     </p>
                     <p>
-                        <strong>Data:</strong> ABS Census 2021 + Transport Canberra GTFS + SA1 boundaries | <strong>Processing:</strong> <a href="https://colab.research.google.com/drive/1Fp9rtl7V2lNt4zUsRcspylzl19QLSQHA?usp=sharing" target="_blank">create_supply_scores.py</a> (supply metrics), <a href="https://colab.research.google.com/drive/1TpfBMDu-32q1okWImzTqmGWYpesYse-g?usp=sharing" target="_blank">clustering_demand_supply.py</a>
+                        <strong>Data:</strong> ABS Census 2021 + Transport Canberra GTFS + SA1 boundaries | <strong>Processing:</strong> <a href="https://colab.research.google.com/drive/1Fp9rtl7V2lNt4zUsRcspylzl19QLSQHA?usp=sharing" target="_blank">create_supply_scores.py</a>, <a href="https://colab.research.google.com/drive/1TpfBMDu-32q1okWImzTqmGWYpesYse-g?usp=sharing" target="_blank">clustering_demand_supply.py</a>
                     </p>
                 </details>
             </div>
