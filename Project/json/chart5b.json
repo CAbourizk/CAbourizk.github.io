@@ -266,53 +266,19 @@
             "title": "Population",
             "format": ","
           },
-          {
-            "field": "demand_score",
-            "type": "quantitative",
-            "title": "Demand Score",
-            "format": ".1f"
-          },
-          {
-            "field": "supply_score",
-            "type": "quantitative",
-            "title": "Supply Score",
-            "format": ".1f"
-          },
+          
           {
             "field": "mismatch_score",
             "type": "quantitative",
             "title": "Mismatch (Demand - Supply)",
             "format": "+.1f"
           },
-          {
-            "field": "priority_score",
-            "type": "quantitative",
-            "title": "Priority Score for Investment",
-            "format": ".1f"
-          },
+          
           {
             "field": "pt_commute_rate",
             "type": "quantitative",
             "title": "Public Transport Commute Rate (%)",
             "format": ".2f"
-          },
-          {
-            "field": "walking_distance_m",
-            "type": "quantitative",
-            "title": "Distance to Nearest Stop (m)",
-            "format": ".0f"
-          },
-          {
-            "field": "weekday_peak_departures",
-            "type": "quantitative",
-            "title": "Weekday Peak Departures",
-            "format": ".0f"
-          },
-          {
-            "field": "weekend_departures",
-            "type": "quantitative",
-            "title": "Weekend Departures",
-            "format": ".1f"
           }
         ]
       }
