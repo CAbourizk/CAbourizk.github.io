@@ -127,7 +127,7 @@
             <h2>Looking for areas of latent demand</h2>
         </div>
         <p>Coverage, frequency, and reliability aren't the only determinants of public transport use. For example, a university student is often more likely to use public transport than a high-income retieree. Looking at these demographic variables we can try and find which areas of Canberra use more or less public transport than predicted by their demographic variables. If the ACT government wants to raise public transport use, it should focus on areas that have strong demographic predictors of public transport use, but poor service quality. 
-            <br> Using machine learning techniques we can use census data to find SA1s with above and below expected public transport use. Comparing this to a service quality score, reveals 206 "undersupplied" SA1s covering 90,425 residents, with a high propensity to use public transport but low quality.</p>
+            <br> Using machine learning techniques we can use census data to find SA1s with above and below expected public transport use. Comparing this to a service quality score, reveals 206 "undersupplied" SA1s covering 90,425 residents, with a high propensity to use public transport but low quality. In the chart on the right, the 'Urban Core' cluster demonstrates what's possible. This cluster of SA1s has similar demographic variables to the 'undersupplied' but [x% higher public transport use] facilitated by higher service levels. </p>
                 
         <div class="chart-container">
             <div class="chart-item">
@@ -136,13 +136,13 @@
                     <summary>Technical notes</summary>
                     <p>This chart estimates demographic propensity for PT usage using census variables.</p>
                     <p>
-                        <strong>Method:</strong> A single Gradient Boosting model trained on demographics variables (occupation, age, labour force participation, education, and income). The target is public transport commute rate from the census, using the same train-test split across SA1s.
+                        <strong>Method:</strong> A single Gradient Boosting model trained on demographics variables (occupation, age, labour force participation, education, income, population density). The target is public transport commute rate from the census, using the same train-test split across SA1s.
                     </p>
                     <p>
                         <strong>Findings:</strong> Demographics alone explain a modest share of the variation in public transport commuting (R²=0.185). The scatter shows wide dispersion around the diagonal, indicating that demographic characteristics are only a partial predictor of PT usage across SA1s.
                     </p>
                     <p>
-                        <strong>Data:</strong> ABS Census 2021 (7 tables: G01, G02, G13, G16, G17B, G43, G51) + SA1 boundaries | <strong>Processing:</strong> <a href="https://github.com/CAbourizk/CAbourizk.github.io/blob/main/scripts/ml_pt_commuting_rate.py" target="_blank">ml_pt_commuting_rate.py</a>
+                        <strong>Data:</strong> ABS Census 2021 (7 tables: G01, G02, G13, G16, G17B, G43, G51) + SA1 boundaries | <strong>Processing:</strong> <a href="https://colab.research.google.com/drive/1jzUpn28PHHZhIywX5qqROJNgwpD_wfQE?usp=sharing" target="_blank">ml_pt_commuting_rate.py</a>
                     </p>
                 </details>
             </div>
@@ -156,7 +156,7 @@
                         <strong>Method:</strong> Using a K-means clustering (k=4) SA1s are clustered based on two composite scores: <strong>Demand Score</strong> – based on demographic indicators of public transport propensity , and (2) <strong>Supply Score</strong> – service quality indicators (proximity to closest stop, service frequency, departures per capita, service consistency ratios). Areas are clustered into four policy-relevant groups.
                     </p>
                     <p>
-                        <strong>Findings:</strong> The clustering reveals 206 "Undersupplied Urban" SA1 areas (red points) serving 90,425 residents who high demographic public transport propensity scores but receive below-average service quality. The "Urban Core - Well Served" cluster (green, 131 SA1s) demonstrates what's possible: similar demographics but 1.7× the service level results in higher public transport usage. 
+                        <strong>Findings:</strong> The clustering reveals 206 "Undersupplied Urban" SA1 areas (red points) serving 90,425 residents who high demographic public transport propensity scores but receive below-average service quality. 
                     </p>
                     <p>
                         <strong>Data:</strong> ABS Census 2021 + Transport Canberra GTFS + SA1 boundaries | <strong>Processing:</strong> <a href="https://github.com/CAbourizk/CAbourizk.github.io/blob/main/scripts/ml_pt_clustering_mismatch.py" target="_blank">ml_pt_clustering_mismatch.py</a>
