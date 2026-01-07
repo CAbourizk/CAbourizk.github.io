@@ -20,7 +20,7 @@
         <div class="section-header">
            
             <p>
-                Canberra has invested heavily in public transport, yet ridership remains low. Data suggests route coverage and reliability are reasonable, but weekend frequency remains a major gap in service coverage. This analysis examines how Canbera's public transport service quality (coverage, frequency, reliability) falls short of likely demand, and aims to identify which areas stand to benefit most from improvements.
+                Canberra has invested heavily in public transport, yet ridership remains low. Data suggest that route coverage and reliability are reasonable, but weekend frequency remains a major service gap. This analysis examines how Canberra's public transport service quality (coverage, frequency, reliability) falls short of likely demand and aims to identify which areas stand to benefit most from improvements.
             </p>
         </div>
     </section>
@@ -28,7 +28,7 @@
            <section>
         <div class="section-header">
             <h2>Coverage</h2>
-            <p>For public transport to be competitive with private transport, users should not have to walk far to find a stop. Transport planners use a convention of 600m as the upper bound of acceptable distance to walk to a transit stop. In Canberra, 94% of residents live within 600m from a public transport stop, with a median distance of 289m (well within the reccomended walking distance).
+            <p>For public transport to be competitive with private transport, users should not have to walk far to find a stop. Transport planners use a convention of 600m as the upper bound of acceptable distance to walk to a transit stop. In Canberra, 94% of residents live within 600m of a public transport stop, with a median distance of 289m (well within the recommended walking distance).
             </p>
         </div>
         <div class="chart-container">
@@ -38,7 +38,7 @@
                 <details class="intro-panel">
                     <summary>Technical notes</summary>
                     <p>
-                        This choropleth map shows ACT Statistical Area Level 1s (SA1)<span class="footnote-pop" tabindex="0" role="button" aria-label="About SA1s" data-note="SA1s (Statistical Area Level 1) are the smallest Australian Bureau of Statistics geographic units, generally 200-800 residents, used for publishing census data.">[1]</span> colour-coded by population density (light pink to dark red), with transport stops: bus stops (blue circles) and light rail stops (gold squares). Use the selector above to switch between districts. Hover over SA1s to show the same SA1 in the chart to the right. Hovering over SA1s will also show a tool tip with  suburb name (SA2), district (SA3), population, and density data. Hover over stops to see stop names and details. The popout map on the right shows where that district is located within Canberra.
+                        This choropleth map shows ACT Statistical Area Level 1s (SA1)<span class="footnote-pop" tabindex="0" role="button" aria-label="About SA1s" data-note="SA1s (Statistical Area Level 1) are the smallest Australian Bureau of Statistics geographic units, generally 200-800 residents, used for publishing census data.">[1]</span> colour-coded by population density (light pink to dark red), with transport stops: bus stops (blue circles) and light rail stops (gold squares). Use the selector above to switch between districts. Hover over SA1s to show the same SA1 in the chart to the right. Hovering over SA1s will also show a tooltip with the suburb name (SA2), district (SA3), population, and density data. Hover over stops to see stop names and details. The pop-out map on the right shows where that district is located within Canberra.
                         <br><strong>Data:</strong> ABS ASGS 2021 SA1 boundaries + Census G01 (<a href="https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs-edition-3/jul2021-jun2026/access-and-downloads/digital-boundary-files" target="_blank">ABS downloads</a>), Transport Canberra GTFS static feed 
                     </p>
                 </details>
@@ -49,7 +49,7 @@
                 <details class="intro-panel">
                     <summary>Technical notes</summary>
                     <p>
-                        This scatter plot shows the relationship between SA1 population density and distance to the nearest bus stop for each SA1 in Canberra. This chart only shows SA1s with population density above 1,000 persons per km^2. This filtering was done to exclude a number of SA1s with very small populations. Use the selector to change from straight-line distance to walking distance <span class="footnote-pop" tabindex="0" role="button" aria-label="Walking distance convention">[2]<span class="footnote-content">Source: <a href="https://www.trb.org/publications/tcrp/tcrp_webdoc_6-e.pdf" target="_blank">Transit Capcity and Quality Service Manual</a>.</span></span>. Walking distance scaling (x1.35) was applied to the distance from the centroid of the SA1 to the nearest stop in lieu of actual walking distance data.
+                        This scatter plot shows the relationship between SA1 population density and distance to the nearest bus stop for each SA1 in Canberra. This chart only shows SA1s with population density above 1,000 persons per km^2. This filtering was done to exclude a number of SA1s with very small populations. Use the selector to change from straight-line distance to walking distance <span class="footnote-pop" tabindex="0" role="button" aria-label="Walking distance convention">[2]<span class="footnote-content">Source: <a href="https://www.trb.org/publications/tcrp/tcrp_webdoc_6-e.pdf" target="_blank">Transit Capacity and Quality Service Manual</a>.</span></span>. Walking distance scaling (x1.35) was applied to the distance from the centroid of the SA1 to the nearest stop in lieu of actual walking distance data.
                         <br><strong>Data:</strong> ABS ASGS 2021 SA1 boundaries + Census G01, Transport Canberra GTFS static feed | <strong>Processing:</strong> <a href="https://colab.research.google.com/drive/1lNrpeBej0r0ZKsmww85uuUSg8E_KKJy-?usp=sharing" target="_blank">process_sa1_distance.py</a>, <a href="https://colab.research.google.com/drive/1iPriNRH4IIEnC-HLMWErAbzyVQI944Ju?usp=sharing" target="_blank">build_transit_stops.py</a>
                     </p>
                 </details>
@@ -62,7 +62,7 @@
         <div class="section-header">
             <h2>Frequency</h2>
         </div>
-        <p>For public transport to offer a viable alternative to private transport, people should not have to wait too long inbetween services. Cities with high public transport use often aim for times inbetween services (i.e. headways) of less than 5 minutes, so people do not need to plan their lives around bus timetables. Only two of Canberra's bus services reach this benchmark during peak commuting hours. While the light rail and other 'rapid' services (Routes 2-9) have scheduled headways of less than 10 minutes, many of the suburban feeder routes have headways of more than 15 minutes. In a relatively compact city, 15 minutes headways dramatically reduce the competitivness of public transport with private transport. <br> The usability of the system really falls apart on weekends, when headways for most rapid routes stretch out to 15 minutes, and most suburban feeder routes have headways of more than 30 minutes. </p>
+        <p>For public transport to offer a viable alternative to private transport, people should not have to wait too long between services. Cities with high public transport use often aim for headways of less than 5 minutes, so people do not need to plan their lives around bus timetables. Only two of Canberra's bus services reach this benchmark during peak commuting hours. While the light rail and other 'rapid' services (Routes 2-9) have scheduled headways of less than 10 minutes, many suburban feeder routes have headways of more than 15 minutes. In a relatively compact city, 15-minute headways dramatically reduce the competitiveness of public transport relative to private transport. <br> The system becomes much less usable on weekends, when headways for most rapid routes stretch out to 15 minutes and most suburban feeder routes have headways of more than 30 minutes. </p>
         <div class="chart-container">
             <div class="chart-item">
                
@@ -70,7 +70,7 @@
                 <details class="intro-panel">
                     <summary>Technical notes</summary>
                     <p>
-                        Interactive map showing all bus and light rail routes across Canberra, color-coded by service frequency (mean headway). Use the service period selector to view frequency for weekday peak, weekday off-peak, Saturday, or Sunday. Use the route selector to highlight individual routes. Hover over route path to highlight route in chart to the right.
+                        Interactive map showing all bus and light rail routes across Canberra, colour-coded by service frequency (mean headway). Use the service period selector to view frequency for weekday peak, weekday off-peak, Saturday, or Sunday. Use the route selector to highlight individual routes. Hover over route path to highlight route in chart to the right.
                         <br><strong>Data:</strong> Transport Canberra GTFS static feed (<a href="https://www.transport.act.gov.au/contact-us/information-for-developers" target="_blank">API registration required</a>) | <strong>Processing:</strong> <a href="https://colab.research.google.com/drive/1YeuY_R8J5_Llgw6tuWQ0nbB8JX4IchrO?usp=sharing" target="_blank">download_gtfs_static.py</a>, <a href="https://colab.research.google.com/drive/1dQSU6yamkoIYsiEw-_RQnslHdpBlv1-I?usp=sharing" target="_blank">create_route_shapes_geojson.py</a>
                     </p>
                 </details>
@@ -93,7 +93,7 @@
         <div class="section-header">
             <h2>Reliability</h2>
         </div>
-        <p>Reliability can be just as important as frequency, particularly for lower-frequency routes. Missing a suburban feeder route because it ran 5 minutes earlier than scheduled could make you 20 minutes late to work. In this way, poor frequency compounds large headways to make public transport less competitive with private transport. The light rail, is by far and away the most reliable route in Canberra's network with 95% of arrivals happening within +/- 1 minute of schedule. Canberra's other rapid routes do not fair as well, with 84% of arrivals being more than 3 minutes ahead or behind schedule.</p>
+        <p>Reliability can be just as important as frequency, particularly for lower-frequency routes. Missing a suburban feeder route because it ran 5 minutes earlier than scheduled could make you 20 minutes late to work. In this way, poor frequency compounds large headways to make public transport less competitive with private transport. The light rail is by far the most reliable service in Canberra's network, with 95% of arrivals happening within +/- 1 minute of schedule. Canberra's other rapid routes do not fare as well, with 84% of arrivals more than 3 minutes ahead of or behind schedule.</p>
         <div class="chart-container">
             <div class="chart-item">
 
@@ -125,20 +125,20 @@
         <div class="section-header">
             <h2>Looking for areas of latent demand</h2>
         </div>
-        <p>Coverage, frequency, and reliability are not the only determinants of public transport use. For example, a university student is often more likely to use public transport than a high-income retieree. Looking at these demographic variables we can try and find which areas of Canberra use more or less public transport than predicted by their demographic variables. If the ACT government wants to increase public transport use, it should focus on areas that have strong demographic predictors of public transport use and poor service quality. 
-            <br> Using machine learning techniques we can use census data to find SA1s with above and below expected public transport use. Comparing this to a service quality score, reveals 206 "undersupplied" SA1s covering 90,425 residents, with a high propensity to use public transport but low service quality. In the chart on the right, the 'Urban core - well served' cluster demonstrates what's possible. This cluster of SA1s has similar demographic variables to the 'Undersupplied' but 19% higher public transport use facilitated by higher service levels. </p>
+        <p>Coverage, frequency, and reliability are not the only determinants of public transport use. For example, a university student is often more likely to use public transport than a high-income retiree. Looking at these demographic variables, we can identify which areas of Canberra use more or less public transport than predicted by their demographics. If the ACT government wants to increase public transport use, it should focus on areas that have strong demographic predictors of public transport use and poor service quality. 
+            <br> Using machine learning techniques on census data, we can identify SA1s with higher or lower public transport use than expected. Comparing this with a service quality score reveals 206 "undersupplied" SA1s covering 90,425 residents, with a high propensity to use public transport but low service quality. In the chart on the right, the 'Urban core - well served' cluster demonstrates what's possible. This cluster has similar demographics to the 'Undersupplied' group but 19% higher public transport use, facilitated by higher service levels. </p>
                 
         <div class="chart-container">
             <div class="chart-item">
                 <figure id="chart5a"></figure>
                 <details class="intro-panel">
                     <summary>Technical notes</summary>
-                    <p>This chart estimates demographic propensity for PT usage using census variables.</p>
+                    <p>This chart estimates demographic propensity for PT use using census variables.</p>
                     <p>
-                        <strong>Method:</strong> A single Gradient Boosting model trained on demographics variables (occupation, age, labour force participation, education, income, population density). The target is public transport commute rate from the census, using the same train-test split across SA1s.
+                        <strong>Method:</strong> A single Gradient Boosting model trained on demographic variables (occupation, age, labour force participation, education, income, population density). The target is public transport commute rate from the census, using the same train-test split across SA1s.
                     </p>
                     <p>
-                        <strong>Findings:</strong> Demographics alone explain a reasonable share of the variation in public transport commuting (R²=0.399). The scatter shows wide dispersion around the diagonal, indicating that demographic characteristics are only a partial predictor of PT usage across SA1s.
+                        <strong>Findings:</strong> Demographics alone explain a reasonable share of the variation in public transport commuting (R²=0.399). The scatter shows wide dispersion around the diagonal, indicating that demographic characteristics are only a partial predictor of PT use across SA1s.
                     </p>
                     <p>
                         <strong>Data:</strong> ABS Census 2021 (7 tables: G01, G02, G13, G16, G17B, G43, G51) + SA1 boundaries | <strong>Processing:</strong> <a href="https://colab.research.google.com/drive/1jzUpn28PHHZhIywX5qqROJNgwpD_wfQE?usp=sharing" target="_blank">ml_pt_commuting_rate.py</a>
@@ -152,13 +152,13 @@
                     <p>This chart takes the public transport use propensity score from the chart on the left and compares it to public transport quality for each SA1.</p>
         
                     <p>
-                        <strong>Method:</strong> Using a K-means clustering (k=4) SA1s are clustered based on two composite scores: <strong>Demand Score</strong> – based on demographic indicators of public transport propensity , and (2) <strong>Supply Score</strong> – service quality indicators (proximity to closest stop, service frequency, departures per capita, service consistency ratios). Areas are clustered into four policy-relevant groups.
+                        <strong>Method:</strong> Using k-means clustering (k=4), SA1s are grouped based on two composite scores: (1) <strong>Demand Score</strong> - based on demographic indicators of public transport propensity, and (2) <strong>Supply Score</strong> - service quality indicators (proximity to closest stop, service frequency, departures per capita, service consistency ratios). Areas are clustered into four policy-relevant groups.
                     </p>
                     <p>
-                        <strong>Findings:</strong> The clustering reveals 206 "Undersupplied Urban" SA1 areas (red points) serving 90,425 residents who high demographic public transport propensity scores but receive below-average service quality. 
+                        <strong>Findings:</strong> The clustering reveals 206 "Undersupplied Urban" SA1 areas (red points) serving 90,425 residents who have high demographic propensity scores but receive below-average service quality. 
                     </p>
                     <p>
-                        <strong>Data:</strong> ABS Census 2021 + Transport Canberra GTFS + SA1 boundaries | <strong>Processing:</strong> <a href="https://github.com/CAbourizk/CAbourizk.github.io/blob/main/scripts/create_supply_scores.py" target="_blank">create_supply_scores.py</a> (supply metrics), <a href="https://github.com/CAbourizk/CAbourizk.github.io/blob/main/scripts/clustering_demand_supply.py" target="_blank">clustering_demand_supply.py</a>
+                        <strong>Data:</strong> ABS Census 2021 + Transport Canberra GTFS + SA1 boundaries | <strong>Processing:</strong> <a href="https://colab.research.google.com/drive/1Fp9rtl7V2lNt4zUsRcspylzl19QLSQHA?usp=sharing" target="_blank">create_supply_scores.py</a> (supply metrics), <a href="https://colab.research.google.com/drive/1TpfBMDu-32q1okWImzTqmGWYpesYse-g?usp=sharing" target="_blank">clustering_demand_supply.py</a>
                     </p>
                 </details>
             </div>
@@ -171,9 +171,9 @@
         <div class="section-header">
             <h2>Conclusion</h2>
             <p>
-             This analysis reveals that Canberra's public transport network is built primarily around weekday peak commuting, and is not fit to replace private transport for most people. Coverage is the strongest point in the network, with the vast majority of people living within a reasonable walk from a stop. Feeder route frequency (particuarly on weekends) is the clearest weak point in the network and likely the strongest barrier to broader use. 
+             This analysis reveals that Canberra's public transport network is built primarily around weekday peak commuting and is not fit to replace private transport for most people. Coverage is the strongest point in the network, with the vast majority of people living within a reasonable walk from a stop. Feeder route frequency (particularly on weekends) is the clearest weak point in the network and likely the strongest barrier to broader use. 
 
-	<br>The ACT government's public transport strategy in recent years has focused on extending the light rail network to Woden. Scheduled to open in 2033, this will replace the Civic to Woden segment of the rapid 4 bus. While this will likely improve reliabilty of this service, this corridor is already served by the highest frequency of bus services. If aiming to increase ridership across the network, more investment should be put into improving service frequency, particuarly for feeder routes. The results of this analysis suggest that around a quarter of Canberra's population have demographic characteristics that suggest they would have high public transport use, if service quality was improved. These areas should be prioritised for service improvements.
+	<br>The ACT government's public transport strategy in recent years has focused on extending the light rail network to Woden. Scheduled to open in 2033, this will replace the Civic to Woden segment of the rapid 4 bus. While this will likely improve reliability for this service, this corridor is already served by the highest-frequency bus services. If the goal is to increase ridership across the network, more investment should be put into improving service frequency, particularly for feeder routes. The results of this analysis suggest that around a quarter of Canberra's population has demographic characteristics indicating higher public transport use if service quality improves. These areas should be prioritised for service improvements.
  </p>
         </div>
     </section>
@@ -185,12 +185,13 @@
                 <!-- Data -->
                 <summary>Data</summary>
                 <p>
-                    	This analysis draws on data from a range of publicly available sources (see below). Some data (e.g. that from the ABS) was relatively easy to work with (coming in CSV format), and mainly required hunting down the right files. The remainder of the data came from the Transport ACT API. Signing up was easy enough, but sparse documentation and a small user community meant a fair bit of time was spent getting it to work.
+                    	This analysis draws on data from a range of publicly available sources (see below). Some data (e.g., from the ABS) was relatively easy to work with (coming in CSV format) and mainly required hunting down the right files. The remainder of the data came from the Transport Canberra API. Signing up was easy enough, but sparse documentation and a small user community meant spending a fair bit of time getting it to work.
                 </p>
                 <p>
-                The reliability measure is the only data that is not directly replicable. This data was not published, but I was able to use the API and a python script to collect the service lateness data over a two day period (23-24 December 2025). I acknowledge that the days leading up to Christmas may not be a representative sample, so I encourage others to collect more data over a longer period before drawing solid policy conclusions.
+                The reliability measure is the only dataset that is not directly replicable. This data was not published, but I was able to use the API and a Python script to collect service lateness data over a two-day period (23-24 December 2025). I acknowledge that the days leading up to Christmas may not be a representative sample, so I encourage others to collect more data over a longer period before drawing solid policy conclusions.
+                </p>
                 <p>
-                 	While others can use this script to collect new data, I should note that little time was spent optimising for the file size vs granularity tradeoff. The file size grew relatively large relatively quickly (47MB for 2 days). If this work was to be extended, more thought should be paid to this (perhaps collecting data less frequently or compressing the data into summary statistics). 
+                 	While others can use this script to collect new data, I should note that little time was spent optimising for the file size vs. granularity trade-off. The file size grew large quickly (47MB for 2 days). If this work were extended, more thought should be given to this (perhaps collecting data less frequently or compressing the data into summary statistics). 
                     <br>To test the hypothesis that improved service quality can induce greater public transport use more directly, ridership data for each service would be valuable. This could have been used to predict usage for each route based on proximity, frequency, and reliability measures. This data was previously published by the ACT Government but stopped in 2017. 
                 </p>
 
@@ -272,16 +273,16 @@
                 <!-- Tools -->
                 <summary>Tools</summary>
                 <p>
-                    <strong>Coverage charts:</strong> One of the major data cleaning operations was trimming down the list of SA1s. The ACT is relatively small, but Canberra itself is even smaller. This made maps hard to read because the Canberra segment was relatively small (and Vega-Lite does not allow zoom and panning). As the ABS dataset included SA1s for all of the ACT, I manually filtered out SA1s that were outside of Canberra's urban boundaries. The populations affected are very small (11 SA1s with <50 total residents) and ACT transport does not serve these areas. To extend this project, you could explore creating the maps in a different language that allows zooming and panning. This could be a more intuitive experience for readers than drop down menus switching between areas.
+                    <strong>Coverage charts:</strong> One of the major data cleaning operations was trimming down the list of SA1s. The ACT is relatively small, but Canberra itself is even smaller. This made maps hard to read because the Canberra segment was relatively small (and Vega-Lite does not allow zoom and panning). As the ABS dataset included SA1s for all of the ACT, I manually filtered out SA1s that were outside of Canberra's urban boundaries. The populations affected are very small (11 SA1s with <50 total residents) and ACT transport does not serve these areas. To extend this project, you could explore creating the maps in a different language that allows zooming and panning. This could be a more intuitive experience for readers than drop-down menus switching between areas.
                 </p>
                 <p>
-                    The distance to nearest stop measure was generated by a python script that took the centre point of each SA1, and measured the straight-line distance to the nearest GTFS stop. Acknowledging that people ca not walk as the crow flies, I then scaled the distance up by x1.35 as advised in the Transit Capacity and Quality Service Manual. To extend this work further you could improve the accuracy of this measure by using a pedestrian network graph.
+                    The distance to nearest stop measure was generated by a Python script that took the centre point of each SA1 and measured the straight-line distance to the nearest GTFS stop. Acknowledging that people cannot walk as the crow flies, I then scaled the distance up by x1.35 as advised in the Transit Capacity and Quality Service Manual. To extend this work further, you could improve the accuracy of this measure by using a pedestrian network graph.
                 </p>
                 <p>
                     <strong>Frequency charts:</strong> I extracted route shapes and stop times from the GTFS static feed, then computed mean headways by route for weekday peak/off-peak and Saturday/Sunday windows. Light rail headways were added from published timetable data because they are not in the GTFS feed.
                 </p>
                 <p>
-                    <strong>Reliability charts:</strong> This data was collected from the GTFS feed with a python script. One of the issues with collecting this data was the need to run a script continuously over a long period. This meant the need to keep my laptop running for 2 days without sleeping. This took a little while to get up and running because I had some issues with my script not saving the data properly. As the collection window was overnight (London time), troubleshooting was a multi-day affair. To extend this work, it would be good to run the script on a server so it could run for a longer and more representative time period. 
+                    <strong>Reliability charts:</strong> This data was collected from the GTFS feed with a Python script. One of the issues with collecting this data was the need to run a script continuously over a long period. This meant keeping my laptop running for 2 days without sleeping. This took a little while to get up and running because I had some issues with my script not saving the data properly. As the collection window was overnight (London time), troubleshooting was a multi-day affair. To extend this work, it would be good to run the script on a server so it could run for a longer, more representative period. 
                 </p>
                 <p>
                     <strong>Machine learning charts:</strong> I merged ABS Census SA1 demographics with service-quality features (distance to stops, headways/departures, and reliability) and trained gradient boosting models to compare demographics-only, service-only, and combined predictors of PT commuting. I also used k-means clustering to group routes and SA1s into policy-relevant service types.
@@ -304,7 +305,7 @@
     </div>
 
     <h3>Generative AI use disclaimer</h3>
-    <p>Generative AI (Claude, Chat GPT, Gemini, Copilot) was used in producing this website. These tools were used to troubleshoot code, and help produce the more complicated python scripts.</p>
+    <p>Generative AI (Claude, ChatGPT, Gemini, Copilot) was used in producing this website. These tools were used to troubleshoot code and help produce some of the more complicated Python scripts.</p>
    
 
     <script>
