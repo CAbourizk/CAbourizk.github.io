@@ -51,7 +51,7 @@
                     <summary>Technical notes</summary>
                     <p>
                         This scatter plot shows the relationship between SA1 population density and distance to the nearest bus stop for each SA1 in Canberra. This chart only shows SA1s with population density above 1,000 persons per km^2. This filtering was done to exclude a number of SA1s with very small populations. Use the selector to change from straight-line distance from SA1 centroid to closest stop to walking distance <span class="footnote-pop" tabindex="0" role="button" aria-label="Walking distance convention">[2]<span class="footnote-content">Source: <a href="https://www.trb.org/publications/tcrp/tcrp_webdoc_6-e.pdf" target="_blank">Transit Capcity and Quality Service Manual</a>.</span></span>. This walking distance scaling was applied in lieu of actual walking distance data
-                        <br><strong>Data:</strong> ABS ASGS 2021 SA1 boundaries + Census G01, Transport Canberra GTFS static feed | <strong>Processing:</strong> <a href="https://github.com/CAbourizk/CAbourizk.github.io/blob/main/scripts/process_sa1_distance.py" target="_blank">process_sa1_distance.py</a>
+                        <br><strong>Data:</strong> ABS ASGS 2021 SA1 boundaries + Census G01, Transport Canberra GTFS static feed | <strong>Processing:</strong> <a href="https://colab.research.google.com/drive/1lNrpeBej0r0ZKsmww85uuUSg8E_KKJy-?usp=sharing" target="_blank">process_sa1_distance.py</a>, <a href="https://colab.research.google.com/drive/1iPriNRH4IIEnC-HLMWErAbzyVQI944Ju?usp=sharing" target="_blank">build_transit_stops.py</a>
                     </p>
                 </details>
             </div>
@@ -72,7 +72,7 @@
                     <summary>Technical notes</summary>
                     <p>
                         Interactive map showing all bus and light rail routes across Canberra, color-coded by service frequency (mean headway). Use the service period selector to view frequency for weekday peak, weekday off-peak, Saturday, or Sunday. Use the route selector to highlight individual routes. Hover over route path to highlight route in chart to the right.
-                        <br><strong>Data:</strong> Transport Canberra GTFS static feed (<a href="https://www.transport.act.gov.au/contact-us/information-for-developers" target="_blank">API registration required</a>) | <strong>Processing:</strong> <a href="https://github.com/CAbourizk/CAbourizk.github.io/blob/main/scripts/download_gtfs_static.py" target="_blank">download_gtfs_static.py</a> + <a href="https://github.com/CAbourizk/CAbourizk.github.io/blob/main/scripts/create_route_shapes_geojson.py" target="_blank">create_route_shapes_geojson.py</a>
+                        <br><strong>Data:</strong> Transport Canberra GTFS static feed (<a href="https://www.transport.act.gov.au/contact-us/information-for-developers" target="_blank">API registration required</a>) | <strong>Processing:</strong> <a href="https://colab.research.google.com/drive/1YeuY_R8J5_Llgw6tuWQ0nbB8JX4IchrO?usp=sharing" target="_blank">download_gtfs_static.py</a>, <a href="https://colab.research.google.com/drive/1dQSU6yamkoIYsiEw-_RQnslHdpBlv1-I?usp=sharing" target="_blank">create_route_shapes_geojson.py</a>
                     </p>
                 </details>
             </div>
@@ -83,7 +83,7 @@
                     <summary>Technical notes</summary>
                     <p>
                         Mean headways for Canberra bus and light rail routes, with filtering by service type (peak/off-peak/weekend). 
-                        <br><strong>Data:</strong> Transport Canberra GTFS static feed | <strong>Processing:</strong> <a href="https://github.com/CAbourizk/CAbourizk.github.io/blob/main/scripts/extract_headways_from_gtfs.py" target="_blank">extract_headways_from_gtfs.py</a>
+                        <br><strong>Data:</strong> Transport Canberra GTFS static feed | <strong>Processing:</strong> <a href="https://colab.research.google.com/drive/1Hh1sje34c3TxngcytfeJXvifdMeUuYfc?usp=sharing" target="_blank">extract_headways_from_gtfs.py</a>
                     </p>
                 </details>
             </div>
@@ -103,7 +103,7 @@
                     <summary>Technical notes</summary>
                     <p>
                         Faceted histograms showing the distribution of arrival time deviations (scheduled vs actual) for Canberra's light rail and Rapid bus routes. Each panel represents one route, with delays binned into 1-minute intervals. The dashed vertical line at 0 represents perfect on-time performance. Data collected from ACT GTFS-Realtime API over a two-day period (23-24 December 2025). 
-                        <br><strong>Data:</strong> Transport Canberra GTFS-Realtime API, polled every 60 seconds over a two-day period (<a href="https://www.transport.act.gov.au/contact-us/information-for-developers" target="_blank">API registration required</a>) | <strong>Processing:</strong> <a href="https://github.com/CAbourizk/CAbourizk.github.io/blob/main/scripts/get_reliability_data.py" target="_blank">get_reliability_data.py</a>
+                        <br><strong>Data:</strong> Transport Canberra GTFS-Realtime API, polled every 60 seconds over a two-day period (<a href="https://www.transport.act.gov.au/contact-us/information-for-developers" target="_blank">API registration required</a>) | <strong>Processing:</strong> <a href="https://colab.research.google.com/drive/1pLAxwW3Z_EXnRBx5M8velSP3d2jmdxBl?usp=sharing" target="_blank">get_reliability_data.py</a>
                     </p>
                 </details>
             </div>
@@ -114,7 +114,7 @@
                     <summary>Technical notes</summary>
                     <p>
                         Stacked bar chart showing the percentage breakdown of arrival reliability for each route.
-                        <br><strong>Data:</strong> Transport Canberra GTFS-Realtime API, polled every 60 seconds over a two-day period | <strong>Processing:</strong> <a href="https://github.com/CAbourizk/CAbourizk.github.io/blob/main/scripts/create_ontime_percentage_data.py" target="_blank">create_ontime_percentage_data.py</a>
+                        <br><strong>Data:</strong> Transport Canberra GTFS-Realtime API, polled every 60 seconds over a two-day period | <strong>Processing:</strong> <a href="https://colab.research.google.com/drive/1JXrgWu70VqfUrHcPN5CQAGrpZ0TZre4S?usp=sharing" target="_blank">create_ontime_percentage_data.py</a>
                     </p>
                 </details>
             </div>
@@ -303,6 +303,8 @@
         </div>
     </div>
 
+    <h3>Generative AI use disclaimer</h3>
+    <p>Generative AI (Claude, Chat GPT, Gemini, Copilot) was used in producing this website. These tools were used to trouble shoot code, and help produce the more complicated python scripts.</p>
    
 
     <script>
