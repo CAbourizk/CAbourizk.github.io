@@ -29,7 +29,7 @@
         <div class="section-header">
             <h2>Coverage</h2>
             <p>
-                For public transport to be competitive with private transport, users shouldn't have to walk far to find a stop. Transport planners use a convention of 600m walking distance as the upper bound of acceptable distance to walk to a stop. In Canberra, 94% of residents live within 600m from a public transport stop, with a median distance of 289m (well within the reccomended walking distance).
+                For public transport to be competitive with private transport, users should not have to walk far to find a stop. Transport planners use a convention of 600m walking distance as the upper bound of acceptable distance to walk to a stop. In Canberra, 94% of residents live within 600m from a public transport stop, with a median distance of 289m (well within the reccomended walking distance).
             </p>
         </div>
         <div class="chart-container">
@@ -50,7 +50,7 @@
                 <details class="intro-panel">
                     <summary>Technical notes</summary>
                     <p>
-                        This scatter plot shows the relationship between SA1 population density and distance to the nearest bus stop for each SA1 in Canberra. This chart only shows SA1s with population density above 1,000 persons per km^2. This filtering was done to exclude a number of SA1s with very small populations. Use the selector to change from straight-line distance from SA1 centroid to closest stop to walking distance <span class="footnote-pop" tabindex="0" role="button" aria-label="Walking distance convention">[2]<span class="footnote-content">Source: <a href="https://www.trb.org/publications/tcrp/tcrp_webdoc_6-e.pdf" target="_blank">Transit Capcity and Quality Service Manual</a>.</span></span>. This walking distance scaling was applied in lieu of actual walking distance data
+                        This scatter plot shows the relationship between SA1 population density and distance to the nearest bus stop for each SA1 in Canberra. This chart only shows SA1s with population density above 1,000 persons per km^2. This filtering was done to exclude a number of SA1s with very small populations. Use the selector to change from straight-line distance from SA1 centroid to closest stop to walking distance <span class="footnote-pop" tabindex="0" role="button" aria-label="Walking distance convention">[2]<span class="footnote-content">Source: <a href="https://www.trb.org/publications/tcrp/tcrp_webdoc_6-e.pdf" target="_blank">Transit Capcity and Quality Service Manual</a>.</span></span>. This walking distance scaling was applied in lieu of actual walking distance data.
                         <br><strong>Data:</strong> ABS ASGS 2021 SA1 boundaries + Census G01, Transport Canberra GTFS static feed | <strong>Processing:</strong> <a href="https://colab.research.google.com/drive/1lNrpeBej0r0ZKsmww85uuUSg8E_KKJy-?usp=sharing" target="_blank">process_sa1_distance.py</a>, <a href="https://colab.research.google.com/drive/1iPriNRH4IIEnC-HLMWErAbzyVQI944Ju?usp=sharing" target="_blank">build_transit_stops.py</a>
                     </p>
                 </details>
@@ -63,7 +63,7 @@
         <div class="section-header">
             <h2>Frequency</h2>
         </div>
-        <p>For public transport to offer a viable alternative to private transport, people shouldn't have to wait too long inbetween services. Cities with the high public transport use often aim for times inbetween services (i.e. headways) of less than 5 minutes, so people don't need to plan their lives around bus timetables. Only two of Canberra's bus services reach this benchmark during peak commuting hours. While the light rail and other 'rapid' services have scheduled headways of less than 10 minutes, many of the suburban feeder routes have headways of more than 15 minutes. In a relatively compact city, 15 minutes headways dramatically reduces the competitivness of public transport with private transport. <br> The usability of the system really falls apart on weekends, when headways for most rapid routes stretch out to 15 minutes, and most suburban feeder routes have headways of more than 30 minutes. </p>
+        <p>For public transport to offer a viable alternative to private transport, people should not have to wait too long inbetween services. Cities with high public transport use often aim for times inbetween services (i.e. headways) of less than 5 minutes, so people do not need to plan their lives around bus timetables. Only two of Canberra's bus services reach this benchmark during peak commuting hours. While the light rail and other 'rapid' services (Routes 2-9) have scheduled headways of less than 10 minutes, many of the suburban feeder routes have headways of more than 15 minutes. In a relatively compact city, 15 minutes headways dramatically reduces the competitivness of public transport with private transport. <br> The usability of the system really falls apart on weekends, when headways for most rapid routes stretch out to 15 minutes, and most suburban feeder routes have headways of more than 30 minutes. </p>
         <div class="chart-container">
             <div class="chart-item">
                
@@ -94,7 +94,7 @@
         <div class="section-header">
             <h2>Reliability</h2>
         </div>
-        <p>Reliability can be just as important as frequency, particularly for lower-frequency routes. Missing a suburban feeder route because it ran 5 minutes earlier than scheduled could make you 20 minutes late to work. In this way poor frequency compounds large headways to make public transport less competitive with private transport. The light rail, is by far and away the most reliable route in Canberra's network with 95% of arrivals happening within +/- 1 minute of schedule. Canberra's other rapid routes dont fair as well, with 84% of arrivals being more than 3 minutes ahead or behind schedule.</p>
+        <p>Reliability can be just as important as frequency, particularly for lower-frequency routes. Missing a suburban feeder route because it ran 5 minutes earlier than scheduled could make you 20 minutes late to work. In this way, poor frequency compounds large headways to make public transport less competitive with private transport. The light rail, is by far and away the most reliable route in Canberra's network with 95% of arrivals happening within +/- 1 minute of schedule. Canberra's other rapid routes do not fair as well, with 84% of arrivals being more than 3 minutes ahead or behind schedule.</p>
         <div class="chart-container">
             <div class="chart-item">
 
@@ -102,7 +102,7 @@
                 <details class="intro-panel">
                     <summary>Technical notes</summary>
                     <p>
-                        Faceted histograms showing the distribution of arrival time deviations (scheduled vs actual) for Canberra's light rail and Rapid bus routes. Each panel represents one route, with delays binned into 1-minute intervals. The dashed vertical line at 0 represents perfect on-time performance. Data collected from ACT GTFS-Realtime API over a two-day period (23-24 December 2025). 
+                        Faceted histograms showing the distribution of arrival time deviations (scheduled vs actual) for Canberra's light rail and Rapid bus routes. Each panel represents one route, with deviations binned into 1-minute intervals. The dashed vertical line at 0 represents perfect on-time performance. Data collected from ACT GTFS-Realtime API over a two-day period (23-24 December 2025). 
                         <br><strong>Data:</strong> Transport Canberra GTFS-Realtime API, polled every 60 seconds over a two-day period (<a href="https://www.transport.act.gov.au/contact-us/information-for-developers" target="_blank">API registration required</a>) | <strong>Processing:</strong> <a href="https://colab.research.google.com/drive/1pLAxwW3Z_EXnRBx5M8velSP3d2jmdxBl?usp=sharing" target="_blank">get_reliability_data.py</a>
                     </p>
                 </details>
@@ -126,7 +126,7 @@
         <div class="section-header">
             <h2>Looking for areas of latent demand</h2>
         </div>
-        <p>Coverage, frequency, and reliability aren't the only determinants of public transport use. For example, a university student is often more likely to use public transport than a high-income retieree. Looking at these demographic variables we can try and find which areas of Canberra use more or less public transport than predicted by their demographic variables. If the ACT government wants to raise public transport use, it should focus on areas that have strong demographic predictors of public transport use, but poor service quality. 
+        <p>Coverage, frequency, and reliability are not the only determinants of public transport use. For example, a university student is often more likely to use public transport than a high-income retieree. Looking at these demographic variables we can try and find which areas of Canberra use more or less public transport than predicted by their demographic variables. If the ACT government wants to raise public transport use, it should focus on areas that have strong demographic predictors of public transport use, but poor service quality. 
             <br> Using machine learning techniques we can use census data to find SA1s with above and below expected public transport use. Comparing this to a service quality score, reveals 206 "undersupplied" SA1s covering 90,425 residents, with a high propensity to use public transport but low quality. In the chart on the right, the 'Urban Core' cluster demonstrates what's possible. This cluster of SA1s has similar demographic variables to the 'undersupplied' but [x% higher public transport use] facilitated by higher service levels. </p>
                 
         <div class="chart-container">
@@ -159,7 +159,7 @@
                         <strong>Findings:</strong> The clustering reveals 206 "Undersupplied Urban" SA1 areas (red points) serving 90,425 residents who high demographic public transport propensity scores but receive below-average service quality. 
                     </p>
                     <p>
-                        <strong>Data:</strong> ABS Census 2021 + Transport Canberra GTFS + SA1 boundaries | <strong>Processing:</strong> <a href="https://github.com/CAbourizk/CAbourizk.github.io/blob/main/scripts/ml_pt_clustering_mismatch.py" target="_blank">ml_pt_clustering_mismatch.py</a>
+                        <strong>Data:</strong> ABS Census 2021 + Transport Canberra GTFS + SA1 boundaries | <strong>Processing:</strong> <a href="https://github.com/CAbourizk/CAbourizk.github.io/blob/main/scripts/create_supply_scores.py" target="_blank">create_supply_scores.py</a> (supply metrics), <a href="https://github.com/CAbourizk/CAbourizk.github.io/blob/main/scripts/clustering_demand_supply.py" target="_blank">clustering_demand_supply.py</a> (K-means clustering)
                     </p>
                 </details>
             </div>
@@ -170,11 +170,11 @@
 
     <section>
         <div class="section-header">
-            <h2>Conclusions</h2>
+            <h2>Conclusion</h2>
             <p>
-             This analysis reveals that Canberra's public transport network is built primarily around weekday peak commuting, and isn't fit to replace private transport for most people. Coverage is the strongest point in the network, with the vast majority of people living within a reasonable walk from a stop. Feeder route frequency (particuarlly on weekends) is the clearest weak point in the network and likely the strongest barrier to broader use. 
+             This analysis reveals that Canberra's public transport network is built primarily around weekday peak commuting, and is not fit to replace private transport for most people. Coverage is the strongest point in the network, with the vast majority of people living within a reasonable walk from a stop. Feeder route frequency (particuarly on weekends) is the clearest weak point in the network and likely the strongest barrier to broader use. 
 
-	<br>The ACT government's public transport strategy in recent years has focused on extending the light rail network to Woden. Scheduled to open in 2033, this will replace the Civic to Woden segment of the rapid 4 bus. While this will likely improve realiabilty of this service, this corridor is alread served by the highest frequency of bus services. If aiming to raise ridership across the network, more investment should be put into improving service frequecy, particuarlly for feeder routes. The results of this analysis suggest that around a quarter of Canberra's population is underserved by service quality. These areas should be prioritised for service improvements.
+	<br>The ACT government's public transport strategy in recent years has focused on extending the light rail network to Woden. Scheduled to open in 2033, this will replace the Civic to Woden segment of the rapid 4 bus. While this will likely improve reliabilty of this service, this corridor is already served by the highest frequency of bus services. If aiming to increase ridership across the network, more investment should be put into improving service frequency, particuarly for feeder routes. The results of this analysis suggest that around a quarter of Canberra's population have demographic characteristics that suggest they would have high public transport use, if service quality was improved. These areas should be prioritised for service improvements.
  </p>
         </div>
     </section>
