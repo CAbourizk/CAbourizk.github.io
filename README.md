@@ -53,14 +53,15 @@ The analysis reveals that **service frequency, not spatial accessibility, is the
 
 ```
 ├── project.html                      # Main interactive visualization page
+├── portfolio.html                    # Portfolio showcase page
 ├── Chart_journal_look.css            # Stylesheet
 ├── README.md                         # This file
 ├── environment.yml                   # Conda environment specification
 ├── data/                             # Processed datasets (CSV, GeoJSON)
 │   ├── chart1a_intercity_comparison.csv
-│   ├── chart2_sa1_accessibility.csv
-│   ├── chart3_sa1_boundaries.geojson
-│   ├── chart3_stops_*.geojson        # 10 district-specific stop files
+│   ├── chart2a_sa1_boundaries.geojson
+│   ├── chart2a_stops_*.geojson       # 10 district-specific stop files
+│   ├── chart2b_sa1_accessibility.csv
 │   ├── chart4_reliability_combined.csv
 │   ├── chart5_predictions.csv
 │   ├── chart6_headways.csv
@@ -69,8 +70,14 @@ The analysis reveals that **service frequency, not spatial accessibility, is the
 │       ├── bitre-yearbook-2024-05-passengers.xlsx
 │       ├── LightRailStops_20251130.geojson
 │       └── au-australian-capital-territory-transport-canberra-gtfs-936/
-├── Project/
-│   └── json/                         # Vega-Lite chart specifications (26 files)
+├── Portfolio/                        # Portfolio projects
+│   ├── csv/                          # Portfolio datasets (5 CSV files)
+│   ├── json/                         # Portfolio chart specifications (28 files)
+│   └── images/                       # Portfolio visualization screenshots
+├── Project/                          # Canberra PT analysis project
+│   ├── json/                         # Vega-Lite chart specifications (35 files)
+│   ├── images/                       # Project visualization outputs
+│   └── regression_results/           # Analysis outputs and findings
 └── scripts/                          # Python data processing pipeline
     ├── download_gtfs_static.py
     ├── extract_headways_from_gtfs.py
@@ -163,23 +170,26 @@ Run data processing scripts in this order:
 # 1. Download GTFS static feed (requires API credentials)
 python scripts/download_gtfs_static.py
 
-# 2. Extract service frequency (headways) from GTFS timetables
-python scripts/extract_headways_from_gtfs.py
+# 2. Build district-specific transit stop GeoJSON files
+python scripts/build_transit_stops.py
 
 # 3. Calculate distance from each SA1 to nearest bus stop
 python scripts/process_sa1_distance.py
 
-# 4. Build district-specific transit stop GeoJSON files
-python scripts/build_transit_stops.py
+# 4. Create route geometry GeoJSON for network maps
+python scripts/create_route_shapes_geojson.py
 
 # 5. Generate Vega-Lite map specifications for each district
 python scripts/create_vegalite_map.py
 
-# 6. Create route geometry GeoJSON for network maps
-python scripts/create_route_shapes_geojson.py
-
-# 7. Run machine learning model for PT commuting prediction
+# 6. Run Chart 5a demographics-only ML model
 python scripts/ml_pt_commuting_rate.py
+
+# 7. Generate SA1 supply scores and comparison file (Chart 5b data prep)
+python scripts/create_supply_scores.py
+
+# 8. Perform demand-supply mismatch clustering (Chart 5b)
+python scripts/clustering_demand_supply.py
 
 # OPTIONAL: Collect real-time reliability data (runs for 14+ days)
 # WARNING: Continuous execution required
@@ -191,9 +201,9 @@ python scripts/get_reliability_data.py
 After running all scripts, you'll have:
 
 - `data/chart1a_intercity_comparison.csv` – Patronage comparison across Australian cities
-- `data/chart2_sa1_accessibility.csv` – SA1-level accessibility metrics (88 KB)
-- `data/chart3_sa1_boundaries.geojson` – ACT SA1 boundaries (5.8 MB)
-- `data/chart3_stops_*.geojson` – Transit stops by district (10 files)
+- `data/chart2b_sa1_accessibility.csv` – SA1-level accessibility metrics (88 KB)
+- `data/chart2a_sa1_boundaries.geojson` – ACT SA1 boundaries (5.8 MB)
+- `data/chart2a_stops_*.geojson` – Transit stops by district (10 files)
 - `data/chart4_reliability_combined.csv` – Bus delay measurements
 - `data/chart5_predictions.csv` – ML model predictions
 - `data/chart6_headways.csv` – Service frequency by route (20 KB)
