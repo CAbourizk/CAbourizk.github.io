@@ -3,7 +3,7 @@
   "description": "On-time performance by route showing arrival reliability categories",
   "title": {
     "text": "Bus Service Reliability by Route",
-    "subtitle": "Percentage of arrivals by reliability category (matching Chart 4 categories)",
+    "subtitle": "Percentage of arrivals by reliability category",
     "anchor": "start"
   },
   "width": 720,
@@ -26,6 +26,10 @@
     },
     {
       "filter": "datum.total_observations >= 100"
+    },
+    {
+      "calculate": "datum.route_label == '1' ? 'Light Rail' : datum.route_label",
+      "as": "route_label"
     },
     {
       "calculate": "datum.category == 'Excellent (±1min)' ? 1 : datum.category == 'Good (1-3min)' ? 2 : datum.category == 'Fair (3-6min)' ? 3 : datum.category == 'Poor (6-9min)' ? 4 : 5",
@@ -147,11 +151,7 @@
             "type": "nominal",
             "title": "Route name"
           },
-          {
-            "field": "day_type",
-            "type": "nominal",
-            "title": "Day type"
-          },
+         
           {
             "field": "category",
             "type": "nominal",

@@ -116,11 +116,7 @@
                 "type": "nominal",
                 "title": "District (SA3)"
               },
-              {
-                "field": "properties.SA1_Code",
-                "type": "nominal",
-                "title": "SA1 Code"
-              },
+             
               {
                 "field": "properties.Population",
                 "type": "quantitative",

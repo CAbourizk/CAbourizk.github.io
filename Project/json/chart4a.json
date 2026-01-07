@@ -165,11 +165,18 @@
             "field": "delay_bin_start",
             "type": "quantitative",
             "bin": "binned",
-            "title": "Delay (minutes)",
+            "title": "Deviation (minutes)",
             "axis": {
               "labelAngle": 0,
               "labelFontSize": 9,
-              "labelExpr": "datum.value <= -10 ? '10+ min early' : datum.value >= 9 ? '10+ min late' : format(datum.value, '.0f')"
+              "labelExpr": "datum.value <= -10 ? '10+ min early' : datum.value >= 9 ? '10+ min late' : datum.value == 0 ? 'On time' : format(datum.value, '.0f')",
+              "values": [
+                -10,
+                -5,
+                0,
+                5,
+                10
+              ]
             },
             "scale": {
               "domain": [

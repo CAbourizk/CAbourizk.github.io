@@ -2,8 +2,8 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "ML prediction: Demographics-only model",
   "title": {
-    "text": "Predicting PT Commuting: Demographics-Only Model",
-    "subtitle": "Gradient boosting predictions using demographic features only (R\u00b2=0.185)",
+    "text": "Predicting Public Transport Commuting",
+    "subtitle": "Gradient boosting predictions using demographic features (R\u00b2=0.399)",
     "anchor": "start"
   },
   "width": 800,
@@ -91,7 +91,7 @@
         "x": {
           "field": "pt_commute_rate",
           "type": "quantitative",
-          "title": "Actual PT Commute Rate (%)",
+          "title": "Actual Public Trasnport Commute Rate (%)",
           "scale": {
             "domain": [
               0,
@@ -106,7 +106,7 @@
         "y": {
           "field": "predicted_rate",
           "type": "quantitative",
-          "title": "Predicted PT Commute Rate (%)",
+          "title": "Predicted Public Transport Commute Rate (%)",
           "scale": {
             "domain": [
               0,
@@ -175,13 +175,13 @@
           {
             "field": "pt_commute_rate",
             "type": "quantitative",
-            "title": "Actual PT Commute Rate (%)",
+            "title": "Actual Public Transport Commute Rate (%)",
             "format": ".2f"
           },
           {
             "field": "predicted_rate",
             "type": "quantitative",
-            "title": "Predicted PT Commute Rate (%)",
+            "title": "Predicted Public Transport Commute Rate (%)",
             "format": ".2f"
           },
           {
@@ -208,12 +208,12 @@
           {
             "x": 2,
             "y": 20,
-            "label": "Points above line = higher-than-expected PT usage"
+            "label": "Points above line = higher-than-expected Public Transport usage"
           },
           {
             "x": 15,
             "y": 5,
-            "label": "Points below line = lower-than-expected PT usage"
+            "label": "Points below line = lower-than-expected Public Transport usage"
           }
         ]
       },

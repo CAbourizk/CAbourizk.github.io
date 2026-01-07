@@ -1,9 +1,9 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "K-means clustering: Demand-supply mismatch in Canberra PT",
+  "description": "Demand-supply mismatch in Canberra Public Transport",
   "title": {
     "text": "Demand-Supply Mismatch: Where Should We Invest?",
-    "subtitle": "K-means clustering of SA1 areas by demographic PT propensity vs. service quality",
+    "subtitle": "K-means clustering of SA1 areas by demographic Public Transport propensity vs. service quality",
     "anchor": "start"
   },
   "width": 800,
@@ -53,75 +53,6 @@
     }
   ],
   "layer": [
-    {
-      "mark": {
-        "type": "text",
-        "fontSize": 13,
-        "fontStyle": "italic",
-        "color": "#666",
-        "fontWeight": "normal",
-        "align": "center"
-      },
-      "data": {
-        "values": [
-          {
-            "x": 70,
-            "y": 70,
-            "label": "Well-Served\nUrban Core",
-            "color": "#029E73"
-          },
-          {
-            "x": 35,
-            "y": 70,
-            "label": "UNDERSUPPLIED\nPriority for Investment",
-            "color": "#CC3311"
-          },
-          {
-            "x": 70,
-            "y": 35,
-            "label": "Oversupplied\nSuburban",
-            "color": "#0173B2"
-          },
-          {
-            "x": 35,
-            "y": 35,
-            "label": "Baseline\nSuburban",
-            "color": "#949494"
-          }
-        ]
-      },
-      "encoding": {
-        "x": {
-          "field": "x",
-          "type": "quantitative",
-          "scale": {
-            "domain": [
-              0,
-              100
-            ]
-          }
-        },
-        "y": {
-          "field": "y",
-          "type": "quantitative",
-          "scale": {
-            "domain": [
-              0,
-              100
-            ]
-          }
-        },
-        "text": {
-          "field": "label",
-          "type": "nominal"
-        },
-        "color": {
-          "field": "color",
-          "type": "nominal",
-          "scale": null
-        }
-      }
-    },
     {
       "mark": {
         "type": "rule",
@@ -219,8 +150,7 @@
               "#949494",
               "#029E73"
             ]
-          },
-          "legend": null
+          }
         }
       }
     },
@@ -235,7 +165,7 @@
         "x": {
           "field": "supply_score",
           "type": "quantitative",
-          "title": "Service Quality Score (accessibility + frequency + coverage)",
+          "title": "Service Quality Score",
           "scale": {
             "domain": [
               0,
@@ -250,7 +180,7 @@
         "y": {
           "field": "demand_score",
           "type": "quantitative",
-          "title": "Demographic PT Propensity Score (working age + education + density)",
+          "title": "Demographic Public Transport Propensity Score",
           "scale": {
             "domain": [
               0,
@@ -294,6 +224,12 @@
               "#949494",
               "#029E73"
             ]
+          },
+          "legend": {
+            "title": "Cluster",
+            "orient": "right",
+            "symbolType": "circle",
+            "symbolSize": 90
           }
         },
         "opacity": {
@@ -357,7 +293,7 @@
           {
             "field": "pt_commute_rate",
             "type": "quantitative",
-            "title": "PT Commute Rate (%)",
+            "title": "Public Transport Commute Rate (%)",
             "format": ".2f"
           },
           {

@@ -149,11 +149,7 @@
             "type": "nominal",
             "title": "Route name"
           },
-          {
-            "field": "service_type",
-            "type": "nominal",
-            "title": "Service type"
-          },
+         
           {
             "field": "mean_headway_min",
             "type": "quantitative",
