@@ -161,6 +161,76 @@ a:hover {
   border-bottom-color: transparent;
 }
 
+/* Pop-out footnote */
+.footnote-pop {
+  position: relative;
+  display: inline-block;
+  margin-left: 2px;
+  font-size: 0.75em;
+  vertical-align: super;
+  color: #065f46;
+  border-bottom: 1px dotted #065f46;
+  cursor: help;
+}
+
+.footnote-pop::after {
+  content: attr(data-note);
+  position: absolute;
+  left: 0;
+  top: 1.3em;
+  z-index: 10;
+  max-width: 260px;
+  padding: 8px 10px;
+  background-color: #fffdf4;
+  border: 1px solid #d7d1c4;
+  border-radius: 6px;
+  box-shadow: 0 6px 18px rgba(39, 24, 0, 0.15);
+  font-size: 0.95em;
+  line-height: 1.4;
+  color: #33303e;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+}
+
+.footnote-pop:hover::after,
+.footnote-pop:focus::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.footnote-pop .footnote-content {
+  position: absolute;
+  left: 0;
+  top: 1.3em;
+  z-index: 10;
+  max-width: 260px;
+  padding: 8px 10px;
+  background-color: #fffdf4;
+  border: 1px solid #d7d1c4;
+  border-radius: 6px;
+  box-shadow: 0 6px 18px rgba(39, 24, 0, 0.15);
+  font-size: 0.95em;
+  line-height: 1.4;
+  color: #33303e;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+  visibility: hidden;
+  white-space: normal;
+}
+
+.footnote-pop:hover .footnote-content,
+.footnote-pop:focus .footnote-content,
+.footnote-pop:focus-within .footnote-content {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  visibility: visible;
+}
+
 /* Images */
 img {
   max-width: 100%;

@@ -204,7 +204,7 @@
             </div>
             <div class="chart-item">
                 <figure id="Location24"></figure>
-                <p>This chart compares three machine learning models predicting public transport usage: demographics only (R²=0.185), service quality only (R²=0.176), and combined (R²=0.336). I also conducted statistical significance testing using linear regression, which revealed that service quality effects differ significantly across demographic groups - density matters most in high-education areas (p<0.001), while low-income areas are more sensitive to service frequency. Full regression tables with p-values available in Project/regression_results/.
+                <p>This chart uses [technique] to predict public transport for small areas using by demographic variables from the census. Colab link [here]
                 </p>
             </div>
         </div>
@@ -236,15 +236,16 @@
             { id: '#Location20', spec: 'Portfolio/json/olive_oil_price_chart.json' },
             { id: '#Location21', spec: 'Project/json/chart1a_intercity.json' },
             { id: '#Location22', spec: 'Project/json/chart1b.json' },
-            { id: '#Location23', spec: 'Project/json/chart4.json' },
-            { id: '#Location24', spec: 'Project/json/chart5_comparison.json' }
+            { id: '#Location23', spec: 'Project/json/chart4a.json' },
+            { id: '#Location24', spec: 'Project/json/chart5a.json' }
         ];
 
         // Embed all charts using a loop
         charts.forEach(chart => {
+            const useSvgRenderer = ['#Location17', '#Location18', '#Location23'].includes(chart.id);
             vegaEmbed(chart.id, chart.spec, {
                 actions: false,
-                renderer: 'canvas'
+                renderer: useSvgRenderer ? 'svg' : 'canvas'
             });
         });
     </script>
